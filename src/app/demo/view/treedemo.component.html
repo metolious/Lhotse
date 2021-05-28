@@ -1,0 +1,85 @@
+<div class="p-grid p-fluid">
+	<div class="p-col-12 p-md-6">
+
+		<div class="card">
+			<h5>Select Image Labels</h5>
+			<div class="p-fluid">
+				<div class="p-field">
+					<label for="p-field">Classification</label>
+					<p-dropdown #classLabel filter="true" styleClass="pMultiSelect" [(ngModel)]="securityLabel" placeholder="&nbsp;" [options]="security_labels" [showClear]="true"></p-dropdown>
+				</div>
+				<div class="p-field">
+					<label for="aspect">Image Aspect</label>
+					<p-dropdown #aspectLabel filter="true" styleClass="pMultiSelect" [options]="aspects" [(ngModel)]="aspect" placeholder="&nbsp;" [showClear]="true"></p-dropdown>
+				</div>
+				<div class="p-field">
+					<label for="iSource">Image Source</label>
+					<p-dropdown #imgSource filter="true" styleClass="pMultiSelect" [options]="image_sources" [(ngModel)]="imageSource" placeholder="&nbsp;" optionLabel="label" [showClear]="true"></p-dropdown>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<h5>Select Image Identifiers</h5>
+			<div class="p-fluid">
+				<div class="p-field">
+					<label for="p-field">Sconum</label>
+				<p-chips #sconum styleClass="pChipsStyleClass" [(ngModel)]="sconums" placeholder="&nbsp;"></p-chips>
+				</div>
+				<div class="p-field">
+					<label for="aspect">IIR Number</label>
+				<p-chips styleClass="pChipsStyleClass" [(ngModel)]="iir_numbers" placeholder="&nbsp;"></p-chips>
+				</div>
+				<div class="p-field">
+					<label for="iSource">Other Sources</label>
+				<p-chips styleClass="pChipsStyleClass" [(ngModel)]="other_sources" placeholder="&nbsp;"></p-chips>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<h5>Select Image Date</h5>
+			<p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>
+		</div>
+</div>
+
+	<div class="p-col-12 p-md-6">
+		<div class="card">
+			<h5>Select Files To Upload</h5>
+			<p-fileUpload 			
+				#fileUpload 
+				name="myfile[]" 
+				url="/upload.py"
+				multiple="multiple"
+				accept="image/*" 
+				maxFileSize="1000000"     
+				customUpload="true"
+				(uploadHandler)="customUploader($event, customer)"
+				(onUpload)="uploadComplete($event, customer)">
+				<ng-template pTemplate="content">
+					<ul *ngIf="uploadedFiles.length">
+						<li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+					</ul>
+				</ng-template>
+				<ng-template pTemplate="content" let-files>
+					<!-- <div *ngIf='uploadSuccess'>&nbsp;Upload {{uploadedFiles.length}} Files</div> -->
+				</ng-template>
+			</p-fileUpload>
+		</div>
+
+		<div class="card">
+			<div class="p-grid">
+				<div class="p-col-12 p-md-6">
+					<h5>Rating</h5>
+					<p-rating></p-rating>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+			<p-confirmDialog [(visible)]="redirectDialog" header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle" 
+				[style]="{width:'425px'}" acceptButtonStyleClass="p-mr-2" rejectButtonStyleClass="p-button-text"> </p-confirmDialog>
+
+            <!-- <button *ngIf="this.isButtonVisible" type="text" (click)="confirm1()" pButton icon="pi pi-trash" 
+                    label="Delete" class="p-button-danger" style="width: auto"></button> -->
