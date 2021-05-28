@@ -1,0 +1,76 @@
+{
+	"data": [
+		{
+			"id": "1000",
+			"code": "f230fh0g3",
+			"name": "Ship 1",
+			"description": "Product Description",
+			"image": "ship(10x).jpg",
+			"price": 65,
+			"category": "Accessories",
+			"quantity": 24,
+			"inventoryStatus": "INSTOCK",
+			"rating": 5
+		},
+		{
+			"id": "1001",
+			"code": "nvklal433",
+			"name": "Ship 2",
+			"description": "Product Description",
+			"image": "ship(3x).jpg",
+			"price": 72,
+			"category": "Accessories",
+			"quantity": 61,
+			"inventoryStatus": "INSTOCK",
+			"rating": 4
+		},
+		{
+			"id": "1002",
+			"code": "zz21cz3c1",
+			"name": "Ship 3",
+			"description": "Product Description",
+			"image": "ship(4x).jpg",
+			"price": 79,
+			"category": "Fitness",
+			"quantity": 2,
+			"inventoryStatus": "LOWSTOCK",
+			"rating": 3
+		},
+		{
+			"id": "1003",
+			"code": "244wgerg2",
+			"name": "Ship 4",
+			"description": "Product Description",
+			"image": "ship(9x).jpg",
+			"price": 29,
+			"category": "Clothing",
+			"quantity": 25,
+			"inventoryStatus": "INSTOCK",
+			"rating": 5
+		},
+		{
+			"id": "1003",
+			"code": "244wgerg2",
+			"name": "Ship 5",
+			"description": "Product Description",
+			"image": "ship(1x).jpg",
+			"price": 29,
+			"category": "Clothing",
+			"quantity": 25,
+			"inventoryStatus": "INSTOCK",
+			"rating": 5
+		},
+		{
+			"id": "1003",
+			"code": "244wgerg2",
+			"name": "Ship 6",
+			"description": "Product Description",
+			"image": "ship(11x).jpg",
+			"price": 29,
+			"category": "Clothing",
+			"quantity": 25,
+			"inventoryStatus": "INSTOCK",
+			"rating": 5
+		}
+	]
+}
