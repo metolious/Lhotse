@@ -4,7 +4,7 @@ import {AppBreadcrumbService} from 'src/app/app.breadcrumb.service';
 import { IAspect, IImageSource, ISecurityLabel, IUser } from 'src/app/shared/interfaces';
 
 @Component({
-    templateUrl: './panelsdemo.component.html',
+    templateUrl: './image-search.component.html',
     styles: [`
         :host ::ng-deep button {
             margin-right: .25em;
@@ -23,7 +23,8 @@ import { IAspect, IImageSource, ISecurityLabel, IUser } from 'src/app/shared/int
         }
     `]
 })
-export class PanelsDemoComponent implements OnInit {
+
+export class ImageSearchComponent implements OnInit {
 
     users: IUser[];
     security_labels: ISecurityLabel[];

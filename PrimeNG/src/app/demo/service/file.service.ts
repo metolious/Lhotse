@@ -27,11 +27,6 @@ export class FileService {
 
     request_approval: new FormControl(null),
     request_termination: new FormControl(null),
-    //add these
-    approval: new FormControl(null),
-    poc_user: new FormControl(''),
-    login_user: new FormControl(''),
-    author: new FormControl(''),
   })
 
   initFormGroup() {
@@ -47,16 +42,10 @@ export class FileService {
 
       request_approval: null,
       request_termination: null,
-       //add these
-      approval: null,
-      poc_user: '',
-      login_user: '',
-      author: '',
     })
   }
 
   getFiles(): Observable<IFile[]> {
-    //console.log('file.service.getFiles()...');
     return this.http.get<IFile[]>(this.baseUrl+'/files-promise');
   }
 
@@ -66,8 +55,6 @@ export class FileService {
   }
 
   updateStatus(file): Observable<IFile[]> {
-    // console.log('file.service.updateStatus file.approval = ' + file.approval);
-    // console.log('file.service.updateStatus file.id = ' + file.id);
     return this.http.put<IFile[]>(this.baseUrl+'/file/'
     +file.id+'/'
     +file.approval,
@@ -87,7 +74,6 @@ export class FileService {
   }
 
   submitToHttpPost(file): Observable<IFile[]> {
-    // console.log(`file.service.saveFile event.files.length = ${JSON.stringify(file)}`);
     console.log(`file.service.saveFile event.files.length = ${JSON.stringify(file)}`);
     return this.http.post<IFile[]>(this.baseUrl+'/files', file);
   }

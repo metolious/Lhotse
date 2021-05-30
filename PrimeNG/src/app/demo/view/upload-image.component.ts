@@ -91,18 +91,10 @@ submitted = false;
         event.files = [];
         }
 
-    clearInput() {
+    clearForm() {
 
         this.fileUpload.clear();
         this.model = new UploadForm('', '', '', '', [], [], [], '');
-      
-        // this.fileUpload.clear();
-        // file.imageDate = null;
-        // file.imageDate.updateInputfield("");
-        // this.file.securityLabel = '';
-        // this.file.aspect = '';    
-        // this.file.reset();
-
       }
 
     initDialog() {
@@ -144,9 +136,6 @@ submitted = false;
             console.log(`uploadImage.component.customUploader this.model.securityLabel = ${this.model.securityLabel}`);
             console.log(`uploadImage.component.customUploader this.model.aspect = ${this.model.aspect}`);
             console.log(`uploadImage.component.customUploader this.model.imageSource = ${this.model.imageSource}`);
-            // for (let item in this.model.upload){
-            //   console.log(`uploadImage.component.customUploader this.model.upload item = ${item}`);
-            // }
             console.log(`uploadImage.component.customUploader this.model.upload = ${this.model.upload}`);            
             console.log(`uploadImage.component.customUploader this.model.sconums = ${this.model.sconums}`);
             console.log(`uploadImage.component.customUploader this.model.iirNumbers = ${this.model.iirNumbers}`);
@@ -161,20 +150,20 @@ submitted = false;
              return;
             }
       
-            // this.searchInProgress.emit(true);
-            // this.uploadImageForm.isUploadedSubmitted = true;
+            this.searchInProgress.emit(true);
+            this.uploadImageForm.isUploadedSubmitted = true;
       
-            // this.httpPostData  = this.uploadImageForm.createPostData (  );
-            // this.postUrl = this.uploadImageForm.getUrl();
-            // this.submitToHttpPost(this.httpPostData);
+            this.httpPostData  = this.uploadImageForm.createPostData (  );
+            this.postUrl = this.uploadImageForm.getUrl();
+            this.submitToHttpPost(this.httpPostData);
 
             // .subscribe( 
             //   data => {console.log(`uploadImage.component.customUploader upload success`)}, 
             //   Error => {console.log(`uploadImage.component.customUploader upload fail`)
             // });
 
-        this.resetArray(event);
-        this.clearInput();
+        // this.resetArray(event);
+        this.clearForm();
         this.initDialog();
     }
 

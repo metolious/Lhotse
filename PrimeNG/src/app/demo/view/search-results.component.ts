@@ -34,7 +34,7 @@ import { IAspect, IImageSource, ISecurityLabel } from 'src/app/shared/interfaces
         `
     ],
 })
-export class TableDemoComponent implements OnInit {
+export class SearchResultsComponent implements OnInit {
 
 @ViewChild('fileUpload') fileUpload: any;
 @ViewChild('securityLabel') securityLabel: any;

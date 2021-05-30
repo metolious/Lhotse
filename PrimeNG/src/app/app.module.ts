@@ -95,11 +95,8 @@ import {AppMenuitemComponent} from './app.menuitem.component';
 import {AppBreadcrumbComponent} from './app.breadcrumb.component';
 import {AppTopBarComponent} from './app.topbar.component';
 import {AppFooterComponent} from './app.footer.component';
-import {InputDemoComponent} from './demo/view/inputdemo.component';
-import {TableDemoComponent} from './demo/view/search-results.component';
 import {UploadImageComponent} from './demo/view/upload-image.component';
-import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
-import {FileDemoComponent} from './demo/view/filedemo.component';
+import {ImageSearchComponent} from './demo/view/image-search.component';
 import {DocumentationComponent} from './demo/view/documentation.component';
 import {DisplayComponent} from './utilities/display.component';
 import {ElevationComponent} from './utilities/elevation.component';
@@ -152,6 +149,7 @@ import { Chips_Service } from './Misc/chips.service';
 import { State_Service } from './Misc/state.service';
 import { LoginUser_Service } from './services/SHARED_SERVICES/loginUser.service';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
+import { SearchResultsComponent } from './demo/view/search-results.component';
 
 @NgModule({
     imports: [
@@ -265,11 +263,9 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
         AppBreadcrumbComponent,
         AppTopBarComponent,
         AppFooterComponent,
-        InputDemoComponent,
-        TableDemoComponent,
         UploadImageComponent,
-        PanelsDemoComponent,
-        FileDemoComponent,
+        SearchResultsComponent,
+        ImageSearchComponent,
         DocumentationComponent,
         DisplayComponent,
         ElevationComponent,
