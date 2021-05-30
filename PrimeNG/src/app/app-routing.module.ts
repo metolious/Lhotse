@@ -1,7 +1,6 @@
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
-import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
 import {FileDemoComponent} from './demo/view/filedemo.component';
 import {DocumentationComponent} from './demo/view/documentation.component';
 import {AppMainComponent} from './app.main.component';
@@ -10,8 +9,8 @@ import {AppErrorComponent} from './pages/app.error.component';
 import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
 import {AppLoginComponent} from './pages/app.login.component';
 import {InputDemoComponent} from './demo/view/inputdemo.component';
-import {TableDemoComponent} from './demo/view/tabledemo.component';
-import {TreeDemoComponent} from './demo/view/treedemo.component';
+import {TableDemoComponent} from './demo/view/search-results.component';
+import {UploadImageComponent} from './demo/view/upload-image.component';
 import {AppCrudComponent} from './pages/app.crud.component';
 import {AppCalendarComponent} from './pages/app.calendar.component';
 import {AppInvoiceComponent} from './pages/app.invoice.component';
@@ -25,12 +24,11 @@ import {IconsComponent} from './utilities/icons.component';
                 path: '', component: AppMainComponent,
                 children: [
                     // {path: '', component: DashboardDemoComponent},
-                    {path: '', component: TreeDemoComponent},
+                    {path: '', component: UploadImageComponent},
                     {path: 'uikit/input', component: InputDemoComponent},
                     {path: 'uikit/table', component: TableDemoComponent},
-                    {path: 'uikit/tree', component: TreeDemoComponent},
+                    {path: 'uikit/tree', component: UploadImageComponent},
                     {path: 'uikit/panel', component: PanelsDemoComponent},
-                    {path: 'uikit/charts', component: ChartsDemoComponent},
                     {path: 'uikit/file', component: FileDemoComponent},
                     {path: 'utilities/icons', component: IconsComponent},
                     {path: 'pages/crud', component: AppCrudComponent},

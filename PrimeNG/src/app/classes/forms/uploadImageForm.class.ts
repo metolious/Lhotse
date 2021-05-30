@@ -186,7 +186,7 @@ export class UploadImageForm extends BaseForm
                  }
             
                   formData.append(fieldName, fieldValue );
-                  console.log(formData.getAll(fieldName));
+                  // console.log(formData.getAll(fieldName));
                 }
               }
         

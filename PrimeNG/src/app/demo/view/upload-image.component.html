@@ -1,0 +1,167 @@
+<!-- 
+<div class="container">
+
+	<div [hidden]="submitted">
+	  <h1>Hero Form</h1>
+
+	  <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+
+		<div class="form-group">
+		  <label for="name">Name</label>
+		  <input type="text" class="form-control" id="name"
+				 required
+				 [(ngModel)]="model.name" name="name"
+				 #name="ngModel">TODO: remove this: {{model.name}}
+		  <div [hidden]="name.valid || name.pristine"
+			   class="alert alert-danger">
+			Name is required
+		  </div>
+		</div>
+  
+		<div class="form-group">
+		  <label for="alterEgo">Alter Ego</label>
+		  <input type="text" class="form-control" id="alterEgo"
+				 [(ngModel)]="model.alterEgo" name="alterEgo">
+		</div>
+  
+		<div class="form-group">
+		  <label for="power">Hero Power</label>
+		  <select class="form-control" id="power"
+				  required
+				  [(ngModel)]="model.power" name="power"
+				  #power="ngModel">
+			<option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+		  </select>
+		  <div [hidden]="power.valid || power.pristine" class="alert alert-danger">
+			Power is required
+		  </div>
+		</div>
+  
+		<button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+		<button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
+
+	  </form>
+
+	</div>
+  
+	<div [hidden]="!submitted">
+	  <h2>You submitted the following:</h2>
+	  <div class="row">
+		<div class="col-xs-3">Name</div>
+		<div class="col-xs-9">{{ model.name }}</div>
+	  </div>
+	  <div class="row">
+		<div class="col-xs-3">Alter Ego</div>
+		<div class="col-xs-9">{{ model.alterEgo }}</div>
+	  </div>
+	  <div class="row">
+		<div class="col-xs-3">Power</div>
+		<div class="col-xs-9">{{ model.power }}</div>
+	  </div>
+	  <br>
+	  <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+	</div>
+
+  </div> -->
+
+<form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
+
+<div class="p-grid p-fluid">
+	<div class="p-col-12 p-md-6">
+
+		<div class="card">
+			<h5>Select Image Labels</h5>
+			<div class="p-fluid">
+
+				<div class="p-field">
+					<label for="securityLabel">Classification</label>
+					<p-dropdown filter="true" styleClass="pMultiSelect" 
+					class="form-control" id="securityLabel" placeholder="&nbsp;" [options]="security_labels" 
+					[(ngModel)]="model.securityLabel" name="securityLabel" #securityLabel="ngModel" [showClear]="true"></p-dropdown>
+				</div>
+
+				<div class="p-field">
+					<label for="aspect">Image Aspect</label>
+					<p-dropdown filter="true" styleClass="pMultiSelect" 
+					class="form-control" id="aspect" [options]="aspects" placeholder="&nbsp;" 
+					[(ngModel)]="model.aspect" name="aspect" #aspect="ngModel" [showClear]="true"></p-dropdown>
+				</div> 
+
+				<div class="p-field">
+					<label for="imageSource">Image Source</label>
+					<p-dropdown filter="true" styleClass="pMultiSelect" 
+					class="form-control" id="imageSource" [options]="image_sources" placeholder="&nbsp;" 
+					[(ngModel)]="model.imageSource" name="imageSource" #imageSource="ngModel" [showClear]="true"></p-dropdown>
+				</div><br>
+			</div>
+		</div>
+
+		<div class="card">
+			<h5>Select Image Identifiers</h5>
+			<div class="p-fluid">
+				<div class="p-field">
+					<label for="sconums">Sconum</label>
+				<p-chips class="form-control" id="sconums" styleClass="pChipsStyleClass" 
+						[(ngModel)]="model.sconums" name="sconums" #sconums="ngModel" placeholder="&nbsp;"></p-chips>
+				</div>
+				<div class="p-field">
+					<label for="iirNumbers">IIR Number</label>
+				<p-chips class="form-control" id="iirNumbers" styleClass="pChipsStyleClass" 
+						[(ngModel)]="model.iirNumbers" name="iirNumbers" #iirNumbers="ngModel" placeholder="&nbsp;"></p-chips>
+				</div>
+				<div class="p-field">
+					<label for="otherSources">Other Sources</label>
+				<p-chips class="form-control" id="otherSources" styleClass="pChipsStyleClass" 
+						[(ngModel)]="model.otherSources" name="otherSources" #otherSources="ngModel" placeholder="&nbsp;"></p-chips>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<label for="imageDate"><h5>Select Image Date</h5></label>
+			<p-calendar class="form-control" id="imageDate" [showIcon]="true" inputId="icon" 
+					[(ngModel)]="model.imageDate" name="imageDate" #imageDate="ngModel" placeholder="&nbsp;"></p-calendar>
+		</div>
+</div>
+
+	<div class="p-col-12 p-md-6">
+		<div class="card">
+			<div >
+				<h5>Select Files To Upload</h5>
+				<p-fileUpload 	
+					#fileUpload 
+					name="upload"
+					url="/upload.py"
+					multiple="multiple"
+					accept="image/*" 
+					maxFileSize="1000000"     
+					customUpload="true"
+					(uploadHandler)="customUploader($event)"
+					(onUpload)="uploadComplete($event)">
+					<ng-template pTemplate="content">
+						<ul *ngIf="uploadedFiles.length">
+							<li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+						</ul>
+					</ng-template>
+					<ng-template pTemplate="content" let-files>
+					</ng-template>
+				</p-fileUpload>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="p-grid">
+				<div class="p-col-12 p-md-6">
+					<h5>Rating</h5>
+					<p-rating></p-rating>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+			<p-confirmDialog [(visible)]="redirectDialog" header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle" 
+				[style]="{width:'425px'}" acceptButtonStyleClass="p-mr-2" rejectButtonStyleClass="p-button-text"> </p-confirmDialog>
+
+            <!-- <button type="text" (click)="heroForm.reset()" pButton icon="pi pi-trash" 
+                    label="Delete" class="p-button-danger" style="width: auto" ></button> -->

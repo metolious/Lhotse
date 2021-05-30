@@ -1,18 +1,18 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Customer, Representative} from '../domain/customer';
-import {CustomerService} from '../service/customerservice';
+import {CustomerService} from '../service/customer.service';
 import {Product} from '../domain/product';
-import {ProductService} from '../service/productservice';
+import {ProductService} from '../service/product.service';
 import {Table} from 'primeng/table';
 import {AppBreadcrumbService} from 'src/app/app.breadcrumb.service';
 import { ThisReceiver } from '@angular/compiler';
-import { PhotoService } from '../service/photoservice';
+import { PhotoService } from '../service/photo.service';
 import { MessageService } from 'primeng/api';
 import { IAspect, IImageSource, ISecurityLabel } from 'src/app/shared/interfaces';
 
 @Component({
-    templateUrl: './tabledemo.component.html',
-    styleUrls: ['./mediademo.scss', './tabledemo.scss'],
+    templateUrl: './search-results.component.html',
+    styleUrls: ['./mediademo.scss', './search-results.scss'],
     styles: [
         `
             :host ::ng-deep .p-dialog .product-image {

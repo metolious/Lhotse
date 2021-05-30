@@ -23,7 +23,6 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Upload Image', icon: 'pi pi-fw pi-upload', routerLink: ['/uikit/tree']},
                     {label: 'Image Search', icon: 'pi pi-fw pi-search', routerLink: ['/uikit/panel']},
                     {label: 'Search Results', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']},
-                    {label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']},
                 ]
             },
             {

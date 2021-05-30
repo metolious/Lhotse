@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {IconService} from '../demo/service/iconservice';
+import {IconService} from '../demo/service/icon.service';
 import {AppBreadcrumbService} from '../app.breadcrumb.service';
 
 @Component({

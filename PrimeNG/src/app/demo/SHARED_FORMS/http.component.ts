@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { ToasterMsg_Service } from 'src/app/services/SHARED_SERVICES/toasterMsg.service';
 import { Utilities } from '../../classes/SHARED_CLASSES/utilities.class';
 import { HttpRedirect_Service } from './httpRedirect.service';
+import { Customer } from '../domain/customer';
 
 @Injectable()
 export class HttpBase
@@ -64,6 +65,7 @@ export class HttpBase
     protected advertisePostSuccess  ( response:object )  { }
     protected advertiseQuerySuccess ( response:object )  { }
     protected advertisePutSuccess   ( response:object )  { }
+    // protected onSubmit              ( event:any, customer:any )                 { }
     protected onSubmit              (  )                 { }
     protected cancel                (  )                 { }
     protected resetChanges          (  )                 { }
@@ -82,7 +84,7 @@ export class HttpBase
                 Utilities.clearNonConfirmedValues ( );
                 this.confirmForSubmit=true;
                 
-                this.onSubmit( );
+                // this.onSubmit( );
               }
         }
 
@@ -107,7 +109,7 @@ export class HttpBase
             } 
 
             public submitToHttpQuery (  )  {
-              //=============================================================================== 
+
                    this.searchInProgress.emit(true);   
                    this.terminateHttp  = false;
                  
@@ -117,17 +119,17 @@ export class HttpBase
                          error     => this.advertiseFailure ( error )
                      );
               }
-              //===================================================================
+               
               private doHttp_Query (   ):Observable<Object>  {
-              //===================================================================
+               
                     return ( this.http.get ( this.queryUrl, this.options )
                           //  .do   ( data  => console.log ("Search Data Result: "+ JSON.stringify(data)) ) );
                        //    .catch( this.handleError ) 
                        );
                 } 
-              //===============================================================================
+
               public submitToHttpPost ( httpPostData:any )  {
-              //=============================================================================== 
+
                   
                     this.searchInProgress.emit(true);
                     this.terminateHttp  = false;
@@ -140,9 +142,9 @@ export class HttpBase
                      //     ()        => {  alert ("Completed Search with no errors !!!!"); }
                         );
                 }
-              //===============================================================================
+
               protected doHttp_Post (  httpPostData:any ):Observable<Object>  {
-              //===============================================================================
+
                     console.log ("POST Data/Action:==>["+ JSON.stringify(httpPostData) + "]");
               
                     let newHeaders = new HttpHeaders({

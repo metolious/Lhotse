@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../demo/domain/product';
-import {ProductService} from '../demo/service/productservice';
+import {ProductService} from '../demo/service/product.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {AppBreadcrumbService} from '../app.breadcrumb.service';
 
 @Component({
     templateUrl: './app.crud.component.html',
-    styleUrls: ['../demo/view/tabledemo.scss'],
+    styleUrls: ['../demo/view/search-results.scss'],
     styles: [
         `
             :host ::ng-deep .p-dialog .product-image {

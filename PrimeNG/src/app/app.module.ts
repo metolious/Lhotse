@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
@@ -96,10 +96,9 @@ import {AppBreadcrumbComponent} from './app.breadcrumb.component';
 import {AppTopBarComponent} from './app.topbar.component';
 import {AppFooterComponent} from './app.footer.component';
 import {InputDemoComponent} from './demo/view/inputdemo.component';
-import {TableDemoComponent} from './demo/view/tabledemo.component';
-import {TreeDemoComponent} from './demo/view/treedemo.component';
+import {TableDemoComponent} from './demo/view/search-results.component';
+import {UploadImageComponent} from './demo/view/upload-image.component';
 import {PanelsDemoComponent} from './demo/view/panelsdemo.component';
-import {ChartsDemoComponent} from './demo/view/chartsdemo.component';
 import {FileDemoComponent} from './demo/view/filedemo.component';
 import {DocumentationComponent} from './demo/view/documentation.component';
 import {DisplayComponent} from './utilities/display.component';
@@ -119,13 +118,12 @@ import {AppErrorComponent} from './pages/app.error.component';
 import {AppAccessdeniedComponent} from './pages/app.accessdenied.component';
 import {AppLoginComponent} from './pages/app.login.component';
 
-import {CountryService} from './demo/service/countryservice';
-import {CustomerService} from './demo/service/customerservice';
-import {EventService} from './demo/service/eventservice';
-import {IconService} from './demo/service/iconservice';
-import {NodeService} from './demo/service/nodeservice';
-import {PhotoService} from './demo/service/photoservice';
-import {ProductService} from './demo/service/productservice';
+import {CustomerService} from './demo/service/customer.service';
+import {EventService} from './demo/service/event.service';
+import {IconService} from './demo/service/icon.service';
+import {NodeService} from './demo/service/node.service';
+import {PhotoService} from './demo/service/photo.service';
+import {ProductService} from './demo/service/product.service';
 
 import {MenuService} from './app.menu.service';
 import {AppBreadcrumbService} from './app.breadcrumb.service';
@@ -145,7 +143,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MultiSelect_Service } from './startup/multiSelect.service';
 import { Paging_Service } from './classes/paging.class';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { HttpRedirect_Service } from './demo/SHARED_FORMS/httpRedirect.service';
+// import { HttpRedirect_Service } from './demo/SHARED_FORMS/httpRedirect.service';
+import { HttpRedirect_Service } from 'src/app/forms/SHARED_FORMS/httpRedirect.service';
 import { ToasterMsg_Service } from './services/SHARED_SERVICES/toasterMsg.service';
 import { SearchImageForm } from './classes/forms/searchImageForm.class';
 import { UploadImageForm } from './classes/forms/uploadImageForm.class';
@@ -157,6 +156,8 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
 @NgModule({
     imports: [
         BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
         FormsModule,
         AppRoutingModule,
         HttpClientModule,
@@ -266,9 +267,8 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
         AppFooterComponent,
         InputDemoComponent,
         TableDemoComponent,
-        TreeDemoComponent,
+        UploadImageComponent,
         PanelsDemoComponent,
-        ChartsDemoComponent,
         FileDemoComponent,
         DocumentationComponent,
         DisplayComponent,
@@ -292,7 +292,6 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
         { provide: LocationStrategy, 
 
             useClass: HashLocationStrategy},
-            CountryService, 
             CustomerService, 
             EventService, 
             IconService, 

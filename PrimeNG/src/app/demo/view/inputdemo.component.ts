@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {CountryService} from '../service/countryservice';
 import {SelectItem} from 'primeng/api';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
@@ -84,7 +83,7 @@ export class InputDemoComponent implements OnInit{
     valSelect2: string;
     valueKnob = 20;
 
-    constructor(private countryService: CountryService, 
+    constructor(
                 private breadcrumbService: AppBreadcrumbService,
                 private messageService:       ToasterMsg_Service,
                 ) {
@@ -146,9 +145,6 @@ export class InputDemoComponent implements OnInit{
       }
 
     ngOnInit() {
-        this.countryService.getCountries().then(countries => {
-            this.countries = countries;
-        });
 
         this.security_labels = [
             {value: 'CONFIDENTIAL_REL_TO_USA_FVEY', label: 'CONFIDENTIAL//REL TO USA, FVEY'},
