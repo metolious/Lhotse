@@ -1,0 +1,66 @@
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Loading Upload Form (PrimeNG)...</p>
+
+<div class="grid-container">
+
+    <mat-grid-list cols="4" rowHeight="400px">
+
+        <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+
+            <div *ngIf = "card.title=='Input-Form'">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <div class="card">
+
+                            <h5>Select Classification Label</h5>
+
+                          <table>
+                              <tr>
+                                  <td><span class="input-group-text">Security Labels:&nbsp;</span></td>
+                                  <td><div class="p-d-flex"><p-dropdown #classLabel filter="true" [showClear]="true" resetFilterOnHide="true" styleClass="pMultiSelect" [options]="security_labels" id="basic-url" aria-describedby="basic-addon3" [(ngModel)]="securityLabel" placeholder="Select Item" optionLabel="label" [showClear]="true"></p-dropdown></div></td>
+                              </tr>
+                              <tr>
+                                  <td><span class="input-group-text">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aspects:&nbsp;</span></td>
+                                  <td><div class="p-d-flex"><p-dropdown styleClass="pMultiSelect" [options]="aspects" [(ngModel)]="aspect" placeholder="Select Item" optionLabel="label" [showClear]="true"></p-dropdown></div></td>
+                              </tr>
+                              <tr>
+                                  <td><span class="input-group-text">&nbsp;Image Sources:&nbsp;</span></td>
+                                  <td><div class="p-d-flex"><p-dropdown styleClass="pMultiSelect" [options]="image_sources" [(ngModel)]="imageSource" placeholder="Select Item" optionLabel="label" [showClear]="true"></p-dropdown></div></td>
+                              </tr>
+                          </table>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div *ngIf = "card.title=='Upload-Files'">
+
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <div class="card">
+                            <h5>Select Files To Upload</h5>
+                            <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+                                          multiple="multiple" accept="image/*" maxFileSize="20000000">
+                                <ng-template pTemplate="content">
+                                    <ul *ngIf="uploadedFiles.length">
+                                        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                    </ul>
+                                </ng-template>
+                            </p-fileUpload>
+                
+                            <p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUpload($event)"></p-fileUpload> -->
+                
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </mat-grid-tile>
+
+        <mat-card-content class="dashboard-card-content">
+
+        </mat-card-content>
+
+    </mat-grid-list>
+
+</div>
