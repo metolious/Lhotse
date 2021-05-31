@@ -13,11 +13,6 @@ export interface IUser {
   value: string
 }
 
-// export interface City {
-//   state: string,
-//   city: string
-// }
-
 export interface IIRNumber {
   label: string,
   value: number
@@ -57,6 +52,15 @@ export interface IFile {
   poc_user: string,
   author: string,
   login_user: string,
+}
+
+export interface IFormLabel {
+  label: string
+}
+
+export interface IImageData {
+  label: string,
+  value: string
 }
 
 export interface ISecurityLabel {

@@ -11,8 +11,8 @@ var options = {
 };
 
 var pgp = require('pg-promise')(options);
-// var conn = "postgres://postgres:i11Matic@localhost:5432/k2";
-var conn = "postgres://postgres:i11Matic@localhost:5432/postgres";
+// var conn = "postgres://postgres:NAS@localhost:5432/k2";
+var conn = "postgres://postgres:NAS@localhost:5432/postgres";
 var db = pgp(conn);
 
 var allowCrossDomain = function(req, res, next) {
@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 var config = {
     host: 'localhost',
     user: 'postgres',
-    password: 'i11Matic',
+    password: 'NAS',
     database: 'k2'
 }
 
@@ -54,29 +54,7 @@ app.get('/cases-callback', (request, response) => {
   });
 });
 
-// app.put('/files/:username/:status', (req, res, next) => {
-//   console.log('index.js /files/poc/ username = ' + req.params.username);
-//   console.log('index.js /files/poc/ username = ' + req.params.status);
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
-//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-//   res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-//   res.send('cors problem fixed:)');
-//   db.any('update files set file_status=${status} where poc_user=${username}', req.params)
-//   .then(function (data) {
-//     res.status(200)
-//     .json({
-//       data
-//     });
-//   })
-//   .catch(function(err) {
-//     return next(err);
-//   });
-// });
-
 app.put('/file/:id/:approval', (req, res, next) => {
-  console.log('/file/:id/:approval file_id = ' + req.params.id);
-  console.log('/file/:id/:approval approval = ' + req.params.approval);
   // res.setHeader('Access-Control-Allow-Origin', '*');
   // res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); 
   // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
@@ -95,14 +73,11 @@ app.put('/file/:id/:approval', (req, res, next) => {
     });
   });
 
-  app.post('/upload', (req, res, next) => {
-    req.body.file_type_id = parseInt(req.body.file_type_id);
-    req.body.file_origin_id = parseInt(req.body.file_origin_id);
-    console.log('/files:  req.body.author = ' + req.body.author);
-    console.log('/files:  req.body.poc_user = ' + req.body.poc_user);
+  app.post('/viper/resources/upload', (req, res, next) => {
+    console.log(`indexjs/viper/resources/upload req.body.url = ${req.body.url}`);
     
     db.none('INSERT INTO files (file_subject, file_location, file_type_id, file_detail, file_origin_id, case_id, case_status, poc_user, author)' +
-    // 'VALUES (6, \'King of NY\', \'Bronx\', 30, \'Gangster returns\', 29);',
+    // 'VALUES (6, \'aa\', \'bb\', 30, \'cc\', 29);',
     'VALUES (${file_subject}, ${file_location}, ${file_type_id}, ${file_detail}, ${file_origin_id}, ${case_id}, \'Inactive\', ${poc_user}, ${author})',
     req.body)
     .then(function () {
@@ -117,14 +92,29 @@ app.put('/file/:id/:approval', (req, res, next) => {
       });
     });
 
+    app.post('/file', (req, res, next) => {
+      // req.body.file_type_id = parseInt(req.body.file_type_id);
+      console.log(`indexjs uploadFiles.file.name = ${req.body.name}`);
+      
+      res.send(req.body.name)
+      .then(function () {
+        res.status(200)
+        .json({
+          status: 'success',
+          message: 'Inserted one file'
+        });
+        })
+        .catch(function (err) {
+          return next(err);
+        });
+      });
+
 app.post('/files', (req, res, next) => {
-  req.body.file_type_id = parseInt(req.body.file_type_id);
-  req.body.file_origin_id = parseInt(req.body.file_origin_id);
-  console.log('/files:  req.body.author = ' + req.body.author);
-  console.log('/files:  req.body.poc_user = ' + req.body.poc_user);
+  // req.body.file_origin_id = parseInt(req.body.file_origin_id);
+  console.log(`indexjs uploadFiles.file.name = ${req.body.name}`);
   
   db.none('INSERT INTO files (file_subject, file_location, file_type_id, file_detail, file_origin_id, case_id, case_status, poc_user, author)' +
-  // 'VALUES (6, \'King of NY\', \'Bronx\', 30, \'Gangster returns\', 29);',
+  // 'VALUES (6, \'NY\', \'Brnx\', 30, \'returns\', 29);',
   'VALUES (${file_subject}, ${file_location}, ${file_type_id}, ${file_detail}, ${file_origin_id}, ${case_id}, \'Inactive\', ${poc_user}, ${author})',
   req.body)
   .then(function () {
@@ -140,6 +130,7 @@ app.post('/files', (req, res, next) => {
   });
 
 app.get('/files-promise', (req, res, next) => {
+  // console.log(`indexjs./files-promise req.body.PORT = ${req.body.PORT}`);
   db.any('select * from files')
   .then(function (data) {
     res.status(200)
@@ -153,7 +144,6 @@ app.get('/files-promise', (req, res, next) => {
 });
 
 app.get('/file/:id', (req, res, next) => {
-  console.log('/files/:id = ' + req.params.id);
   db.any('select * from files where file_id=${id}', req.params)
   .then(function (data) {
     res.status(200)
@@ -168,7 +158,6 @@ app.get('/file/:id', (req, res, next) => {
 
 app.get('/role/:user/:pwd', (req, res, next) => {
   console.log('/role/:username = ' + req.params.user);
-  console.log('/role/:password = ' + req.params.pwd);
   db.any('select k2_role from k2_user inner join k2_role on k2_user.role_id = k2_role.role_id where k2_user.username = ${user} and k2_user.k2_password = ${pwd};', req.params)
   .then(function (data) {
   res.status(200)
@@ -182,7 +171,6 @@ app.get('/role/:user/:pwd', (req, res, next) => {
 });
 
 app.get('/files/author/:login_user', (req, res, next) => {
-  console.log('/files/author/ req.params.login_user = ' + req.params.login_user);
   db.any('select * from files where author=${login_user} and (case_status=\'Inactive\' or case_status=\'Approved\' or case_status=\'Rejected\')', req.params)
   .then(function (data) {
     res.status(200)

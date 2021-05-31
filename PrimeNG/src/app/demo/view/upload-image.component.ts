@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angula
 import {ConfirmationService, MessageService, SelectItem} from 'primeng/api';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import {ENTER, COMMA} from '@angular/cdk/keycodes';
-import { IAspect, IImageSource, ISecurityLabel } from 'src/app/shared/interfaces';
+import { IAspect, IImageSource, ISecurityLabel, IFormLabel, IImageData } from 'src/app/shared/interfaces';
 import { Customer } from '../domain/customer';
 import { Router } from '@angular/router';
 import { FileService } from '../service/file.service';
@@ -13,18 +13,19 @@ import { UploadImageForm } from 'src/app/classes/forms/uploadImageForm.class';
 import { HttpBase } from 'src/app/forms/SHARED_FORMS/http.component';
 import { DatePipe } from '@angular/common';
 import { FormControl, FormGroup } from '@angular/forms';
+import { FormUtility } from 'src/app/classes/forms/formUtility.class';
+import { DateTime } from 'src/app/classes/dateTime.class';
 
 export class UploadForm {
-
   constructor(
     public securityLabel: string,
     public aspect: string,
     public imageSource: string,
-    public upload: any,
     public sconums: string[],
     public iirNumbers: string[],
     public otherSources: string[],
-    public imageDate: string
+    public imageDate: string,
+    public labels: IFormLabel[]
   ) {  }
 
 }
@@ -33,12 +34,7 @@ export class UploadForm {
     templateUrl: './upload-image.component.html',
     styles: ['./upload-image.scss']
 })
-export class UploadImageComponent extends HttpBase implements OnInit {
-
-model = new UploadForm('', '', '', '', [], [], [], '');
-
-submitted = false;
-
+export class UploadImageComponent extends HttpBase implements OnInit { 
 @Input ( ) terminateHttp: boolean;
 @Output( ) securityBanner   = new EventEmitter<string>(true);
 @Output( ) searchInProgress = new EventEmitter<boolean>(true);
@@ -48,16 +44,24 @@ submitted = false;
 @ViewChild('securityLabel') securityLabel: any;
 @ViewChild('classLabel') classLabel: any;
 @ViewChild('sconum') sconum: any;
-    uploadedFiles: any[] = [];
+    uploadFiles: any[] = [];
     security_labels: ISecurityLabel[];
+    formLabels: IFormLabel[] = [];
+    imageData: IImageData[] = [];
+    // imageData: any[] = [];
     aspects: IAspect[];
     image_sources: IImageSource[];
     redirectDialog: boolean;
     customer: Customer;
     uploadSuccess: Boolean;
     httpPostData: FormData;
-    // file: any = this.fileService.form.value;
     file: any;
+    url:string = '/viper/resources/upload';   
+    formUtility: FormUtility = new FormUtility();
+    date: DateTime = new DateTime();
+    model: UploadForm;
+    private fileList = [];
+    submitted = false;
 
     constructor(http:                  HttpClient,
                 httpService:           HttpRedirect_Service,
@@ -68,33 +72,30 @@ submitted = false;
                 private uploadImageForm:       UploadImageForm,
                 private fileService: FileService,
                 private route: Router,
-
                 ) {
 
         super ( http, httpService, messageService );
 
         this.breadcrumbService.setItems([
-            { label: 'Ui Kit' },
+            { label: 'Viper MSC' },
             { label: 'Upload Image', routerLink: ['/uikit/tree'] }
         ]);
+
     }
-
-    separatorKeysCodes = [ENTER, COMMA];
-
 
     onSubmit() {
       this.submitted = true;
     }
 
     resetArray(event) {
-        this.uploadedFiles = [];
+        this.uploadFiles = [];
         event.files = [];
         }
 
     clearForm() {
 
         this.fileUpload.clear();
-        this.model = new UploadForm('', '', '', '', [], [], [], '');
+        this.model = new UploadForm('','','',[],[],[],'',[]);
       }
 
     initDialog() {
@@ -113,63 +114,95 @@ submitted = false;
         });
     }
 
+    getUrl (): string {
+
+      return ( this.url  ) ;
+    }
+
+    createPostData ():FormData  {
+
+      let formData: FormData = new FormData();
+
+      for (var i = 0; i < this.uploadFiles.length; i++)
+      formData.append('files', this.uploadFiles[i]);
+
+      for (var i = 0; i < this.imageData.length; i++) 
+      {
+        var fieldValue = this.imageData[i].label;
+        var fieldLabel = this.imageData[i].value;
+
+        if(( fieldValue == undefined ) || 
+        ( fieldValue == null      ) || 
+        ( fieldValue == ""        ))
+            fieldValue = "9999";
+
+        if(( fieldLabel == undefined ) || 
+        ( fieldLabel == null      ) || 
+        ( fieldLabel == ""        ))
+          fieldLabel = "9999";
+
+        // if (fieldName === "imageDate") {  
+        //     var datePipe = new DatePipe('en-US');
+        //     fieldValue = datePipe.transform(fieldValue, 'MM/dd/yyyy');
+        // }
+
+        formData.append(fieldLabel, fieldValue);
+        formData.append(fieldValue, fieldLabel);
+      }
+      return ( formData );
+    }
+
       customUploader(event)  {
-        for(let file of event.files) {
+
+        for (let file of event.files) {
           if (file.size != 0)
-            this.uploadedFiles.push(file);
-            // use customUploader for testing
-            // use onUpload() Callback to invoke when file upload is complete
-            // event.originalEvent: Http Event 
-            // event.files: Uploaded files.
-            // this.customer = {...customer};
-            // this.redirectDialog = true;
-            // console.log(`uploadImage.component.customUploader event.files.length = ${event.files.length}`);
+            this.uploadFiles.push(file);
+        }      
+
+        for (var i = 0; i < this.model.labels.length; i++) {
+          this.imageData.push({label:this.model.labels[i].label, value:this.model[this.model.labels[i].label]});
+        }
+
+        this.confirmForSubmit=false;
+        if ( this.uploadImageForm.numInvalidImages > 0 )
+        {
+          this.messageService.add ( 'error',8, "Some files are INVALID !!!",
+                    "Number of invalid files [" + this.uploadImageForm.numInvalidImages + "]" );
+          return;
         }
   
-        // if (this.uploadedFiles.length)
-        //     this.uploadSuccess = true;
-        
-            // this.file = this.fileService.form.value;
-            var datePipe = new DatePipe('en-US');
-            var imageDate = datePipe.transform(this.model.imageDate, 'MM/dd/yyyy');
+        this.searchInProgress.emit(true);
+        this.uploadImageForm.isUploadedSubmitted = true;
+  
+        this.httpPostData  = this.createPostData();
+        this.postUrl = this.getUrl();
 
-            console.log(`uploadImage.component.customUploader this.model.securityLabel = ${this.model.securityLabel}`);
-            console.log(`uploadImage.component.customUploader this.model.aspect = ${this.model.aspect}`);
-            console.log(`uploadImage.component.customUploader this.model.imageSource = ${this.model.imageSource}`);
-            console.log(`uploadImage.component.customUploader this.model.upload = ${this.model.upload}`);            
-            console.log(`uploadImage.component.customUploader this.model.sconums = ${this.model.sconums}`);
-            console.log(`uploadImage.component.customUploader this.model.iirNumbers = ${this.model.iirNumbers}`);
-            console.log(`uploadImage.component.customUploader this.model.otherSources = ${this.model.otherSources}`);
-            console.log(`uploadImage.component.customUploader this.model.imageDate = ${imageDate}`);
-
-            this.confirmForSubmit=false;
-            if ( this.uploadImageForm.numInvalidImages > 0 )
-            {
-             this.messageService.add ( 'error',8, "Some files are INVALID !!!",
-                       "Number of invalid files [" + this.uploadImageForm.numInvalidImages + "]" );
-             return;
-            }
-      
-            this.searchInProgress.emit(true);
-            this.uploadImageForm.isUploadedSubmitted = true;
-      
-            this.httpPostData  = this.uploadImageForm.createPostData (  );
-            this.postUrl = this.uploadImageForm.getUrl();
-            this.submitToHttpPost(this.httpPostData);
-
-            // .subscribe( 
-            //   data => {console.log(`uploadImage.component.customUploader upload success`)}, 
-            //   Error => {console.log(`uploadImage.component.customUploader upload fail`)
-            // });
+        // this.fileService.uploadImage(this.httpPostData)
+        // this.submitToHttpPost(this.httpPostData);
+        // this.fileService.saveFile(this.uploadFiles).subscribe( 
+        //   data => {console.log('upload-image.component.customUploader: Upload Successful')}, 
+        //   Error => {console.log('upload-image.component.customUploader: Upload Failed')}
+        // );
 
         // this.resetArray(event);
         this.clearForm();
         this.initDialog();
-    }
+      }
 
     ngOnInit() {
 
-      this.uploadSuccess = false;
+        this.uploadSuccess = false;
+
+        this.formLabels = [
+          {label: 'securityLabel'},
+          {label: 'aspect'},
+          {label: 'imageSource'},
+          {label: 'sconums'},
+          {label: 'iirNumbers'},
+          {label: 'otherSources'},
+          {label: 'imageDate'}
+        ]; 
+        this.model = new UploadForm('','','',[],[],[],'',this.formLabels);
 
         this.security_labels = [
             {value: 'CONFIDENTIAL_REL_TO_USA_FVEY', label: 'CONFIDENTIAL//REL TO USA, FVEY'},

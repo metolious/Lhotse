@@ -62,20 +62,21 @@ export class FileService {
   }
   
   getActionItems(file): Observable<IFile[]> {
-    // console.log('file.service.getActionItems  file.login_user = ' + file.login_user);
     return this.http.get<IFile[]>(this.baseUrl+'/files/poc/'
     +file.login_user)
   }
 
   getPendingItems(file): Observable<IFile[]> {
-    // console.log('file.service.getPendingItems  file.login_user = ' + file.login_user);
     return this.http.get<IFile[]>(this.baseUrl+'/files/author/'
     +file.login_user)
   }
 
-  submitToHttpPost(file): Observable<IFile[]> {
-    console.log(`file.service.saveFile event.files.length = ${JSON.stringify(file)}`);
-    return this.http.post<IFile[]>(this.baseUrl+'/files', file);
+  uploadImage(httpPostData): Observable<IFile[]> {
+    return this.http.post<IFile[]>(this.baseUrl+'/viper/resources/upload', httpPostData);
+  }
+
+  saveFile(uploadFiles): Observable<IFile[]> {
+    return this.http.post<IFile[]>(this.baseUrl+'/file', uploadFiles);
   }
 
   createCase(keywords): Observable<ICase[]> {

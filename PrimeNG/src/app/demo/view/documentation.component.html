@@ -5,16 +5,18 @@
             <h4>Current Version</h4>
             <p>Angular 11 and PrimeNG 11</p>
 
-            <p>Cd to the directory, install the libraries from npm and then execute "ng serve" to run the application in your local environment at http://localhost:4200/.</p>
+<p>Cd to the directory where the Angular project is installed, then execute "ng serve" to run the application in your local environment at http://localhost:8080/. Then cd into nodejs directory and start up node server running on port 3000 using "nodemon"</p>
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
 npm install
-ng serve
+ng serve --host 127.0.0.1 --port 8080 --disableHostCheck=true
+cd nodejs
+nodemon index.js
 </app-code>
 
             <h4>Important CLI Commands</h4>
             <p>Following commands are derived from CLI.</p>
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-Run 'ng serve' for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run 'ng serve' for a dev server. Navigate to `http://localhost:8080/`. The app will automatically reload if you change any of the source files.
 
 Run 'ng generate component component-name' to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
 

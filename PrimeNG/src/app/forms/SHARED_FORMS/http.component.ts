@@ -1,10 +1,7 @@
 import { Output,EventEmitter, Input, SimpleChange, Injectable } from '@angular/core';
-
 import { HttpRedirect_Service } from 'src/app/forms/SHARED_FORMS/httpRedirect.service';
 // import { HttpRedirect_Service        } from './httpRedirect.service';
-
 import { ToasterMsg_Service          } from '../../services/SHARED_SERVICES/toasterMsg.service';
-
 import { HttpHeaders, HttpClient } from "@angular/common/http";
 
 import 'rxjs/Rx';
@@ -38,7 +35,6 @@ export class HttpBase
   operationInProgress:    boolean = false;
   confirmForSubmit:       boolean = false;
 
-//++++++++++++++++++++++++++++++++++++++++++++++++
   showExportDialog:       boolean = false;
   showAllDialog:          boolean = false;
   showMapDialog:          boolean = false;
@@ -47,9 +43,6 @@ export class HttpBase
                  Export:        false,
                  Map:           false }; 
   putUrl: any;
-//++++++++++++++++++++++++++++++++++++++++++++++++
-              
-                 
  
   constructor ( protected http:                   HttpClient,
                 protected httpService:            HttpRedirect_Service,
@@ -170,12 +163,10 @@ private doHttp_Query (   ):Observable<Object>  {
  
 public submitToHttpPost ( httpPostData:any )  {
  
-    
       this.searchInProgress.emit(true);
       this.terminateHttp  = false;
    
       this.subscription = this.doHttp_Post (  httpPostData )
-    
           .subscribe (
               response  => this.advertisePostSuccess ( response ),
               error     => this.advertiseFailure ( error )
