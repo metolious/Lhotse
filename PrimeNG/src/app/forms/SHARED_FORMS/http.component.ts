@@ -195,7 +195,7 @@ protected doHttp_Post (  httpPostData:any ):Observable<Object>  {
         
       return ( this.http.post ( this.postUrl, httpPostData, httpOptions)
             .do   ( data  => console.log ("Upload Result: "+ JSON.stringify(data)) ) );
-            //.catch( this.handlePostError );
+            // .catch( this.handlePostError );
 } 
 
 

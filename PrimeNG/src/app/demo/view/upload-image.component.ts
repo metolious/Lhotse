@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ConfirmationService, MessageService, SelectItem} from 'primeng/api';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
-import {ENTER, COMMA} from '@angular/cdk/keycodes';
 import { IAspect, IImageSource, ISecurityLabel, IFormLabel, IImageData } from 'src/app/shared/interfaces';
-import { Customer } from '../domain/customer';
 import { Router } from '@angular/router';
 import { FileService } from '../service/file.service';
 import { ToasterMsg_Service } from 'src/app/services/SHARED_SERVICES/toasterMsg.service';
@@ -11,10 +9,6 @@ import { HttpRedirect_Service } from 'src/app/forms/SHARED_FORMS/httpRedirect.se
 import { HttpClient } from '@angular/common/http';
 import { UploadImageForm } from 'src/app/classes/forms/uploadImageForm.class';
 import { HttpBase } from 'src/app/forms/SHARED_FORMS/http.component';
-import { DatePipe } from '@angular/common';
-import { FormControl, FormGroup } from '@angular/forms';
-import { FormUtility } from 'src/app/classes/forms/formUtility.class';
-import { DateTime } from 'src/app/classes/dateTime.class';
 
 export class UploadForm {
   constructor(
@@ -27,7 +21,6 @@ export class UploadForm {
     public imageDate: string,
     public labels: IFormLabel[]
   ) {  }
-
 }
 
 @Component({
@@ -35,32 +28,22 @@ export class UploadForm {
     styles: ['./upload-image.scss']
 })
 export class UploadImageComponent extends HttpBase implements OnInit { 
-@Input ( ) terminateHttp: boolean;
-@Output( ) securityBanner   = new EventEmitter<string>(true);
-@Output( ) searchInProgress = new EventEmitter<boolean>(true);
-@Output( ) activeButton   = new EventEmitter<string>(true);
 
+@Output( ) searchInProgress = new EventEmitter<boolean>(true);
 @ViewChild('fileUpload') fileUpload: any;
-@ViewChild('securityLabel') securityLabel: any;
-@ViewChild('classLabel') classLabel: any;
-@ViewChild('sconum') sconum: any;
+
     uploadFiles: any[] = [];
+    imageData: IImageData[] = [];
     security_labels: ISecurityLabel[];
     formLabels: IFormLabel[] = [];
-    imageData: IImageData[] = [];
-    // imageData: any[] = [];
     aspects: IAspect[];
     image_sources: IImageSource[];
     redirectDialog: boolean;
-    customer: Customer;
     uploadSuccess: Boolean;
     httpPostData: FormData;
-    file: any;
     url:string = '/viper/resources/upload';   
-    formUtility: FormUtility = new FormUtility();
-    date: DateTime = new DateTime();
+    saveUrl:string = '/save';   
     model: UploadForm;
-    private fileList = [];
     submitted = false;
 
     constructor(http:                  HttpClient,
@@ -87,15 +70,11 @@ export class UploadImageComponent extends HttpBase implements OnInit {
       this.submitted = true;
     }
 
-    resetArray(event) {
-        this.uploadFiles = [];
-        event.files = [];
-        }
-
     clearForm() {
-
+        this.model = new UploadForm('','','',[],[],[],'',this.formLabels);
+        this.uploadFiles = [];
+        this.imageData = [];
         this.fileUpload.clear();
-        this.model = new UploadForm('','','',[],[],[],'',[]);
       }
 
     initDialog() {
@@ -116,30 +95,23 @@ export class UploadImageComponent extends HttpBase implements OnInit {
 
     getUrl (): string {
 
-      return ( this.url  ) ;
+      return ( this.saveUrl  ) ;
     }
 
     createPostData ():FormData  {
 
       let formData: FormData = new FormData();
 
-      for (var i = 0; i < this.uploadFiles.length; i++)
-      formData.append('files', this.uploadFiles[i]);
-
       for (var i = 0; i < this.imageData.length; i++) 
       {
-        var fieldValue = this.imageData[i].label;
-        var fieldLabel = this.imageData[i].value;
 
-        if(( fieldValue == undefined ) || 
-        ( fieldValue == null      ) || 
-        ( fieldValue == ""        ))
-            fieldValue = "9999";
+        var fieldLabel = this.imageData[i].label;
+        var fieldValue = this.imageData[i].value;
 
-        if(( fieldLabel == undefined ) || 
-        ( fieldLabel == null      ) || 
-        ( fieldLabel == ""        ))
-          fieldLabel = "9999";
+        if(( fieldLabel === undefined ) || 
+        ( fieldLabel === null      ) || 
+        ( fieldLabel === ""        ))
+          continue;
 
         // if (fieldName === "imageDate") {  
         //     var datePipe = new DatePipe('en-US');
@@ -147,8 +119,19 @@ export class UploadImageComponent extends HttpBase implements OnInit {
         // }
 
         formData.append(fieldLabel, fieldValue);
-        formData.append(fieldValue, fieldLabel);
       }
+
+      for (var i = 0; i < this.uploadFiles.length; i++) {
+        formData.append('files', this.uploadFiles[i]);
+      }
+
+      // for (i=0; i < this.imageData.length; i++)
+      // {
+      
+      //   console.log(`upload.image.createPostData formData.getAll(this.imageData[i].label) = ${formData.getAll(this.imageData[i].label)}`);
+      // }
+      // console.log(`upload.image.createPostData formData.getAll('files') = ${formData.getAll('files')}`);
+
       return ( formData );
     }
 
@@ -160,8 +143,15 @@ export class UploadImageComponent extends HttpBase implements OnInit {
         }      
 
         for (var i = 0; i < this.model.labels.length; i++) {
+          // console.log('upload-image.component.customUploader: model label = ' + this.model.labels[i].label);
+          // console.log('upload-image.component.customUploader: model value = ' + this.model[this.model.labels[i].label]);
           this.imageData.push({label:this.model.labels[i].label, value:this.model[this.model.labels[i].label]});
         }
+
+        // for (var i=0; i<this.imageData.length; i++) {
+        //   console.log('upload-image.component.customUploader: imageData[i].label = ' + this.imageData[i].label);
+        //   console.log('upload-image.component.customUploader: imageData[i].value = ' + this.imageData[i].value);
+        // }
 
         this.confirmForSubmit=false;
         if ( this.uploadImageForm.numInvalidImages > 0 )
@@ -179,12 +169,27 @@ export class UploadImageComponent extends HttpBase implements OnInit {
 
         // this.fileService.uploadImage(this.httpPostData)
         // this.submitToHttpPost(this.httpPostData);
+
         // this.fileService.saveFile(this.uploadFiles).subscribe( 
-        //   data => {console.log('upload-image.component.customUploader: Upload Successful')}, 
-        //   Error => {console.log('upload-image.component.customUploader: Upload Failed')}
+        //   data => {console.log('upload-image.component.customUploader: Upload Successful!!')}, 
+        //   error => {console.log('upload-image.component.customUploader: Upload Failed!!')}
         // );
 
-        // this.resetArray(event);
+        // this.fileService.getRoot().subscribe( 
+        //   data => {console.log('upload-image.component.customUploader: getRoot() Successful!! JSON.stringify(data) = ' + JSON.stringify(JSON.parse(data.toString())))}, 
+        //   error => {console.log('upload-image.component.customUploader: getRoot() Failed!! error.message = ' + error.message)}
+        // );
+
+        // this.fileService.saveFilePut(this.postUrl, this.httpPostData, this.imageData).subscribe( 
+        //   data => {console.log('upload-image.component.customUploader: saveFilePut() Successful!! ' + JSON.stringify(data))}, 
+        //   error => {console.log('upload-image.component.customUploader: saveFilePut() Failed!! ' + error.message)}
+        // );
+
+        this.fileService.saveFilePost(this.postUrl, this.httpPostData, this.imageData).subscribe( 
+          data => {console.log('upload-image.component.customUploader: saveFilePost() Successful!! ' + JSON.stringify(data))}, 
+          error => {console.log('upload-image.component.customUploader: saveFilePost() Failed!! ' + error.message)}
+        );
+
         this.clearForm();
         this.initDialog();
       }
@@ -192,7 +197,7 @@ export class UploadImageComponent extends HttpBase implements OnInit {
     ngOnInit() {
 
         this.uploadSuccess = false;
-
+        
         this.formLabels = [
           {label: 'securityLabel'},
           {label: 'aspect'},

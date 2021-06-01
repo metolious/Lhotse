@@ -18,7 +18,8 @@ var db = pgp(conn);
 var allowCrossDomain = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', "*");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  //res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control');
   next();
 }
 
@@ -39,9 +40,35 @@ var config = {
 
 var pool = new Pool(config);
 
-app.get('/', (req, res) => {
-  res.send('route(1): ROOT');
+// app.getRoot('/', (req, res) => { 
+//   console.log(`indexjs root JSON.stringify(req.body) = ${JSON.stringify(req.body)}`);
+//   res.json({ answer: 91 });
+//   // res.json({ 'route(1)': 'ROOT' }) 
+// });
+
+app.get('/', (req, res, next) => {
+var status = "200"
+var obj = [{ "route(1)": "ROOT" }, { "route(2)": "/file" }]
+res.status(status).json(obj)
+
 });
+
+app.put('/save', (req, res, next) => {
+// console.log(`indexjs: put /save JSON.stringify(req.body[0]) = ${JSON.stringify(req.body[0])}`)
+  var status = "200"
+  var obj = [{ "route(3)": "/save" }, { "route(4)": "/upload" }]
+  res.status(status).send(req.body)
+  
+  });
+
+  app.post('/save', (req, res, next) => {
+    console.log(`indexjs: put /save JSON.stringify(req.body[0]) = ${JSON.stringify(req.body[0])}`)
+      var status = "200"
+      var obj = [{ "route(5)": "/image" }, { "route(6)": "/edit" }]
+      res.status(status).send(req.body)
+      
+      });
+
 
 app.get('/cases-callback', (request, response) => {
   pool.query('select * from cases', (error, result) => {
@@ -94,7 +121,7 @@ app.put('/file/:id/:approval', (req, res, next) => {
 
     app.post('/file', (req, res, next) => {
       // req.body.file_type_id = parseInt(req.body.file_type_id);
-      console.log(`indexjs uploadFiles.file.name = ${req.body.name}`);
+      console.log(`indexjs/file uploadFiles.file.name = ${req.body.name}`);
       
       res.send(req.body.name)
       .then(function () {
@@ -130,7 +157,7 @@ app.post('/files', (req, res, next) => {
   });
 
 app.get('/files-promise', (req, res, next) => {
-  // console.log(`indexjs./files-promise req.body.PORT = ${req.body.PORT}`);
+  console.log(`indexjs./files-promise JSON.stringify(req.body) = ${JSON.stringify(req.body)}`);
   db.any('select * from files')
   .then(function (data) {
     res.status(200)

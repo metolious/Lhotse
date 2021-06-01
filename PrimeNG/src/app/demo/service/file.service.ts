@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ICase, IFile } from 'src/app/shared/interfaces';
@@ -45,6 +45,77 @@ export class FileService {
     })
   }
 
+  getRoot(): Observable<IFile[]> {
+
+    let newHeaders = new HttpHeaders({
+      'Connection': 'keep-alive',
+      'Accept-Language': 'en-US,en;q=0.5',
+      'Accept-Encoding': 'gzip, deflate, br',
+      // 'Accept': '*/*',
+      'Accept': 'application/json',
+      // 'Access-Control-Request-Headers': 'authorization,content-type', 
+      // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',  
+      'Access-Control-Request-Headers': 'content-type',   
+      // 'Access-Control-Allow-Origin':'*',
+    });
+
+    let httpOptions:object = ({ 
+      headers: newHeaders,
+      // withCredentials:  true,
+      withCredentials:  false,
+      method: 'POST',
+      responseType: "text"
+    });
+
+    return this.http.get<IFile[]>(this.baseUrl+'/', httpOptions);
+  }
+
+  saveFilePut(postUrl, httpPostData, imageData): Observable<IFile[]> {
+    let newHeaders = new HttpHeaders({
+      'Connection': 'keep-alive',
+      'Accept-Language': 'en-US,en;q=0.5',
+      'Accept-Encoding': 'gzip, deflate, br',
+      // 'Accept': '*/*',
+      'Accept': 'application/json',
+      // 'Access-Control-Request-Headers': 'authorization,content-type', 
+      // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',  
+      'Access-Control-Request-Headers': 'content-type',   
+      // 'Access-Control-Allow-Origin':'*',
+    });
+    let httpOptions:object = ({ 
+      headers: newHeaders,
+      // withCredentials:  true,
+      withCredentials:  false,
+      method: 'POST',
+      responseType: "text"
+    });
+    // return this.http.put<IFile[]>(this.baseUrl+postUrl, httpPostData);
+    return this.http.put<IFile[]>(this.baseUrl+postUrl, imageData);
+  }
+
+  saveFilePost(postUrl, httpPostData, imageData): Observable<IFile[]> {
+    let newHeaders = new HttpHeaders({
+      'Connection': 'keep-alive',
+      'Accept-Language': 'en-US,en;q=0.5',
+      'Accept-Encoding': 'gzip, deflate, br',
+      // 'Accept': '*/*',
+      'Accept': 'application/json',
+      // 'Access-Control-Request-Headers': 'authorization,content-type', 
+      // 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',  
+      'Access-Control-Request-Headers': 'content-type',   
+      // 'Access-Control-Allow-Origin':'*',
+    });
+    let httpOptions:object = ({ 
+      headers: newHeaders,
+      // withCredentials:  true,
+      withCredentials:  false,
+      method: 'POST',
+      responseType: "text"
+    });
+    // return this.http.put<IFile[]>(this.baseUrl+postUrl, httpPostData);
+    return this.http.post<IFile[]>(this.baseUrl+postUrl, imageData);
+  }
+
   getFiles(): Observable<IFile[]> {
     return this.http.get<IFile[]>(this.baseUrl+'/files-promise');
   }
@@ -76,7 +147,33 @@ export class FileService {
   }
 
   saveFile(uploadFiles): Observable<IFile[]> {
-    return this.http.post<IFile[]>(this.baseUrl+'/file', uploadFiles);
+
+    let newHeaders = new HttpHeaders({
+      'Connection': 'keep-alive',
+      'Accept-Language': 'en-US,en;q=0.5',
+      'Accept-Encoding': 'gzip, deflate, br',
+      // 'Accept': '*/*',
+      'Accept': 'application/json',
+      // 'Access-Control-Request-Headers': 'authorization,content-type', 
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',  
+      'Access-Control-Request-Headers': 'content-type',   
+      'Access-Control-Allow-Origin':'*',
+    });
+
+    let httpOptions:object = ({ 
+      headers: newHeaders,
+      // withCredentials:  true,
+      withCredentials:  false,
+      method: 'POST',
+      responseType: "text"
+    });
+
+    // return ( this.http.post ( this.postUrl, httpPostData, httpOptions)
+    // .do   ( data  => console.log ("Upload Result: "+ JSON.stringify(data)) ) );
+
+    console.log(`file.service.uploadImage uploadFiles[0].name = ${uploadFiles[0].name}`);
+    return this.http.post<IFile[]>(this.baseUrl+'/file', uploadFiles, httpOptions);
+    // return this.http.post<IFile[]>(this.baseUrl+'/file', uploadFiles);
   }
 
   createCase(keywords): Observable<ICase[]> {

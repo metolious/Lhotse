@@ -37,21 +37,14 @@ export interface ICase {
 }
 
 export interface IFile {
-  id: number,
-  file_subject: string,
-  file_location: string,
-  file_type_id: number,
-  file_detail: string,
-  file_origin_id: number,
-  case_id: number,
-  file_status: number,
-  // case_status: number,
-  case_status: string,
-  author_last_name: string,
-  author_first_name: string,
-  poc_user: string,
-  author: string,
-  login_user: string,
+   securityLabel: string,
+   aspect: string,
+   imageSource: string,
+   sconums: string[],
+   iirNumbers: string[],
+   otherSources: string[],
+   imageDate: string,
+   labels: IFormLabel[]
 }
 
 export interface IFormLabel {
