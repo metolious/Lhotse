@@ -40,12 +40,6 @@ var config = {
 
 var pool = new Pool(config);
 
-// app.getRoot('/', (req, res) => { 
-//   console.log(`indexjs root JSON.stringify(req.body) = ${JSON.stringify(req.body)}`);
-//   res.json({ answer: 91 });
-//   // res.json({ 'route(1)': 'ROOT' }) 
-// });
-
 app.get('/', (req, res, next) => {
 var status = "200"
 var obj = [{ "route(1)": "ROOT" }, { "route(2)": "/file" }]
@@ -62,7 +56,7 @@ app.put('/save', (req, res, next) => {
   });
 
   app.post('/save', (req, res, next) => {
-    console.log(`indexjs: put /save JSON.stringify(req.body[0]) = ${JSON.stringify(req.body[0])}`)
+    // console.log(`indexjs: put /save JSON.stringify(req.body[0]) = ${JSON.stringify(req.body[0])}`)
       var status = "200"
       var obj = [{ "route(5)": "/image" }, { "route(6)": "/edit" }]
       res.status(status).send(req.body)
@@ -141,7 +135,7 @@ app.post('/files', (req, res, next) => {
   console.log(`indexjs uploadFiles.file.name = ${req.body.name}`);
   
   db.none('INSERT INTO files (file_subject, file_location, file_type_id, file_detail, file_origin_id, case_id, case_status, poc_user, author)' +
-  // 'VALUES (6, \'NY\', \'Brnx\', 30, \'returns\', 29);',
+  // 'VALUES (6, \'cc\', \'aa\', 30, \'bb\', 29);',
   'VALUES (${file_subject}, ${file_location}, ${file_type_id}, ${file_detail}, ${file_origin_id}, ${case_id}, \'Inactive\', ${poc_user}, ${author})',
   req.body)
   .then(function () {
