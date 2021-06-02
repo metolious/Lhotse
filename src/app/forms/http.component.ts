@@ -1,7 +1,6 @@
 import { Output,EventEmitter, Input, SimpleChange, Injectable } from '@angular/core';
-import { HttpRedirect_Service } from 'src/app/forms/SHARED_FORMS/httpRedirect.service';
 // import { HttpRedirect_Service        } from './httpRedirect.service';
-import { ToasterMsg_Service          } from '../../services/toasterMsg.service';
+import { ToasterMsg_Service          } from '../services/toasterMsg.service';
 import { HttpHeaders, HttpClient } from "@angular/common/http";
 
 import 'rxjs/Rx';
@@ -12,7 +11,8 @@ import 'rxjs/add/operator/map';
 
 import { Subscription       } from 'rxjs/Subscription';
 import { Observable         } from 'rxjs/Observable';
-import { Utilities } from '../../classes/shared_classes/utilities.class';
+import { Utilities } from '../classes/shared_classes/utilities.class';
+import { HttpRedirect_Service } from './httpRedirect.service';
 
 @Injectable()
 export class HttpBase

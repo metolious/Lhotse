@@ -4,11 +4,11 @@ import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { IAspect, IImageSource, ISecurityLabel, IFormLabel, IImageData } from 'src/app/shared/interfaces';
 import { Router } from '@angular/router';
 import { ToasterMsg_Service } from 'src/app/services/toasterMsg.service';
-import { HttpRedirect_Service } from 'src/app/forms/SHARED_FORMS/httpRedirect.service';
 import { HttpClient } from '@angular/common/http';
 import { UploadImageForm } from 'src/app/classes/forms/uploadImageForm.class';
-import { HttpBase } from 'src/app/forms/SHARED_FORMS/http.component';
+import { HttpBase } from 'src/app/forms/http.component';
 import { FileService } from '../services/file.service';
+import { HttpRedirect_Service } from '../forms/httpRedirect.service';
 
 export class UploadForm {
   constructor(

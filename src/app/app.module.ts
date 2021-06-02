@@ -115,7 +115,6 @@ import { MultiSelect_Service } from './startup/multiSelect.service';
 import { Paging_Service } from './classes/paging.class';
 import { ConfirmationService, MessageService } from 'primeng/api';
 // import { HttpRedirect_Service } from './demo/SHARED_FORMS/httpRedirect.service';
-import { HttpRedirect_Service } from 'src/app/forms/SHARED_FORMS/httpRedirect.service';
 import { ToasterMsg_Service } from './services/toasterMsg.service';
 import { SearchImageForm } from './classes/forms/searchImageForm.class';
 import { UploadImageForm } from './classes/forms/uploadImageForm.class';
@@ -134,6 +133,7 @@ import { IconService } from './services/icon.service';
 import { NodeService } from './services/node.service';
 import { PhotoService } from './services/photo.service';
 import { ProductService } from './services/product.service';
+import { HttpRedirect_Service } from './forms/httpRedirect.service';
 
 @NgModule({
     imports: [
