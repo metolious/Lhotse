@@ -1,0 +1,186 @@
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        <span style="font-size: 175%;">Enter Search Criteria</span>
+ 
+    </div>
+
+    <div class="p-toolbar-group-right">
+        <button pButton type="button" label="Cancel" icon="pi pi-times"></button>
+        <button pButton type="button" class="p-button-secondary" label="Reset&nbsp;&nbsp;" icon="pi pi-times-circle"></button>
+        <button pButton type="button" class="p-button-success" label="Submit" icon="pi pi-check"></button>
+    </div>
+</p-toolbar><br>
+
+<div class="p-grid">    
+
+    <div class="p-col-12 p-md-6">
+
+        <div class="card">
+            <p-accordion>
+                <p-accordionTab header="Select Parameters" [selected]="true">
+                    <div class="p-fluid">
+                        <div class="p-field">
+                            <label for="p-field">Classification</label>
+                            <p-dropdown #classLabel filter="true" styleClass="pMultiSelect" [(ngModel)]="securityLabel" placeholder="&nbsp;" [options]="security_labels" [showClear]="true"></p-dropdown>
+                        </div>
+                        <div class="p-field">
+                            <label for="aspect">Image Aspect</label>
+                            <p-dropdown #aspectLabel filter="true" styleClass="pMultiSelect" [options]="aspects" [(ngModel)]="aspect" placeholder="&nbsp;" [showClear]="true"></p-dropdown>
+                        </div>
+                        <div class="p-field">
+                            <label for="iSource">Image Source</label>
+                            <p-dropdown #imgSource filter="true" styleClass="pMultiSelect" [options]="image_sources" [(ngModel)]="imageSource" placeholder="&nbsp;" optionLabel="label" [showClear]="true"></p-dropdown>
+                        </div>
+                    </div>
+            </p-accordionTab><br>
+
+                <p-accordionTab header="Image Identifiers">
+                    <div class="p-fluid">
+
+                        <div class="p-field">
+                            <label for="p-field">Sconum</label>
+                        <p-chips #sconum styleClass="pChipsStyleClass" [(ngModel)]="sconums" placeholder="&nbsp;"></p-chips>
+                        </div>
+                        <div class="p-field">
+                            <label for="aspect">Amidships Id</label>
+                        <p-chips styleClass="pChipsStyleClass" [(ngModel)]="amidships_id" placeholder="&nbsp;"></p-chips>
+                        </div>                        
+                        <div class="p-field">
+                            <label for="aspect">IIR Number</label>
+                        <p-chips styleClass="pChipsStyleClass" [(ngModel)]="iir_numbers" placeholder="&nbsp;"></p-chips>
+                        </div>
+                        <div class="p-field">
+                            <label for="iSource">Other Source</label>
+                        <p-chips styleClass="pChipsStyleClass" [(ngModel)]="other_sources" placeholder="&nbsp;"></p-chips>
+                        </div>
+                        <div class="p-fluid">
+                            <div class="p-field p-grid">
+                                <label for="firstname4" class="p-col-12 p-mb-2 p-md-10 p-mb-md-0">Images To Approve</label>
+                                <div class="p-col-12 p-md-2">
+                                    <!-- <input id="firstname4" type="text" pInputText> -->
+                                    <p-checkbox name="group1" value="New York" [(ngModel)]="valCheck" id="ny"></p-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p-accordionTab><br>
+                <p-accordionTab header="Primary Image Distribution">
+                    
+                    <div class="p-fluid">
+                        <div class="p-field p-grid">
+                            <label for="firstname4" class="p-col-12 p-mb-2 p-md-4 p-mb-md-0">Primary Image:</label>
+                            <div class="p-col-12 p-md-8">
+                                    <p-selectButton [options]="imageOptions" [(ngModel)]="valSelect1" optionLabel="name"></p-selectButton>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-fluid">
+                        <div class="p-field p-grid">
+                            <label for="firstname4" class="p-col-12 p-mb-2 p-md-4 p-mb-md-0">Distribution:</label>
+                            <div class="p-col-12 p-md-8">
+                                    <p-selectButton [options]="imageOptions" [(ngModel)]="valSelect2" optionLabel="name"></p-selectButton>
+                            </div>
+                        </div>
+                    </div>
+                </p-accordionTab>
+            
+            </p-accordion>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-6">
+        <div class="card">
+            <p-accordion>
+            <p-accordionTab header="Query Choices" [selected]="true">          
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="p-field">Sort Field</label>
+                        <p-dropdown #classLabel filter="true" styleClass="pMultiSelect" [(ngModel)]="sortField" placeholder="&nbsp;" [options]="sortFields" [showClear]="true"></p-dropdown>
+                    </div>
+
+                    <div class="p-field p-grid">
+                        <label for="firstname4" class="p-col-12 p-mb-2 p-md-4 p-mb-md-0">Page Size:</label>
+                        <div class="p-col-12 p-md-8">
+                                <p-selectButton [options]="pageOptions" [(ngModel)]="pageSelect" optionLabel="name"></p-selectButton>
+                        </div>
+                    </div>
+                    <div class="p-field p-grid">
+                        <label for="firstname4" class="p-col-12 p-mb-2 p-md-4 p-mb-md-0">Sort Order:</label>
+                        <div class="p-col-12 p-md-8">
+                                <p-selectButton [options]="sortOptions" [(ngModel)]="sortSelect" optionLabel="name"></p-selectButton>
+                        </div>
+                    </div>
+                </div>
+            </p-accordionTab>
+                <p-accordionTab header="Lookup Sconums" >
+                    <div class="p-fluid">
+                        <div class="p-field">
+                            <label for="p-field">IMO</label>
+                        <p-chips #sconum styleClass="pChipsStyleClass" [(ngModel)]="imo" placeholder="&nbsp;"></p-chips>
+                        </div>
+                        <div class="p-field">
+                            <label for="aspect">MMSI</label>
+                        <p-chips styleClass="pChipsStyleClass" [(ngModel)]="mmsi" placeholder="&nbsp;"></p-chips>
+                        </div>
+                        <div class="p-field">
+                            <label for="iSource">Call Sign</label>
+                        <p-chips styleClass="pChipsStyleClass" [(ngModel)]="call_sign" placeholder="&nbsp;"></p-chips>
+                        </div>
+                        <div class="p-field">
+                            <label for="iSource">Vessel Name</label>
+                        <p-chips styleClass="pChipsStyleClass" [(ngModel)]="vessel_name" placeholder="&nbsp;"></p-chips>
+                        </div>
+                    </div>
+                </p-accordionTab><br>
+                <p-accordionTab header="Select Identifiers" >
+                    <div class="p-fluid">
+                        <div class="p-field">
+                            <label for="p-field">Last Modified By</label>
+                            <p-dropdown #classLabel filter="true" styleClass="pMultiSelect" [(ngModel)]="modified_by" placeholder="&nbsp;" [options]="users" [showClear]="true"></p-dropdown>
+                        </div>
+                        <div class="p-field">
+                            <label for="aspect">Approved By</label>
+                            <p-dropdown #aspectLabel filter="true" styleClass="pMultiSelect" [options]="users" [(ngModel)]="approved_by" placeholder="&nbsp;" [showClear]="true"></p-dropdown>
+                        </div>
+                        <div class="p-field">
+                            <label for="iSource">Uploaded By</label>
+                            <p-dropdown #imgSource filter="true" styleClass="pMultiSelect" [options]="users" [(ngModel)]="uploaded_by" placeholder="&nbsp;" optionLabel="label" [showClear]="true"></p-dropdown>
+                        </div>
+                    </div>
+                </p-accordionTab> <br>
+                <p-accordionTab header="Date Ranges">
+                    <div class="p-fluid">
+                        <div class="p-field">
+                            <label for="p-field">Select Upload Date</label>
+                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Select Enclosure Date</label>
+                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Last Modified Date</label>
+                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Approver Date</label>
+                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Review Date</label>
+                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Image Date</label>
+                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
+                        </div>
+                    </div><br>
+                </p-accordionTab>
+        </p-accordion>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,101 @@
+<form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
+
+<div class="p-grid p-fluid">
+	<div class="p-col-12 p-md-6">
+
+		<div class="card">
+			<h5>Select Image Labels</h5>
+			<div class="p-fluid">
+
+				<div class="p-field">
+					<label for="securityLabel">Classification</label>
+					<p-dropdown filter="true" styleClass="pMultiSelect" 
+					class="form-control" id="securityLabel" placeholder="&nbsp;" [options]="security_labels" 
+					[(ngModel)]="model.securityLabel" name="securityLabel" #securityLabel="ngModel" [showClear]="true"></p-dropdown>
+				</div>
+
+				<div class="p-field">
+					<label for="aspect">Image Aspect</label>
+					<p-dropdown filter="true" styleClass="pMultiSelect" 
+					class="form-control" id="aspect" [options]="aspects" placeholder="&nbsp;" 
+					[(ngModel)]="model.aspect" name="aspect" #aspect="ngModel" [showClear]="true"></p-dropdown>
+				</div> 
+
+				<div class="p-field">
+					<label for="imageSource">Image Source</label>
+					<p-dropdown filter="true" styleClass="pMultiSelect" 
+					class="form-control" id="imageSource" [options]="image_sources" placeholder="&nbsp;" 
+					[(ngModel)]="model.imageSource" name="imageSource" #imageSource="ngModel" [showClear]="true"></p-dropdown>
+				</div><br>
+			</div>
+		</div>
+
+		<div class="card">
+			<h5>Select Image Identifiers</h5>
+			<div class="p-fluid">
+				<div class="p-field">
+					<label for="sconums">Sconum</label>
+				<p-chips class="form-control" id="sconums" styleClass="pChipsStyleClass" 
+						[(ngModel)]="model.sconums" name="sconums" #sconums="ngModel" placeholder="&nbsp;"></p-chips>
+				</div>
+				<div class="p-field">
+					<label for="iirNumbers">IIR Number</label>
+				<p-chips class="form-control" id="iirNumbers" styleClass="pChipsStyleClass" 
+						[(ngModel)]="model.iirNumbers" name="iirNumbers" #iirNumbers="ngModel" placeholder="&nbsp;"></p-chips>
+				</div>
+				<div class="p-field">
+					<label for="otherSources">Other Sources</label>
+				<p-chips class="form-control" id="otherSources" styleClass="pChipsStyleClass" 
+						[(ngModel)]="model.otherSources" name="otherSources" #otherSources="ngModel" placeholder="&nbsp;"></p-chips>
+				</div>
+			</div>
+		</div>
+
+		<div class="card">
+			<label for="imageDate"><h5>Select Image Date</h5></label>
+			<p-calendar class="form-control" id="imageDate" [showIcon]="true" inputId="icon" 
+					[(ngModel)]="model.imageDate" name="imageDate" #imageDate="ngModel" placeholder="&nbsp;"></p-calendar>
+		</div>
+</div>
+
+	<div class="p-col-12 p-md-6">
+		<div class="card">
+			<div >
+				<h5>Select Files To Upload</h5>
+				<p-fileUpload 	
+					#fileUpload 
+					name="upload"
+					url="/upload.py"
+					multiple="multiple"
+					accept="image/*" 
+					maxFileSize="1000000"     
+					customUpload="true"
+					(uploadHandler)="customUploader($event)"
+					(onUpload)="uploadComplete($event)">
+					<ng-template pTemplate="content">
+						<ul *ngIf="uploadedFiles.length">
+							<li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+						</ul>
+					</ng-template>
+					<ng-template pTemplate="content" let-files>
+					</ng-template>
+				</p-fileUpload>
+			</div>
+		</div>
+
+		<div class="card">
+			<div class="p-grid">
+				<div class="p-col-12 p-md-6">
+					<h5>Rating</h5>
+					<p-rating></p-rating>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+			<p-confirmDialog [(visible)]="redirectDialog" header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle" 
+				[style]="{width:'425px'}" acceptButtonStyleClass="p-mr-2" rejectButtonStyleClass="p-button-text"> </p-confirmDialog>
+
+            <!-- <button type="text" (click)="uploadForm.reset()" pButton icon="pi pi-trash" 
+                    label="Delete" class="p-button-danger" style="width: auto" ></button> -->
