@@ -125,13 +125,6 @@ export class UploadImageComponent extends HttpBase implements OnInit {
         formData.append('files', this.uploadFiles[i]);
       }
 
-      // for (i=0; i < this.imageData.length; i++)
-      // {
-      
-      //   console.log(`upload.image.createPostData formData.getAll(this.imageData[i].label) = ${formData.getAll(this.imageData[i].label)}`);
-      // }
-      // console.log(`upload.image.createPostData formData.getAll('files') = ${formData.getAll('files')}`);
-
       return ( formData );
     }
 
@@ -143,15 +136,8 @@ export class UploadImageComponent extends HttpBase implements OnInit {
         }      
 
         for (var i = 0; i < this.model.labels.length; i++) {
-          // console.log('upload-image.component.customUploader: model label = ' + this.model.labels[i].label);
-          // console.log('upload-image.component.customUploader: model value = ' + this.model[this.model.labels[i].label]);
           this.imageData.push({label:this.model.labels[i].label, value:this.model[this.model.labels[i].label]});
         }
-
-        // for (var i=0; i<this.imageData.length; i++) {
-        //   console.log('upload-image.component.customUploader: imageData[i].label = ' + this.imageData[i].label);
-        //   console.log('upload-image.component.customUploader: imageData[i].value = ' + this.imageData[i].value);
-        // }
 
         this.confirmForSubmit=false;
         if ( this.uploadImageForm.numInvalidImages > 0 )
@@ -169,21 +155,6 @@ export class UploadImageComponent extends HttpBase implements OnInit {
 
         // this.fileService.uploadImage(this.httpPostData)
         // this.submitToHttpPost(this.httpPostData);
-
-        // this.fileService.saveFile(this.uploadFiles).subscribe( 
-        //   data => {console.log('upload-image.component.customUploader: Upload Successful!!')}, 
-        //   error => {console.log('upload-image.component.customUploader: Upload Failed!!')}
-        // );
-
-        // this.fileService.getRoot().subscribe( 
-        //   data => {console.log('upload-image.component.customUploader: getRoot() Successful!! JSON.stringify(data) = ' + JSON.stringify(JSON.parse(data.toString())))}, 
-        //   error => {console.log('upload-image.component.customUploader: getRoot() Failed!! error.message = ' + error.message)}
-        // );
-
-        // this.fileService.saveFilePut(this.postUrl, this.httpPostData, this.imageData).subscribe( 
-        //   data => {console.log('upload-image.component.customUploader: saveFilePut() Successful!! ' + JSON.stringify(data))}, 
-        //   error => {console.log('upload-image.component.customUploader: saveFilePut() Failed!! ' + error.message)}
-        // );
 
         this.fileService.saveFilePost(this.postUrl, this.httpPostData, this.imageData).subscribe( 
           data => {console.log('upload-image.component.customUploader: saveFilePost() Successful!! ' + JSON.stringify(data))}, 
