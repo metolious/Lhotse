@@ -1,0 +1,55 @@
+{
+
+    "name": "MSC GUI Application",
+  
+    "root": ".",
+  
+    "war": "WAR",
+  
+    "WebInf": "WEB-INF",
+  
+    "app": "src/app",
+  
+    "dist": "dist",
+  
+    "tmp": ".tmp",
+  
+    "deployDomain": "photoWeb",
+  
+    "NODE_ENV": "photoWeb",
+  
+    "WarVersion": "1.0.16-SNAPSHOT",
+  
+    "common": {
+  
+      "src": "../common",
+  
+      "dest": "app/common"
+  
+    },
+  
+    "connect": {
+  
+      "options": {
+  
+        "hostname": "127.0.0.1",
+  
+        "livereload": 35728,
+  
+        "port": 8003
+  
+      },
+  
+      "proxies": {
+  
+        "context": "/photoWeb",
+  
+        "host": "127.0.0.1",
+  
+        "port": 7443
+  
+      }
+  
+    }
+  
+  }

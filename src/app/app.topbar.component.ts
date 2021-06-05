@@ -173,7 +173,7 @@ import {AppMainComponent} from './app.main.component';
 
                             <ul class="fadeInDown">
                                 <li class="layout-submenu-header">
-                                    <img class="profile-image" src="assets/layout/images/dumber7.gif" alt="A">
+                                    <img class="profile-image" src="assets/layout/images/loyd.gif" alt="A">
                                     <div class="profile-info">
                                         <h6>Jim Moriarty</h6>
                                         <span>Analyst</span>
