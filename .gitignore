@@ -51,3 +51,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+WAR/ams-app-msc-1.0.17-SNAPSHOT.war

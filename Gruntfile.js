@@ -47,7 +47,7 @@ module.exports = function (grunt) {
             src:  ['<%= config.dist %>/styles.js'],
             replacements: [{
                 from: /fontawesome-webfont/g,
-                to: '/photoWeb/fontawesome-webfont'
+                to: '/photoApp/fontawesome-webfont'
             }]
         },
         primeNg: {
@@ -55,7 +55,7 @@ module.exports = function (grunt) {
             src:  ['<%= config.dist %>/index.html'],
             replacements: [{
                 from: /node_modules/g,
-                to: '/photoWeb/node_modules'
+                to: '/photoApp/node_modules'
             }]
         },
      //   ImageUrl: "assets/testImages/image4.jpg", 
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
             src:  ['<%= config.dist %>/testData/search.data.ts'],
             replacements: [{
                 from: /"assets/g,
-                to: '"/photoWeb/assets'
+                to: '"/photoApp/assets'
             }]
         },
        
@@ -73,23 +73,23 @@ module.exports = function (grunt) {
             src:  ['<%= config.dist %>/main.bundle.js'],
             replacements: [{
                 from: /..\/..\/assets\/img/g,
-                to: '/photoWeb/assets/img'
+                to: '/photoApp/assets/img'
             }]
         },
         scriptDomainHtml: {
             overwrite: true,
-            src:  ['<%= config.dist %>/*.html'],
+            src:  ['<%= config.dist %>/main.bundle.js'],
             replacements: [{
                 from: /src="/g,
-                to: 'src="/photoWeb/'
+                to: 'src="/photoApp/'
             }]
         },
         scriptDomainJs: {
             overwrite: true,
-            src:  ['<%= config.dist %>/*.js'],
+            src:  ['<%= config.dist %>/main.bundle.js'],
             replacements: [{
                 from: /src=\\"/g,
-                to: 'src=\\"photoWeb/'
+                to: 'src=\\"photoApp/'
             }]
         },
     },
@@ -167,9 +167,9 @@ module.exports = function (grunt) {
         grunt.task.run([
             'exec:ngBuild',
             'replace:basePath',
-            // 'replace:scriptDomainHtml',
-            // 'replace:scriptDomainJs',
-            // 'replace:primeNg',
+            'replace:scriptDomainHtml',
+            'replace:scriptDomainJs',
+            'replace:primeNg',
             'replace:images',
             'replace:testThumbnails',
             'replace:fontAwesome',           
@@ -178,9 +178,4 @@ module.exports = function (grunt) {
             'war'
         ]);
     });   
- 
-   
- 
-   
-//===============================================================================================
 };  

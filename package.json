@@ -59,6 +59,7 @@
     "exec": "^0.2.1",
     "express": "^4.17.1",
     "grunt": "^1.4.1",
+    "grunt-cli": "^1.4.3",
     "grunt-command": "^1.0.2",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-jshint": "^3.0.0",
