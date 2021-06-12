@@ -89,7 +89,6 @@ export class FileService {
       method: 'POST',
       responseType: "text"
     });
-    // return this.http.put<IFile[]>(this.baseUrl+postUrl, httpPostData);
     return this.http.put<IFile[]>(this.baseUrl+postUrl, imageData);
   }
 
@@ -112,7 +111,6 @@ export class FileService {
       method: 'POST',
       responseType: "text"
     });
-    // return this.http.put<IFile[]>(this.baseUrl+postUrl, httpPostData);
     return this.http.post<IFile[]>(this.baseUrl+postUrl, imageData);
   }
 
@@ -162,18 +160,13 @@ export class FileService {
 
     let httpOptions:object = ({ 
       headers: newHeaders,
-      // withCredentials:  true,
       withCredentials:  false,
       method: 'POST',
       responseType: "text"
     });
 
-    // return ( this.http.post ( this.postUrl, httpPostData, httpOptions)
-    // .do   ( data  => console.log ("Upload Result: "+ JSON.stringify(data)) ) );
-
     console.log(`file.service.uploadImage uploadFiles[0].name = ${uploadFiles[0].name}`);
     return this.http.post<IFile[]>(this.baseUrl+'/file', uploadFiles, httpOptions);
-    // return this.http.post<IFile[]>(this.baseUrl+'/file', uploadFiles);
   }
 
   createCase(keywords): Observable<ICase[]> {
