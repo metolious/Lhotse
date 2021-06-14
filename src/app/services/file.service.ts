@@ -10,6 +10,7 @@ import { ICase, IFile } from 'src/app/shared/interfaces';
 export class FileService {
 
   baseUrl = "http://localhost:3000";
+  awsUrl = "http://nodejs-env-1.eba-igm7mvc7.us-east-1.elasticbeanstalk.com";
   httpPostData: FormData;
 
   constructor(private http: HttpClient) { }
@@ -46,7 +47,6 @@ export class FileService {
   }
 
   getRoot(): Observable<IFile[]> {
-
     let newHeaders = new HttpHeaders({
       'Connection': 'keep-alive',
       'Accept-Language': 'en-US,en;q=0.5',
@@ -58,16 +58,16 @@ export class FileService {
       'Access-Control-Request-Headers': 'content-type',   
       // 'Access-Control-Allow-Origin':'*',
     });
-
     let httpOptions:object = ({ 
       headers: newHeaders,
       // withCredentials:  true,
       withCredentials:  false,
-      method: 'POST',
+      method: 'GET',
       responseType: "text"
     });
 
-    return this.http.get<IFile[]>(this.baseUrl+'/', httpOptions);
+    // return this.http.get<IFile[]>(this.baseUrl+'/', httpOptions);
+    return this.http.get<IFile[]>(this.awsUrl+'/', httpOptions);
   }
 
   saveFilePut(postUrl, httpPostData, imageData): Observable<IFile[]> {
@@ -111,7 +111,8 @@ export class FileService {
       method: 'POST',
       responseType: "text"
     });
-    return this.http.post<IFile[]>(this.baseUrl+postUrl, imageData);
+    // return this.http.post<IFile[]>(this.baseUrl+postUrl, imageData);
+    return this.http.post<IFile[]>(this.awsUrl+postUrl, imageData);
   }
 
   getFiles(): Observable<IFile[]> {

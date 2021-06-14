@@ -156,6 +156,11 @@ export class UploadImageComponent extends HttpBase implements OnInit {
         // this.fileService.uploadImage(this.httpPostData)
         // this.submitToHttpPost(this.httpPostData);
 
+        // this.fileService.getRoot().subscribe( 
+        //   data => {console.log('upload-image.component.customUploader: saveFilePost() Successful!! ' + data)}, 
+        //   error => {console.log('upload-image.component.customUploader: saveFilePost() Failed!! ' + error.message)}
+        // );
+
         this.fileService.saveFilePost(this.postUrl, this.httpPostData, this.imageData).subscribe( 
           data => {console.log('upload-image.component.customUploader: saveFilePost() Successful!! ' + JSON.stringify(data))}, 
           error => {console.log('upload-image.component.customUploader: saveFilePost() Failed!! ' + error.message)}
