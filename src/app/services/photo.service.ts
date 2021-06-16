@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-import { Image } from '../domain/image';
+import { IImage } from '../shared/interfaces';
 
 @Injectable()
 export class PhotoService {
 
     constructor(private http: HttpClient) { }
 
-    getImages() {
-    return this.http.get<any>('assets/demo/data/photo-boats.json')
-      .toPromise()
-      .then(res => res.data as Image[])
-      .then(data => data);
+    getImageData() {
+        return this.http.get<any>('assets/demo/data/image-data.json')
+            .toPromise()
+            .then(res => res.data as IImage[])
+            .then(data => data);
     }
+
 }

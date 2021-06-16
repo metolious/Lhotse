@@ -1,0 +1,37 @@
+{
+    "data": [
+        {
+            "id": "1001",
+            "name": "AWS_Post_Image_Data",
+            "url": "http://nodejs-env-1.eba-igm7mvc7.us-east-1.elasticbeanstalk.com",
+            "port": "8080",
+            "isActive": true,
+            "endpoint": "/save",
+            "method": "post",
+            "description": "Elastic Beanstalk service running Node.js application",
+            "data": "Returns request body JSON data sent to server"
+        },
+        {
+            "id": "1002",
+            "name": "AMS_Get_Vessel_Service",
+            "url": "https://samples:7443/mie",
+            "port": "8080",
+            "isActive": true,
+            "endpoint": "/resources/vessel",
+            "method": "get",
+            "description": "AMS Rest API service running on Cloud03",
+            "data": "Returns vessel summary characteristics XML data"
+        },
+        {
+            "id": "1003",
+            "name": "localhost",
+            "url": "http://localhost",
+            "port": "3000",
+            "isActive": false,
+            "endpoint": "/save",
+            "method": "post",
+            "description": "Node.js server running on localhost, port 3000",
+            "data": "Returns results of endpoint code execution"
+        }
+    ]
+}

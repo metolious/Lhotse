@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {ConfirmationService, MessageService, SelectItem} from 'primeng/api';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
-import { IAspect, IImageSource, ISecurityLabel, IFormLabel, IImageData } from 'src/app/shared/interfaces';
+import { IAspect, IImageSource, ISecurityLabel, IFormLabel, IImageData, IRoute } from 'src/app/shared/interfaces';
 import { Router } from '@angular/router';
 import { ToasterMsg_Service } from 'src/app/services/toasterMsg.service';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +9,7 @@ import { UploadImageForm } from 'src/app/classes/forms/uploadImageForm.class';
 import { HttpBase } from 'src/app/forms/http.component';
 import { FileService } from '../services/file.service';
 import { HttpRedirect_Service } from '../forms/httpRedirect.service';
+import { RouteService } from '../services/route.service';
 
 export class UploadForm {
   constructor(
@@ -19,7 +20,7 @@ export class UploadForm {
     public iirNumbers: string[],
     public otherSources: string[],
     public imageDate: string,
-    public labels: IFormLabel[]
+    public labels: IFormLabel[],
   ) {  }
 }
 
@@ -41,10 +42,14 @@ export class UploadImageComponent extends HttpBase implements OnInit {
     redirectDialog: boolean;
     uploadSuccess: Boolean;
     httpPostData: FormData;
-    url:string = '/viper/resources/upload';   
-    saveUrl:string = '/save';   
+  
     model: UploadForm;
     submitted = false;
+    routes: IRoute[];
+    route: IRoute;
+    awsElasticBeanRoute: IRoute = {};
+    amsVesselServiceRoute: IRoute = {};
+    localhostRoute: IRoute = {};
 
     constructor(http:                  HttpClient,
                 httpService:           HttpRedirect_Service,
@@ -54,11 +59,16 @@ export class UploadImageComponent extends HttpBase implements OnInit {
                 private confirmationService: ConfirmationService,
                 private uploadImageForm:       UploadImageForm,
                 private fileService: FileService,
-                private route: Router,
+                private router: Router,
+                private routeService: RouteService
                 ) {
 
         super ( http, httpService, messageService );
 
+        this.routeService.getRoutes().then(routes => {
+          this.routes = routes
+        });
+        
         this.breadcrumbService.setItems([
             { label: 'Viper MSC' },
             { label: 'Upload Image', routerLink: ['/uikit/tree'] }
@@ -85,17 +95,12 @@ export class UploadImageComponent extends HttpBase implements OnInit {
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                   this.primengMessageService.add({severity:'info', summary:'Confirmed', detail:'You have accepted'});
-                  this.route.navigate(['/uikit/table']);
+                  this.router.navigate(['/uikit/table']);
               },
               reject: (type) => {
                 this.primengMessageService.add({severity:'warn', summary:'Cancelled', detail:'You have cancelled'});
               }
         });
-    }
-
-    getUrl (): string {
-
-      return ( this.saveUrl  ) ;
     }
 
     createPostData ():FormData  {
@@ -104,7 +109,6 @@ export class UploadImageComponent extends HttpBase implements OnInit {
 
       for (var i = 0; i < this.imageData.length; i++) 
       {
-
         var fieldLabel = this.imageData[i].label;
         var fieldValue = this.imageData[i].value;
 
@@ -127,6 +131,25 @@ export class UploadImageComponent extends HttpBase implements OnInit {
 
       return ( formData );
     }
+
+    setRoutes() {
+      
+      for (let i = 0; i < this.routes.length; i++) {
+        if (this.routes[i].name == "AWS_Post_Image_Data") {
+          this.awsElasticBeanRoute.url = this.routes[i].url;
+          this.awsElasticBeanRoute.endpoint = this.routes[i].endpoint;
+          // console.log (`file.service setRoutes() awsElasticBeanRoute.url = ${this.awsElasticBeanRoute.url}`);
+        }
+        else if (this.routes[i].name == "AMS_Get_Vessel_Service") {
+          this.amsVesselServiceRoute.url = this.routes[i].url;
+          this.amsVesselServiceRoute.endpoint = this.routes[i].endpoint;
+        }
+        else if (this.routes[i].name == "localhost") {
+          this.localhostRoute.url = this.routes[i].url;
+          this.localhostRoute.endpoint = this.routes[i].endpoint;
+        }
+      } 
+    } 
 
       customUploader(event)  {
 
@@ -151,20 +174,17 @@ export class UploadImageComponent extends HttpBase implements OnInit {
         this.uploadImageForm.isUploadedSubmitted = true;
   
         this.httpPostData  = this.createPostData();
-        this.postUrl = this.getUrl();
+        this.setRoutes();
 
-        // this.fileService.uploadImage(this.httpPostData)
-        // this.submitToHttpPost(this.httpPostData);
-
-        // this.fileService.getRoot().subscribe( 
-        //   data => {console.log('upload-image.component.customUploader: saveFilePost() Successful!! ' + data)}, 
-        //   error => {console.log('upload-image.component.customUploader: saveFilePost() Failed!! ' + error.message)}
-        // );
-
-        this.fileService.saveFilePost(this.postUrl, this.httpPostData, this.imageData).subscribe( 
+        this.fileService.saveImageData(this.awsElasticBeanRoute, this.httpPostData, this.imageData).subscribe( 
           data => {console.log('upload-image.component.customUploader: saveFilePost() Successful!! ' + JSON.stringify(data))}, 
           error => {console.log('upload-image.component.customUploader: saveFilePost() Failed!! ' + error.message)}
         );
+
+        // this.fileService.getVesselData(this.amsVesselServiceRoute).subscribe( 
+        //   data => {console.log('upload-image.component.customUploader: getVesselData() Successful!! ' + JSON.stringify(data))}, 
+        //   error => {console.log('upload-image.component.customUploader: getVesselData() Failed!! ' + error.message)}
+        // );
 
         this.clearForm();
         this.initDialog();
@@ -173,7 +193,7 @@ export class UploadImageComponent extends HttpBase implements OnInit {
     ngOnInit() {
 
         this.uploadSuccess = false;
-        
+
         this.formLabels = [
           {label: 'securityLabel'},
           {label: 'aspect'},

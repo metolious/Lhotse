@@ -1,3 +1,25 @@
+export interface IRoute {
+  id?: string,
+  name?: string,
+  url?: string,
+  description?: string,
+  data?: string
+  isActive?: boolean,
+  endpoint?: string,
+  method?: string,
+}
+
+export interface IImage {
+  id?: string;
+  name?: string;
+  date?: string;
+  status?: string;
+  activity?: number;
+  revoke?: boolean;
+  state?: string;
+  image?: string;
+}
+
 export interface IBoolean {
   key: string,
   value: boolean
@@ -61,12 +83,12 @@ export interface ISecurityLabel {
   value: string
 }
 
-export interface SelectItemGroup {
+export interface ISelectItemGroup {
   label: string,
   value: string
 }
 
-export interface SelectItem {
+export interface ISelectItem {
   label: string,
   value: string
 }

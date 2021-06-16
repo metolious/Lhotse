@@ -290,11 +290,11 @@
 
 </div>
 
-	<p-dialog 	[(visible)]="customerDialog" [style]="{width: '450px'}" 
+	<p-dialog 	[(visible)]="imageDialog" [style]="{width: '450px'}" 
 				header="Review Form" [modal]="true" styleClass="p-fluid">
 		<ng-template pTemplate="content">
 
-			<img src="assets\demo\images\carousel\{{customer.image}}" [alt]="image" class="product-image">
+			<img src="assets\demo\images\carousel\{{image.image}}" [alt]="image" class="product-image">
 			<br>
 			<div class="p-fluid">
 				<div class="p-field">
@@ -326,7 +326,7 @@
 
 		<ng-template pTemplate="footer">
 			<button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-			<button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCustomer()"></button>
+			<button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveImage()"></button>
 		</ng-template>
 
 	</p-dialog>

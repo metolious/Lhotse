@@ -121,7 +121,6 @@ import { UploadImageForm } from './classes/forms/uploadImageForm.class';
 import { Chips_Service } from './misc/chips.service';
 import { State_Service } from './misc/state.service';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
-import { CustomerService } from './services/customer.service';
 import { DocumentationComponent } from './view/documentation.component';
 import { ImageSearchComponent } from './view/image-search.component';
 import { UploadImageComponent } from './view/upload-image.component';
@@ -131,9 +130,8 @@ import { LoginUser_Service } from './services/loginUser.service';
 import { EventService } from './services/event.service';
 import { IconService } from './services/icon.service';
 import { NodeService } from './services/node.service';
-import { PhotoService } from './services/photo.service';
-import { ProductService } from './services/product.service';
 import { HttpRedirect_Service } from './forms/httpRedirect.service';
+import { PhotoService } from './services/photo.service';
 
 @NgModule({
     imports: [
@@ -256,12 +254,10 @@ import { HttpRedirect_Service } from './forms/httpRedirect.service';
         { provide: LocationStrategy, 
 
             useClass: HashLocationStrategy},
-            CustomerService, 
+            PhotoService, 
             EventService, 
             IconService, 
             NodeService,
-            PhotoService, 
-            ProductService, 
             MenuService, 
             AppBreadcrumbService,
             MultiSelect_Service,

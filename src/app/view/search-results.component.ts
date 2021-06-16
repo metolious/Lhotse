@@ -1,14 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Customer, Representative} from '../domain/customer';
-import {CustomerService} from '../services/customer.service';
-import {Product} from '../domain/product';
 import {Table} from 'primeng/table';
 import {AppBreadcrumbService} from 'src/app/app.breadcrumb.service';
 import { ThisReceiver } from '@angular/compiler';
 import { MessageService } from 'primeng/api';
-import { IAspect, IImageSource, ISecurityLabel } from 'src/app/shared/interfaces';
+import { IAspect, IImage, IImageSource, ISecurityLabel } from 'src/app/shared/interfaces';
 import { PhotoService } from '../services/photo.service';
-import { ProductService } from '../services/product.service';
 
 @Component({
     templateUrl: './search-results.component.html',
@@ -51,27 +47,17 @@ export class SearchResultsComponent implements OnInit {
     noImageSelected: string = "./assets/img/WaitingForSelection.png"
     selectedValue: string;
     selectedImage: string = this.noImageSelected;
-    imageData: Customer[];
-    customers1: Customer[];
-    customers2: Customer[];
-    customers3: Customer[];
-    selectedCustomers1: Customer[];
-    selectedCustomer: Customer;
-    representatives: Representative[];
+    imageData: IImage[];
+    image: IImage;
+    images: IImage[];
     statuses: any[];
     rowGroupMetadata: any;
     activityValues: number[] = [0, 100];
 
     productDialog: boolean;
-    products: Product[];
-    product: Product;
 
-    customerDialog: boolean;
-    customers: Customer[];
-    customer: Customer;
+    imageDialog: boolean;
     submitted: boolean;
-
-    images: any[];
 
     galleriaResponsiveOptions: any[] = [
         {
@@ -94,15 +80,10 @@ export class SearchResultsComponent implements OnInit {
 
     @ViewChild('dt') table: Table;
 
-    constructor(private customerService: CustomerService, 
-                private productService: ProductService,
+    constructor(private photoService: PhotoService, 
                 private breadcrumbService: AppBreadcrumbService,
-                private photoService: PhotoService,
                 private messageService: MessageService
                 ) {
-        this.photoService.getImages().then(images => {
-            this.images = images;
-        });
 
         this.breadcrumbService.setItems([
             { label: 'Viper MSC' },
@@ -110,29 +91,29 @@ export class SearchResultsComponent implements OnInit {
         ]);
     }
 
-    saveCustomer() {
+    saveImage() {
         this.submitted = true;
 
-        if (this.customer.name.trim()) {
-            if (this.customer.id) {
-                this.customers1[this.findIndexById(this.customer.id)] = this.customer;
-                if (this.customer.state == "uploaded")
-                    this.customer.state="reviewed";
-                else if (this.customer.state == "reviewed")
-                    this.customer.state="approved";
-                else if (this.customer.state == "approved")
-                    this.customer.revoke=true;
+        if (this.image.name.trim()) {
+            if (this.image.id) {
+                this.images[this.findIndexById(this.image.id)] = this.image;
+                if (this.image.state == "uploaded")
+                    this.image.state="reviewed";
+                else if (this.image.state == "reviewed")
+                    this.image.state="approved";
+                else if (this.image.state == "approved")
+                    this.image.revoke=true;
                 this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Image Updated', life: 3000});
             } else {
-                this.customer.id = this.createId();
-                this.customer.image = 'product-placeholder.svg';
-                this.customers1.push(this.customer);
+                this.image.id = this.createId();
+                this.image.image = 'product-placeholder.svg';
+                this.images.push(this.image);
                 this.messageService.add({severity: 'success', summary: 'Successful', detail: 'Image Created', life: 3000});
             }
 
-            this.customers1 = [...this.customers1];
-            this.customerDialog = false;
-            this.customer = {};
+            this.images = [...this.images];
+            this.imageDialog = false;
+            this.image = {};
         }
     }
 
@@ -147,29 +128,28 @@ export class SearchResultsComponent implements OnInit {
     
     findIndexById(id: string): number {
         let index = -1;
-        for (let i = 0; i < this.customers1.length; i++) {
-            if (this.customers1[i].id === id) {
+        for (let i = 0; i < this.images.length; i++) {
+            if (this.images[i].id === id) {
                 index = i;
                 break;
             }
-        }
-
+        }   
         return index;
     }
 
     hideDialog() {
-        this.customerDialog = false;
+        this.imageDialog = false;
         this.submitted = false;
     }
 
-    editCustomer(customer: Customer) {
-        this.customer = {...customer};
-        this.customerDialog = true;
+    editImage(image: IImage) {
+        this.image = {...image};
+        this.imageDialog = true;
     }
 
-    approveCustomer(customer: Customer) {
-        this.customer = {...customer};
-        this.customerDialog = true;
+    approveCustomer(customer: IImage) {
+        this.image = {...customer};
+        this.imageDialog = true;
     }
 
     ngOnInit() {
@@ -232,13 +212,6 @@ export class SearchResultsComponent implements OnInit {
             ];
 
 
-        this.productService.getImagesSmall().then(products => {
-            this.products = products;
-            this.products.forEach(product => 
-                console.log()         
-                );
-        });
-
         this.typeOptions = [
             {label: 'PROD',   value:'PROD'},
             {label: 'ORIG',   value:'ORIG'}
@@ -247,8 +220,8 @@ export class SearchResultsComponent implements OnInit {
         this.classLabels = [
             {label: 'top secret', value:'top-secret'}
         ];
-        this.customerService.getImageData().then(customers => {
-            this.customers1 = customers;
+        this.photoService.getImageData().then(images => {
+            this.images = images;
             // @ts-ignore
         });
     }
