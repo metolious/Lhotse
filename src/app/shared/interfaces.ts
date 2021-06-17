@@ -1,14 +1,3 @@
-export interface IRoute {
-  id?: string,
-  name?: string,
-  url?: string,
-  description?: string,
-  data?: string
-  isActive?: boolean,
-  endpoint?: string,
-  method?: string,
-}
-
 export interface IImage {
   id?: string;
   name?: string;
@@ -18,6 +7,17 @@ export interface IImage {
   revoke?: boolean;
   state?: string;
   image?: string;
+}
+
+export interface IRoute {
+  id?: string,
+  name?: string,
+  url?: string,
+  description?: string,
+  data?: string
+  isActive?: boolean,
+  endpoint?: string,
+  method?: string,
 }
 
 export interface IBoolean {
@@ -50,14 +50,6 @@ export interface IAspect {
   value: string
 }
 
-export interface ICase {
-  id: number,
-  firstname: string,
-  lastname: string,
-  eventtime: number,
-  filenumber: number
-}
-
 export interface IFile {
    securityLabel: string,
    aspect: string,
@@ -79,16 +71,6 @@ export interface IImageData {
 }
 
 export interface ISecurityLabel {
-  label: string,
-  value: string
-}
-
-export interface ISelectItemGroup {
-  label: string,
-  value: string
-}
-
-export interface ISelectItem {
   label: string,
   value: string
 }

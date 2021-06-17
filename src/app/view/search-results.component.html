@@ -1,12 +1,12 @@
 <div class="p-grid">
     <div class="p-col-12">
         <div class="card">
-            <p-carousel [value]="products" [numVisible]="5"  [numScroll]="5" [circular]="true" [responsiveOptions]="carouselResponsiveOptions">
-                <ng-template let-product pTemplate="item">
+            <p-carousel [value]="images2" [numVisible]="5"  [numScroll]="5" [circular]="true" [responsiveOptions]="carouselResponsiveOptions">
+                <ng-template let-image2 pTemplate="item">
                     <div class="product-item">
                         <div class="product-item-content">
                             <div class="p-mb-3">
-                                <img src="assets/demo/images/boat/{{product.image}}" [alt]="product.name" class="product-image" />
+                                <img src="assets/demo/images/boat/{{image2.image}}" [alt]="image2.name" class="product-image" />
                             </div>
                             <div>
                                 <div class="car-buttons p-mt-5">
@@ -26,7 +26,7 @@
 	<div class="p-col-12">
 		<div class="card">
 
-			<p-table #dt [value]="customers1" [(selection)]="selectedCustomers1" dataKey="id" selectionMode="single"
+			<p-table #dt [value]="images1" [(selection)]="selectedImages1" dataKey="id" selectionMode="single"
 					 styleClass="p-datatable-customers p-datatable-gridlines p-datatable-striped p-datatable-sm"
 					 [rowHover]="true" [rows]="10" [paginator]="true"
 					 [filterDelay]="0"
@@ -147,10 +147,10 @@
 					</tr>
 				</ng-template>
 
-				<ng-template pTemplate="body" let-customer>
+				<ng-template pTemplate="body" let-image>
 					<tr class="p-selectable-row">
 						<td>
-							<p-tableCheckbox [value]="customer"></p-tableCheckbox>
+							<p-tableCheckbox [value]="image"></p-tableCheckbox>
 						</td>
 						<td style="text-align: center">
 							<span class="p-column-title"></span>
@@ -164,27 +164,27 @@
 
 									<p-selectButton [style]="{'text-align':'left', 'font-size':'1px'}" 
 										class="ui-button"  
-										[options]="typeOptions" [(ngModel)] = "customer.selectModel" optionLabel="value">
+										[options]="typeOptions" [(ngModel)] = "image.selectModel" optionLabel="value">
 									</p-selectButton>
 
 							</div>
 						</td>
 						<td style="text-align: center">
 
-							<div *ngIf = "customer.state == 'uploaded'" style="text-align: center;">Uploaded</div>
-							<div *ngIf = "customer.state == 'reviewed'" style="text-align: center;">Reviewed</div>
-							<div *ngIf = "customer.state == 'approved'" style="text-align: center;">Approved</div>
-							<div *ngIf = "customer.state == 'revoked'" style="text-align: center;">Revoked</div>
+							<div *ngIf = "image.state == 'uploaded'" style="text-align: center;">Uploaded</div>
+							<div *ngIf = "image.state == 'reviewed'" style="text-align: center;">Reviewed</div>
+							<div *ngIf = "image.state == 'approved'" style="text-align: center;">Approved</div>
+							<div *ngIf = "image.state == 'revoked'" style="text-align: center;">Revoked</div>
 							<span class="p-column-title"></span>
 			
 						</td>
 						<td style="text-align: center">
 
-								<div *ngIf = "((customer.state == 'reviewed') || (customer.state == 'uploaded')) else review_content;" style="text-align: center;">
+								<div *ngIf = "((image.state == 'reviewed') || (image.state == 'uploaded')) else review_content;" style="text-align: center;">
 									<span class="p-column-title"></span>
 
 									<button pButton type="button" class="p-button-secondary p-button-square" icon="pi pi-pencil" 
-													(click)="editCustomer(customer)"></button>
+													(click)="editImage(image)"></button>
 								</div>
 								<ng-template #review_content>
 									<p></p>
@@ -193,23 +193,23 @@
 						</td>
 						<td style="text-align: center">
 
-							<div *ngIf = "(customer.state == 'reviewed') && (customer.state != 'approved') else approve_content;" style="text-align: center;">
+							<div *ngIf = "(image.state == 'reviewed') && (image.state != 'approved') else approve_content;" style="text-align: center;">
 								<button pButton type="button" class="p-button-success p-button-square" icon="pi pi-thumbs-up" 
-												(click)="editCustomer(customer)"></button>
+												(click)="editImage(image)"></button>
 							</div>
 							<ng-template #approve_content>
 								<p></p>
 							</ng-template>
-							<div *ngIf = "(customer.state == 'approved'); " style="text-align: center;">
+							<div *ngIf = "(image.state == 'approved'); " style="text-align: center;">
 								<span class="p-column-title">Approved</span>
 							</div>
 
 						</td>
 						<td style="text-align: center">
-							<div *ngIf = "(customer.state == 'approved') && (!customer.revoke) else revoke_content;" style="text-align: center;">
+							<div *ngIf = "(image.state == 'approved') && (!image.revoke) else revoke_content;" style="text-align: center;">
 								<span class="p-column-title"></span>
 							<button pButton type="button" class="p-button-danger p-button-square" icon="pi pi-thumbs-down"
-									(click)="editCustomer(customer)"></button>
+									(click)="editImage(image)"></button>
 
 							</div>
 							<ng-template #revoke_content>
@@ -224,7 +224,7 @@
 						</td>
 						<td style="text-align: center">
 						
-							<div *ngIf = "(customer.state == 'approved') && (!customer.revoke) else rekey_content;" style="text-align: center;">
+							<div *ngIf = "(image.state == 'approved') && (!image.revoke) else rekey_content;" style="text-align: center;">
 								<span class="p-column-title"></span>
 
 							<button pButton type="button" class="p-button-square p-button-secondary" icon="pi pi-key"></button>
@@ -236,12 +236,12 @@
 						<td style="text-align: center">	
 						
 								<span class="p-column-title"></span>
-								<p-radioButton #myRadioButton name="groupname" styleClass="radio-style" class="p-button-secondary" value="val1" [(ngModel)]="customer.buttonModel"></p-radioButton>
+								<p-radioButton #myRadioButton name="groupname" styleClass="radio-style" class="p-button-secondary" value="val1" [(ngModel)]="image.buttonModel"></p-radioButton>
 
 						</td>
 						<td style="text-align: center">	
 						
-							<div *ngIf = "(customer.state == 'approved') && (!customer.revoke) else distribute_content;" style="text-align: center;">
+							<div *ngIf = "(image.state == 'approved') && (!image.revoke) else distribute_content;" style="text-align: center;">
 								<span class="p-column-title"></span>
 
 							<button pButton type="button" class="p-button-square p-button-secondary" icon="pi pi-share-alt"></button>
@@ -255,7 +255,7 @@
 
 						<td style="text-align: center">	
 
-							<button pButton pRipple type="button" label=" " class="p-button-outlined">{{customer.sconum}}</button>
+							<button pButton pRipple type="button" label=" " class="p-button-outlined">{{image.sconum}}</button>
 						</td>
 						<td style="text-align: center">
 							<button pButton type="button" class="p-button-square p-button-danger" icon="pi pi-trash"></button>
@@ -264,7 +264,7 @@
 				</ng-template>
 				<ng-template pTemplate="emptymessage">
 					<tr>
-						<td colspan="8">No customers found.</td>
+						<td colspan="8">No images found.</td>
 					</tr>
 				</ng-template>
 			</p-table>
@@ -302,7 +302,7 @@
 					<div class="p-field">
 						<!-- <label for="p-field"></label> -->
 						<h6>Classification Label</h6>
-						<p-dropdown #classLabel filter="true" styleClass="pMultiSelect" [(ngModel)]="securityLabel" placeholder={{customer.classification}} [options]="security_labels" [showClear]="true"></p-dropdown>
+						<p-dropdown #classLabel filter="true" styleClass="pMultiSelect" [(ngModel)]="securityLabel" placeholder={{image.classification}} [options]="security_labels" [showClear]="true"></p-dropdown>
 					</div>
 				</div>
 				<div class="p-field">
@@ -310,7 +310,7 @@
 					<div class="p-field">
 						<!-- <label for="aspect"></label> -->
 						<h6>Aspect</h6>
-						<p-dropdown #aspectLabel filter="true" styleClass="pMultiSelect" [options]="aspects" [(ngModel)]="aspect" placeholder={{customer.aspect}} [showClear]="true"></p-dropdown>
+						<p-dropdown #aspectLabel filter="true" styleClass="pMultiSelect" [options]="aspects" [(ngModel)]="aspect" placeholder={{image.aspect}} [showClear]="true"></p-dropdown>
 					</div>
 				</div>
 				<div class="p-field">
@@ -318,7 +318,7 @@
 					<div class="p-field">
 						<!-- <label for="iSource"></label> -->
 						<h6>Image Source</h6>
-						<p-dropdown #imgSource filter="true" styleClass="pMultiSelect" [options]="image_sources" [(ngModel)]="imageSource" placeholder={{customer.source}} optionLabel="label" [showClear]="true"></p-dropdown>
+						<p-dropdown #imgSource filter="true" styleClass="pMultiSelect" [options]="image_sources" [(ngModel)]="imageSource" placeholder={{image.source}} optionLabel="label" [showClear]="true"></p-dropdown>
 					</div>
 				</div>
 		</div>

@@ -1,11 +1,10 @@
 import { OnInit, Injectable          } from '@angular/core';
-import { ToasterMsg_Service          } from '../services/toasterMsg.service';
 
 @Injectable()
     export class Chips_Service {
         public value:string [];
 
-        constructor (   private messageService: ToasterMsg_Service,
+        constructor (   
             public fieldName:       string,
             public label:           string,
             public regexName:       string,
@@ -40,12 +39,10 @@ import { ToasterMsg_Service          } from '../services/toasterMsg.service';
   
     if ( goodRegex ){
        console.log ( msg);
-     // this.messageService.add ( 'info', 6, 'Regex Status', msg );
     }
     else {
       this.regExp = "."; //Match anything/everything
       console.error( msg );
-      this.messageService.add   ( 'error', 6,'Regex Status', msg );
     }
   
     this.value = [ ];

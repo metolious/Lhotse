@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ICase, IFile, IRoute } from 'src/app/shared/interfaces';
+import { IFile, IRoute } from 'src/app/shared/interfaces';
 import { RouteService } from './route.service';
 
 @Injectable({

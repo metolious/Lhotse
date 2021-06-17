@@ -3,9 +3,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
 import { IAspect, IImageSource, ISecurityLabel, IFormLabel, IImageData, IRoute } from 'src/app/shared/interfaces';
 import { Router } from '@angular/router';
-import { ToasterMsg_Service } from 'src/app/services/toasterMsg.service';
 import { HttpClient } from '@angular/common/http';
-import { UploadImageForm } from 'src/app/classes/forms/uploadImageForm.class';
 import { HttpBase } from 'src/app/forms/http.component';
 import { FileService } from '../services/file.service';
 import { HttpRedirect_Service } from '../forms/httpRedirect.service';
@@ -28,7 +26,7 @@ export class UploadForm {
     templateUrl: './upload-image.component.html',
     styles: ['./upload-image.scss']
 })
-export class UploadImageComponent extends HttpBase implements OnInit { 
+export class UploadImageComponent implements OnInit { 
 
 @Output( ) searchInProgress = new EventEmitter<boolean>(true);
 @ViewChild('fileUpload') fileUpload: any;
@@ -53,17 +51,13 @@ export class UploadImageComponent extends HttpBase implements OnInit {
 
     constructor(http:                  HttpClient,
                 httpService:           HttpRedirect_Service,
-                messageService:        ToasterMsg_Service,
                 private breadcrumbService: AppBreadcrumbService,
                 private primengMessageService: MessageService,
                 private confirmationService: ConfirmationService,
-                private uploadImageForm:       UploadImageForm,
                 private fileService: FileService,
                 private router: Router,
                 private routeService: RouteService
                 ) {
-
-        super ( http, httpService, messageService );
 
         this.routeService.getRoutes().then(routes => {
           this.routes = routes
@@ -162,16 +156,15 @@ export class UploadImageComponent extends HttpBase implements OnInit {
           this.imageData.push({label:this.model.labels[i].label, value:this.model[this.model.labels[i].label]});
         }
 
-        this.confirmForSubmit=false;
-        if ( this.uploadImageForm.numInvalidImages > 0 )
-        {
-          this.messageService.add ( 'error',8, "Some files are INVALID !!!",
-                    "Number of invalid files [" + this.uploadImageForm.numInvalidImages + "]" );
-          return;
-        }
+        // this.confirmForSubmit=false;
+        // if ( this.uploadImageForm.numInvalidImages > 0 )
+        // {
+        //   this.messageService.add ( 'error',8, "Some files are INVALID !!!",
+        //             "Number of invalid files [" + this.uploadImageForm.numInvalidImages + "]" );
+        //   return;
+        // }
   
         this.searchInProgress.emit(true);
-        this.uploadImageForm.isUploadedSubmitted = true;
   
         this.httpPostData  = this.createPostData();
         this.setRoutes();

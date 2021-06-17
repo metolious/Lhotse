@@ -115,9 +115,6 @@ import { MultiSelect_Service } from './startup/multiSelect.service';
 import { Paging_Service } from './classes/paging.class';
 import { ConfirmationService, MessageService } from 'primeng/api';
 // import { HttpRedirect_Service } from './demo/SHARED_FORMS/httpRedirect.service';
-import { ToasterMsg_Service } from './services/toasterMsg.service';
-import { SearchImageForm } from './classes/forms/searchImageForm.class';
-import { UploadImageForm } from './classes/forms/uploadImageForm.class';
 import { Chips_Service } from './misc/chips.service';
 import { State_Service } from './misc/state.service';
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
@@ -263,11 +260,7 @@ import { PhotoService } from './services/photo.service';
             MultiSelect_Service,
             LoginUser_Service,
             State_Service,
-            ToasterMsg_Service,
             Chips_Service,
-            UploadImageForm,
-            SearchImageForm,
-            ToasterMsg_Service,
             HttpClientModule,
             HttpRedirect_Service,
             MessageService,

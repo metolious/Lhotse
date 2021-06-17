@@ -47,15 +47,18 @@ export class SearchResultsComponent implements OnInit {
     noImageSelected: string = "./assets/img/WaitingForSelection.png"
     selectedValue: string;
     selectedImage: string = this.noImageSelected;
-    imageData: IImage[];
-    image: IImage;
-    images: IImage[];
     statuses: any[];
     rowGroupMetadata: any;
     activityValues: number[] = [0, 100];
+    images: IImage[];
+    image: IImage;
+    images1: IImage[];
 
-    productDialog: boolean;
+    // selectedImages1: IImage[];
 
+    images2: IImage[]; // products: IImage[];
+    image2: IImage; // product: IImage;
+    
     imageDialog: boolean;
     submitted: boolean;
 
@@ -82,8 +85,12 @@ export class SearchResultsComponent implements OnInit {
 
     constructor(private photoService: PhotoService, 
                 private breadcrumbService: AppBreadcrumbService,
-                private messageService: MessageService
+                private messageService: MessageService,
                 ) {
+
+        this.photoService.getShipImages().then(images => {
+            this.images = images;
+        });
 
         this.breadcrumbService.setItems([
             { label: 'Viper MSC' },
@@ -96,7 +103,7 @@ export class SearchResultsComponent implements OnInit {
 
         if (this.image.name.trim()) {
             if (this.image.id) {
-                this.images[this.findIndexById(this.image.id)] = this.image;
+                this.images1[this.findIndexById(this.image.id)] = this.image;
                 if (this.image.state == "uploaded")
                     this.image.state="reviewed";
                 else if (this.image.state == "reviewed")
@@ -117,6 +124,11 @@ export class SearchResultsComponent implements OnInit {
         }
     }
 
+    editImage(image: IImage) {
+        this.image = {...image};
+        this.imageDialog = true;
+    }
+
     createId(): string {
         let id = '';
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -128,8 +140,8 @@ export class SearchResultsComponent implements OnInit {
     
     findIndexById(id: string): number {
         let index = -1;
-        for (let i = 0; i < this.images.length; i++) {
-            if (this.images[i].id === id) {
+        for (let i = 0; i < this.images1.length; i++) {
+            if (this.images1[i].id === id) {
                 index = i;
                 break;
             }
@@ -140,16 +152,6 @@ export class SearchResultsComponent implements OnInit {
     hideDialog() {
         this.imageDialog = false;
         this.submitted = false;
-    }
-
-    editImage(image: IImage) {
-        this.image = {...image};
-        this.imageDialog = true;
-    }
-
-    approveCustomer(customer: IImage) {
-        this.image = {...customer};
-        this.imageDialog = true;
     }
 
     ngOnInit() {
@@ -220,10 +222,24 @@ export class SearchResultsComponent implements OnInit {
         this.classLabels = [
             {label: 'top secret', value:'top-secret'}
         ];
+
         this.photoService.getImageData().then(images => {
-            this.images = images;
-            // @ts-ignore
+            this.images1 = images;
         });
+
+        this.photoService.getImageList().then(images2 => {
+            this.images2 = images2;
+            this.images2.forEach(p => 
+                console.log()         
+                );
+        })
+
+        // this.photoService.getImageList().then(image => {
+        //     this.images = image;
+        //     this.images.forEach(image => 
+        //         console.log()         
+        //         );
+        // });
     }
 
     onSort() {

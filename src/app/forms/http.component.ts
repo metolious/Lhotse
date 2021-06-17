@@ -1,6 +1,5 @@
 import { Output,EventEmitter, Input, SimpleChange, Injectable } from '@angular/core';
 // import { HttpRedirect_Service        } from './httpRedirect.service';
-import { ToasterMsg_Service          } from '../services/toasterMsg.service';
 import { HttpHeaders, HttpClient } from "@angular/common/http";
 
 import 'rxjs/Rx';
@@ -45,8 +44,7 @@ export class HttpBase
   putUrl: any;
  
   constructor ( protected http:                   HttpClient,
-                protected httpService:            HttpRedirect_Service,
-                protected messageService:         ToasterMsg_Service  ) 
+                protected httpService:            HttpRedirect_Service ) 
   {    
 
     this.headers = new HttpHeaders({
@@ -135,11 +133,6 @@ protected advertiseFailure ( error:any ) {
    //debugger;
 
    let errorMsg = this.httpService.handleFailure ( error );
-
-   if (( errorMsg === undefined )  || (errorMsg === null ))
-      this.messageService.add ( 'error', 10, `[FAILED - 143]`, error );
-   else
-      this.messageService.add ( 'error', 10, `[FAILED - 145]`, errorMsg );
 } 
 
 public submitToHttpQuery (  )  {
@@ -232,7 +225,6 @@ public handlePostError = (error:Response) => {
   let errorMsg = this.httpService.handleFailure (  error );
 
   console.error ("HTTP.POST ERROR [" +  errorMsg + "]");
-  this.messageService.add ( 'error', 10, 'FAILURE', errorMsg );
 
    return ( Observable.throw (error.json )); 
 }

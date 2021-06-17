@@ -2,7 +2,6 @@ import { OnInit, Injectable, EventEmitter }      from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ListService } from '../classes/listService.class'
 import { State_Service } from '../misc/state.service';
-import { ToasterMsg_Service } from '../services/toasterMsg.service';
 
 @Injectable()
 export class MultiSelect_Service {

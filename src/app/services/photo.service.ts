@@ -13,5 +13,19 @@ export class PhotoService {
             .then(res => res.data as IImage[])
             .then(data => data);
     }
+    
+    getShipImages() {
+        return this.http.get<any>('assets/demo/data/ship-images.json')
+            .toPromise()
+            .then(res => res.data as IImage[])
+            .then(data => data);
+    }
+
+    getImageList() {
+        return this.http.get<any>('assets/demo/data/image-list.json')
+        .toPromise()
+        .then(res => res.data as IImage[])
+        .then(data => data);
+    }
 
 }
