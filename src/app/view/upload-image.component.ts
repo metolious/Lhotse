@@ -29,7 +29,7 @@ export class UploadForm {
 export class UploadImageComponent implements OnInit { 
 
 @Output( ) searchInProgress = new EventEmitter<boolean>(true);
-@ViewChild('fileUpload') fileUpload: any;
+@ViewChild('fileUpload', {static: false}) fileUpload: any;
 
     uploadFiles: any[] = [];
     imageData: IImageData[] = [];

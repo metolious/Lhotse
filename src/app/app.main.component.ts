@@ -1,6 +1,6 @@
 import {Component, AfterViewInit, Renderer2, OnDestroy, OnInit} from '@angular/core';
 import { MenuService } from './app.menu.service';
-import { PrimeNGConfig } from 'primeng/api';
+// import { PrimeNGConfig } from 'primeng/api';
 import { AppComponent } from './app.component';
 
 @Component({
@@ -41,8 +41,10 @@ export class AppMainComponent implements AfterViewInit, OnDestroy {
 
     search = false;
 
-    constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig,
-                public app: AppComponent) { }
+    // constructor(public renderer: Renderer2, private menuService: MenuService, private primengConfig: PrimeNGConfig,
+    //             public app: AppComponent) { }
+    constructor(public renderer: Renderer2, private menuService: MenuService,
+        public app: AppComponent) { }
 
     ngAfterViewInit() {
         // hides the horizontal submenus or top menu if outside is clicked
@@ -141,7 +143,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy {
 
     onRippleChange(event) {
         this.app.ripple = event.checked;
-        this.primengConfig.ripple = event.checked;
+        // this.primengConfig.ripple = event.checked;
     }
 
     onConfigClick(event) {

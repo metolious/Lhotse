@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Table} from 'primeng/table';
 import {AppBreadcrumbService} from 'src/app/app.breadcrumb.service';
-import { ThisReceiver } from '@angular/compiler';
+// import { ThisReceiver } from '@angular/compiler';
 import { MessageService } from 'primeng/api';
 import { IAspect, IImage, IImageSource, ISecurityLabel } from 'src/app/shared/interfaces';
 import { PhotoService } from '../services/photo.service';
@@ -32,10 +32,10 @@ import { PhotoService } from '../services/photo.service';
 })
 export class SearchResultsComponent implements OnInit {
 
-@ViewChild('fileUpload') fileUpload: any;
-@ViewChild('securityLabel') securityLabel: any;
-@ViewChild('classLabel') classLabel: any;
-@ViewChild('sconum') sconum: any;
+@ViewChild('fileUpload', {static: false}) fileUpload: any;
+// @ViewChild('securityLabel') securityLabel: any;
+// @ViewChild('classLabel') classLabel: any;
+// @ViewChild('sconum') sconum: any;
 
     uploadedFiles: any[] = [];
     security_labels: ISecurityLabel[];
@@ -81,7 +81,7 @@ export class SearchResultsComponent implements OnInit {
         }
     ];
 
-    @ViewChild('dt') table: Table;
+    @ViewChild('dt', {static: false}) table: Table;
 
     constructor(private photoService: PhotoService, 
                 private breadcrumbService: AppBreadcrumbService,

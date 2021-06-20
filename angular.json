@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "poseidon-cli": {
+        "photoApp": {
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
@@ -34,8 +34,7 @@
                         "scripts": [
                             "node_modules/prismjs/prism.js",
                             "node_modules/prismjs/components/prism-typescript.js"
-                        ],
-                        "allowedCommonJsDependencies": ["@fullcalendar/daygrid","@fullcalendar/timegrid","@fullcalendar/interaction","chart.js"]
+                        ]
                     },
                     "configurations": {
                         "production": {
@@ -72,18 +71,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "poseidon-cli:build"
+                        "browserTarget": "photoApp:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "poseidon-cli:build:production"
+                            "browserTarget": "photoApp:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "poseidon-cli:build"
+                        "browserTarget": "photoApp:build"
                     }
                 },
                 "test": {
@@ -120,11 +119,11 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "poseidon-cli:serve"
+                        "devServerTarget": "photoApp:serve"
                     },
                     "configurations": {
                         "production": {
-                            "devServerTarget": "poseidon-cli:serve:production"
+                            "devServerTarget": "photoApp:serve:production"
                         }
                     }
                 }
