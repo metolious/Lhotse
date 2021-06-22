@@ -1,12 +1,12 @@
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {AppMainComponent} from './app.main.component';
+import {IconsComponent} from './utilities/icons.component';
 import { UploadImageComponent } from './view/upload-image.component';
 import { SearchResultsComponent } from './view/search-results.component';
 import { ImageSearchComponent } from './view/image-search.component';
 import { DocumentationComponent } from './view/documentation.component';
 import { AppCalendarComponent } from './view/app.calendar.component';
-import { IconsComponent } from './utilities/icons.component';
 
 @NgModule({
     imports: [

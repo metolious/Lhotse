@@ -1,5 +1,5 @@
 {
-  "name": "Viper MSC Application",
+  "name": "MSC Application",
   "root": ".",
   "war": "WAR",
   "WebInf": "WEB-INF",
@@ -8,7 +8,7 @@
   "tmp": ".tmp",
   "deployDomain": "photoApp",
   "NODE_ENV": "photoApp",
-  "WarVersion": "1.0.17-SNAPSHOT",
+  "WarVersion": "1.0.5-SNAPSHOT",
   "common": {
     "src": "../common",
     "dest": "app/common"

@@ -6,7 +6,7 @@
                     <div class="product-item">
                         <div class="product-item-content">
                             <div class="p-mb-3">
-                                <img src="assets/demo/images/boat/{{image2.image}}" [alt]="image2.name" class="product-image" />
+                                <img src="assets/img/boat/{{image2.image}}" [alt]="image2.name" class="product-image" />
                             </div>
                             <div>
                                 <div class="car-buttons p-mt-5">
@@ -78,7 +78,7 @@
 										<p-multiSelect [ngModel]="value" [options]="representatives" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name">
 											<ng-template let-option pTemplate="item">
 												<div class="p-multiselect-representative-option">
-													<img [alt]="option.label" src="assets/demo/images/avatar/{{option.image}}" width="32" style="vertical-align: middle" />
+													<img [alt]="option.label" src="assets/img/avatar/{{option.image}}" width="32" style="vertical-align: middle" />
 													<span class="p-ml-1">{{option.name}}</span>
 												</div>
 											</ng-template>
@@ -294,7 +294,7 @@
 				header="Review Form" [modal]="true" styleClass="p-fluid">
 		<ng-template pTemplate="content">
 
-			<img src="assets\demo\images\carousel\{{image.image}}" [alt]="image" class="product-image">
+			<img src="assets\img\carousel\{{image.image}}" [alt]="image" class="product-image">
 			<br>
 			<div class="p-fluid">
 				<div class="p-field">

@@ -76,9 +76,25 @@ module.exports = function (grunt) {
                 to: '/photoApp/assets/img'
             }]
         },
-        scriptDomainHtml: {
+        configFiles: {
             overwrite: true,
             src:  ['<%= config.dist %>/main.bundle.js'],
+            replacements: [{
+                from: /..\/..\/assets\/config/g,
+                to: '/photoApp/assets/config'
+            }]
+        },
+        scriptDomainHtml: {
+            overwrite: true,
+            src:  ['<%= config.dist %>/*.html'],
+            replacements: [{
+                from: /src="/g,
+                to: 'src="/photoApp/'
+            }]
+        },
+        scriptDomainCss: {
+            overwrite: true,
+            src:  ['<%= config.dist %>/*.css'],
             replacements: [{
                 from: /src="/g,
                 to: 'src="/photoApp/'
@@ -86,7 +102,7 @@ module.exports = function (grunt) {
         },
         scriptDomainJs: {
             overwrite: true,
-            src:  ['<%= config.dist %>/main.bundle.js'],
+            src:  ['<%= config.dist %>/*.js'],
             replacements: [{
                 from: /src=\\"/g,
                 to: 'src=\\"photoApp/'
@@ -119,7 +135,11 @@ module.exports = function (grunt) {
                         '<%= config.root %>/node_modules/primeicons/fonts/primeicons.svg',
                         '<%= config.root %>/node_modules/primeicons/fonts/primeicons.ttf',
                         '<%= config.root %>/node_modules/primeicons/fonts/primeicons.woff',
-                        '<%= config.root %>/node_modules/primeng/resources/primeng.min.css'
+                        '<%= config.root %>/node_modules/primeng/resources/primeng.min.css',
+                        '<%= config.root %>/node_modules/primeflex/primeflex.scss',
+                        '<%= config.root %>/node_modules/@fullcalendar/core/main.min.css',
+                        '<%= config.root %>/node_modules/@fullcalendar/daygrid/main.min.css',
+                        '<%= config.root %>/node_modules/@fullcalendar/timegrid/main.min.css',
                     ],
                     dest: '<%= config.dist %>'      
                 }]
@@ -168,9 +188,11 @@ module.exports = function (grunt) {
             'exec:ngBuild',
             'replace:basePath',
             'replace:scriptDomainHtml',
+            'replace:scriptDomainCss',
             'replace:scriptDomainJs',
             'replace:primeNg',
             'replace:images',
+            'replace:configFiles',
             'replace:testThumbnails',
             'replace:fontAwesome',           
             'copy:web',

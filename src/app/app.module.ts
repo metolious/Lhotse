@@ -128,8 +128,9 @@ import { EventService } from './services/event.service';
 import { IconService } from './services/icon.service';
 import { NodeService } from './services/node.service';
 import { HttpRedirect_Service } from './forms/httpRedirect.service';
-import { PhotoService } from './services/photo.service';
 import { IconsComponent } from './utilities/icons.component';
+import { RouteService } from './services/route.service';
+import { PhotoService } from './services/photo.service';
 
 @NgModule({
     imports: [
@@ -254,6 +255,7 @@ import { IconsComponent } from './utilities/icons.component';
 
             useClass: HashLocationStrategy},
             PhotoService, 
+            RouteService,
             EventService, 
             IconService, 
             NodeService,

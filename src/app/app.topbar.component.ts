@@ -11,7 +11,7 @@ import {AppMainComponent} from './app.main.component';
                 <div class="layout-topbar-left">
                     <div class="layout-topbar-logo" id="logolink" style="cursor: pointer; outline: none;" routerLink="/">
                         <img style="border:2px solid gray;border-radius:10px;height:43px;width:225px;" id="app-logo"
-                             [src]="'assets/layout/images/' + (app.topbarTheme === 'light' ? 'ONI_Branding' : 'ONI_Branding') + '.png'"
+                             [src]="'/photoApp/assets/img/ONI_Branding.png'"
                              alt="loading...">
                     </div>
                 </div>
@@ -90,7 +90,7 @@ import {AppMainComponent} from './app.main.component';
                                 </li>
                                 <li role="menuitem">
                                     <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
-                                        <img src="assets/layout/images/peter-gibbons.jpg" alt="demo">
+                                        <img src="assets/img/peter-gibbons.jpg" alt="demo">
                                         <div class="messages-item">
                                             <h6>Hey! I set up a node server running on localhost</h6>
                                             <span>Gilfoyle</span>
@@ -99,7 +99,7 @@ import {AppMainComponent} from './app.main.component';
                                 </li>
                                 <li role="menuitem">
                                     <a href="#" class="topbar-message" (click)="appMain.onTopbarSubItemClick($event)">
-                                        <img src="assets/layout/images/peter-gibbons.jpg" alt="demo">
+                                        <img src="assets/img/peter-gibbons.jpg" alt="demo">
                                         <div class="messages-item">
                                             <h6>Ok. Let's meet after scrum. I will send you a meeting invite</h6>
                                             <span>Gilfoyle</span>
@@ -108,7 +108,7 @@ import {AppMainComponent} from './app.main.component';
                                 </li>
                                 <li role="menuitem">
                                     <a href="#" class="topbar-message" (click)="appMain.onTopbarSubItemClick($event)">
-                                        <img src="assets/layout/images/peter-gibbons.jpg" alt="demo">
+                                        <img src="assets/img/peter-gibbons.jpg" alt="demo">
                                         <div class="messages-item">
                                             <h6>Don't forget to upgrade to newest version of Angular</h6>
                                             <span>Gilfoyle</span>
@@ -164,7 +164,7 @@ import {AppMainComponent} from './app.main.component';
                         <li #profile class="topbar-item user-profile"
                             [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === profile}">
                             <a href="#" (click)="appMain.onTopbarItemClick($event,profile)">
-                                <img style="height:20px;width:20px;" class="profile-image" src="assets/layout/images/keyring-icon.png" alt="A">
+                                <img style="height:20px;width:20px;" class="profile-image" src="/photoApp/assets/img/keyring-icon.png" alt="A">
                                 <div class="profile-info">
                                     <h6 style="vertical-align:middle">JMORIARTY</h6>
                                    
@@ -173,7 +173,7 @@ import {AppMainComponent} from './app.main.component';
 
                             <ul class="fadeInDown">
                                 <li class="layout-submenu-header">
-                                    <img class="profile-image" src="assets/layout/images/loyd.gif" alt="A">
+                                    <img class="profile-image" src="assets/img/loyd.gif" alt="A">
                                     <div class="profile-info">
                                         <h6>Jim Moriarty</h6>
                                         <span>Analyst</span>

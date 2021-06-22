@@ -5,23 +5,25 @@ import { IAspect, IImageSource, ISecurityLabel, IUser } from 'src/app/shared/int
 
 @Component({
     templateUrl: './image-search.component.html',
-    styles: [`
-        :host ::ng-deep button {
-            margin-right: .25em;
-            margin-left: .25em;
-        }
+    styles: [
+    //     `
+    //     :host ::ng-deep button {
+    //         margin-right: .25em;
+    //         margin-left: .25em;
+    //     }
 
-        :host ::ng-deep .p-splitbutton button {
-            margin-right: 0;
-            margin-left: 0;
-        }
+    //     :host ::ng-deep .p-splitbutton button {
+    //         margin-right: 0;
+    //         margin-left: 0;
+    //     }
 
-        @media screen and (max-width: 960px) {
-            .card.toolbar-demo {
-                overflow: auto;
-            }
-        }
-    `]
+    //     @media screen and (max-width: 960px) {
+    //         .card.toolbar-demo {
+    //             overflow: auto;
+    //         }
+    //     }
+    // `
+]
 })
 
 export class ImageSearchComponent implements OnInit {

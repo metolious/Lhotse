@@ -25,12 +25,12 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Search Results', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']},
                 ]
             },
-            {
-                label: 'Utilities', icon: 'pi pi-fw pi-compass', routerLink: ['utilities'],
-                items: [
-                    {label: 'Icons', icon: 'pi pi-fw pi-compass', routerLink: ['utilities/icons']},
-                ]
-            },
+            // {
+            //     label: 'Utilities', icon: 'pi pi-fw pi-compass', routerLink: ['utilities'],
+            //     items: [
+            //         {label: 'Icons', icon: 'pi pi-fw pi-compass', routerLink: ['utilities/icons']},
+            //     ]
+            // },
             {
                 label: 'Pages', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages'],
                 items: [

@@ -13,13 +13,13 @@ export class AppCodeComponent implements AfterViewInit {
 
     @Input() lang = 'markup';
 
-    // @ViewChild('code') codeViewChild: ElementRef;
+    @ViewChild('code') codeViewChild: ElementRef;
 
     constructor(public el: ElementRef) { }
 
     ngAfterViewInit() {
         if (window['Prism']) {
-            // window['Prism'].highlightElement(this.codeViewChild.nativeElement);
+            window['Prism'].highlightElement(this.codeViewChild.nativeElement);
         }
     }
 }

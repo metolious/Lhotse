@@ -1,0 +1,40 @@
+{
+    "data":[
+        {
+            "itemImageSrc": "/photoApp/assets/img/galleria/ship(1x).jpg",
+            "thumbnailImageSrc": "/photoApp/assets/img/galleria/ship(1t).jpg",
+            "alt": "Description for Image 1",
+            "title": "Title 1"
+        },
+        {
+            "itemImageSrc": "/photoApp/assets/img/galleria/ship(3x).jpg",
+            "thumbnailImageSrc": "/photoApp/assets/img/galleria/ship(3t).jpg",
+            "alt": "Description for Image 1",
+            "title": "Title 1"
+        },
+        {
+            "itemImageSrc": "/photoApp/assets/img/galleria/ship(4x).jpg",
+            "thumbnailImageSrc": "/photoApp/assets/img/galleria/ship(4t).jpg",
+            "alt": "Description for Image 1",
+            "title": "Title 1"
+        },
+        {
+            "itemImageSrc": "/photoApp/assets/img/galleria/ship(9x).jpg",
+            "thumbnailImageSrc": "/photoApp/assets/img/galleria/ship(9t).jpg",
+            "alt": "Description for Image 1",
+            "title": "Title 1"
+        },
+        {
+            "itemImageSrc": "/photoApp/assets/img/galleria/ship(10x).jpg",
+            "thumbnailImageSrc": "/photoApp/assets/img/galleria/ship(10t).jpg",
+            "alt": "Description for Image 1",
+            "title": "Title 1"
+        },
+        {
+            "itemImageSrc": "/photoApp/assets/img/galleria/ship(11x).jpg",
+            "thumbnailImageSrc": "/photoApp/assets/img/galleria/ship(11t).jpg",
+            "alt": "Description for Image 1",
+            "title": "Title 1"
+        }
+    ]
+}
