@@ -8,7 +8,7 @@
   "tmp": ".tmp",
   "deployDomain": "photoApp",
   "NODE_ENV": "photoApp",
-  "WarVersion": "1.0.5-SNAPSHOT",
+  "WarVersion": "1.0.17-SNAPSHOT",
   "common": {
     "src": "../common",
     "dest": "app/common"
