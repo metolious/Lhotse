@@ -11,7 +11,7 @@ import {AppMainComponent} from './app.main.component';
                 <div class="layout-topbar-left">
                     <div class="layout-topbar-logo" id="logolink" style="cursor: pointer; outline: none;" routerLink="/">
                         <img style="border:2px solid gray;border-radius:10px;height:43px;width:225px;" id="app-logo"
-                             [src]="'/photoApp/assets/img/ONI_Branding.png'"
+                             [src]="'/assets/img/ONI_Branding.png'"
                              alt="loading...">
                     </div>
                 </div>
@@ -164,7 +164,7 @@ import {AppMainComponent} from './app.main.component';
                         <li #profile class="topbar-item user-profile"
                             [ngClass]="{'active-topmenuitem':appMain.activeTopbarItem === profile}">
                             <a href="#" (click)="appMain.onTopbarItemClick($event,profile)">
-                                <img style="height:20px;width:20px;" class="profile-image" src="/photoApp/assets/img/keyring-icon.png" alt="A">
+                                <img style="height:20px;width:20px;" class="profile-image" src="/assets/img/keyring-icon.png" alt="A">
                                 <div class="profile-info">
                                     <h6 style="vertical-align:middle">JMORIARTY</h6>
                                    
@@ -215,6 +215,10 @@ import {AppMainComponent} from './app.main.component';
         </div>
     `
 })
+
+// [src]="'/photoApp/assets/img/ONI_Branding.png'"
+// src="/photoApp/assets/img/keyring-icon.png"
+
 export class AppTopBarComponent {
 
     constructor(public appMain: AppMainComponent, public app: AppComponent) {

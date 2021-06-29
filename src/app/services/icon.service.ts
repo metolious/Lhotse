@@ -11,7 +11,8 @@ export class IconService {
 
     selectedIcon: any;
 
-    apiUrl = '/photoApp/assets/config/icons.json';
+    apiUrl = '/assets/config/icons.json';
+    // apiUrl = '/photoApp/assets/config/icons.json';
 
     getIcons() {
         return this.http.get(this.apiUrl).pipe(map((response: any) => {

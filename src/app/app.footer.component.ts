@@ -7,7 +7,7 @@ import {AppComponent} from './app.component';
         <div class="layout-footer">
             <a id="footerlogolink">
                 <img style="height:60px;width:60px;" id="footer-logo"
-                     [src]="'/photoApp/assets/layout/images/NIMITZ.png'" alt="Loading Image...">
+                     [src]="'/assets/layout/images/NIMITZ.png'" alt="Loading Image...">
             </a>
             <div class="social-icons">
                 <a><i class="pi pi-github"></i></a>
@@ -17,6 +17,9 @@ import {AppComponent} from './app.component';
         </div>
     `
 })
+
+// [src]="'photoApp/assets/layout/images/NIMITZ.png'"
+
 export class AppFooterComponent {
 
     constructor(public app: AppComponent) {}

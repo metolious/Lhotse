@@ -21,11 +21,8 @@
         </div>
     </div>
 
-<div class="p-grid table-demo">
-
-	<div class="p-col-12">
+	<div class="p-col-12 p-md-8">
 		<div class="card">
-
 			<p-table #dt [value]="images1" [(selection)]="selectedImages1" dataKey="id" selectionMode="single"
 					 styleClass="p-datatable-customers p-datatable-gridlines p-datatable-striped p-datatable-sm"
 					 [rowHover]="true" [rows]="10" [paginator]="true"
@@ -33,7 +30,6 @@
 					 [globalFilterFields]="['state','review','approve','classification']"
 					 [resizableColumns]="true" [autoLayout]="true"
 					 >
-
 				<ng-template pTemplate="caption">
 					<div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
 						Image Search Results
@@ -44,106 +40,84 @@
 						</span>
 					</div>
 				</ng-template>
-
 				<ng-template pTemplate="header">
 					<tr>
 						<th style="width: 3rem">
 							<p-tableHeaderCheckbox></p-tableHeaderCheckbox>
 						</th>
 						<th pSortableColumn="imageData">
-							<div style="text-align: center;" class="p-d-flex p-jc-between p-ai-center">
-								Image<br>Data 
-								<p-sortIcon field="showall"></p-sortIcon>
-								<p-columnFilter type="text" field="" display="menu" class="p-ml-auto"></p-columnFilter>
+							<div style="text-align: center;" class="p-jc-between p-ai-center">
+								Data 
 							</div>
 						</th>
 						<th pSortableColumn="version">
-							<div style="text-align: center;" class="p-d-flex p-jc-between p-ai-center">
-								Image<br>Version
-								<p-sortIcon field="version"></p-sortIcon>
-									<p-columnFilter type="text" field="version" display="menu" class="p-ml-auto"></p-columnFilter>
+							<div style="text-align: center;" class="p-jc-between p-ai-center">
+								Image Version
 							</div>
 						</th>
 						<th pSortableColumn="state">
-							<div class="p-d-flex p-jc-between p-ai-center">
+							<div style="text-align: center;" class="p-jc-between p-ai-center">
 								State
 								<p-sortIcon field="state"></p-sortIcon>
-								<p-columnFilter field="representative" matchMode="in" display="menu" [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
-									<ng-template pTemplate="header">
-										<div class="p-px-3 p-pt-3 p-pb-0">
-											<span class="p-text-bold">Agent Picker</span>
-										</div>
-									</ng-template>
-									<ng-template pTemplate="filter" let-value let-filter="filterCallback">
-										<p-multiSelect [ngModel]="value" [options]="representatives" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name">
-											<ng-template let-option pTemplate="item">
-												<div class="p-multiselect-representative-option">
-													<img [alt]="option.label" src="assets/img/avatar/{{option.image}}" width="32" style="vertical-align: middle" />
-													<span class="p-ml-1">{{option.name}}</span>
-												</div>
-											</ng-template>
-										</p-multiSelect>
-									</ng-template>
-								</p-columnFilter>
+								<ng-template pTemplate="header">
+									<div class="p-px-3 p-pt-3 p-pb-0">
+										<span class="p-text-bold">Agent Picker</span>
+									</div>
+								</ng-template>
+								<ng-template pTemplate="filter" let-value let-filter="filterCallback">
+									<p-multiSelect [ngModel]="value" [options]="representatives" placeholder="Any" (onChange)="filter($event.value)" optionLabel="name">
+										<ng-template let-option pTemplate="item">
+											<div class="p-multiselect-representative-option">
+												<img [alt]="option.label" src="assets/img/avatar/{{option.image}}" width="32" style="vertical-align: middle" />
+												<span class="p-ml-1">{{option.name}}</span>
+											</div>
+										</ng-template>
+									</p-multiSelect>
+								</ng-template>
 							</div>
 						</th>
 						<th pSortableColumn="review">
-							<div class="p-d-flex p-jc-between p-ai-center">
+							<div style="text-align: center;" class="p-jc-between p-ai-center">
 								Review
-								<p-sortIcon field="date"></p-sortIcon>
-								<p-columnFilter type="date" field="date" display="menu" class="p-ml-auto"></p-columnFilter>
 							</div>
 						</th>
 						<th pSortableColumn="approve">
-							<div class="p-d-flex p-jc-between p-ai-center">
+							<div style="text-align: center;" class="p-jc-between p-ai-center">
 								Approve
-								<p-sortIcon field="balance"></p-sortIcon>
-								<p-columnFilter type="numeric" field="balance" display="menu" currency="USD" class="p-ml-auto"></p-columnFilter>
 							</div>
 						</th>
 						<th pSortableColumn="revoke">
-							<div class="p-d-flex p-jc-between p-ai-center">
+							<div style="text-align: center;" class="p-jc-between p-ai-center">
 								Revoke
-								<p-sortIcon field="revoke"></p-sortIcon>
-								<p-columnFilter type="text" field="revoke" display="menu" class="p-ml-auto"></p-columnFilter>
 							</div>
 						</th>
 						<th pSortableColumn="classification">
-								<div class="p-d-flex p-jc-between p-ai-center">
+								<div style="text-align: center;" class="p-jc-between p-ai-center">
 								Class
-								<p-sortIcon field="classification"></p-sortIcon>
-								<p-columnFilter type="text" field="classification" display="menu" class="p-ml-auto"></p-columnFilter>
 							</div>
 						</th>
 						<th pSortableColumn="rekey">
-							<div class="p-d-flex p-jc-between p-ai-center">
+							<div style="text-align: center;" class="p-jc-between p-ai-center">
 								Rekey
-								<p-sortIcon field="rekey"></p-sortIcon>
-								<p-columnFilter type="text" field="rekey" display="menu" class="p-ml-auto"></p-columnFilter>
 							</div>
 						</th>
 						<th pSortableColumn="showall">
-							<div class="p-d-flex p-jc-between p-ai-center">
+							<div style="text-align: center;" class="p-jc-between p-ai-center">
 								Primary
-								<p-sortIcon field="primary"></p-sortIcon>
-								<p-columnFilter type="text" field="primary" display="menu" class="p-ml-auto"></p-columnFilter>
 							</div>
 						</th>
 						<th pSortableColumn="distribute">
-							<div class="p-d-flex p-jc-between p-ai-center">
+							<div style="text-align: center;" class="p-jc-between p-ai-center">
 								Assign
-								<p-sortIcon field="distribute"></p-sortIcon>
-								<p-columnFilter type="text" field="distribute" display="menu" class="p-ml-auto"></p-columnFilter>
 							</div>
 						</th>
 						<th pSortableColumn="sconum">
-							<div class="p-d-flex p-jc-between p-ai-center">
+							<div style="text-align: center;" class="p-jc-between p-ai-center">
 								Sconum
 								<p-sortIcon field="sconum"></p-sortIcon>
-								<p-columnFilter type="text" field="sconum" display="" class="p-ml-auto"></p-columnFilter>
 							</div>
 						</th>
-						<th style="width: 8rem"></th>
+						<th style="width: 8r	em"></th>
 					</tr>
 				</ng-template>
 
@@ -157,104 +131,63 @@
 							<button pButton type="button" class="p-button-secondary p-button-square p-button-secondary" icon="pi pi-file"></button>
 						</td>
 						<td>
-
 							<span class="p-column-title"></span>
-
 							<div class="p-fluid ui-button">
-
-									<p-selectButton [style]="{'text-align':'left', 'font-size':'1px'}" 
-										class="ui-button"  
-										[options]="typeOptions" [(ngModel)] = "image.selectModel" optionLabel="value">
-									</p-selectButton>
-
+								<p-selectButton [style]="{'text-align':'left', 'font-size':'1px'}" 
+									class="ui-button"  
+									[options]="typeOptions" [(ngModel)] = "image.selectModel" optionLabel="value">
+								</p-selectButton>
 							</div>
 						</td>
 						<td style="text-align: center">
-
 							<div *ngIf = "image.state == 'uploaded'" style="text-align: center;">Uploaded</div>
 							<div *ngIf = "image.state == 'reviewed'" style="text-align: center;">Reviewed</div>
 							<div *ngIf = "image.state == 'approved'" style="text-align: center;">Approved</div>
 							<div *ngIf = "image.state == 'revoked'" style="text-align: center;">Revoked</div>
 							<span class="p-column-title"></span>
-			
 						</td>
 						<td style="text-align: center">
-
-								<div *ngIf = "((image.state == 'reviewed') || (image.state == 'uploaded')) else review_content;" style="text-align: center;">
+								<div *ngIf = "((image.state == 'reviewed') || (image.state == 'uploaded'));" style="text-align: center;">
 									<span class="p-column-title"></span>
-
 									<button pButton type="button" class="p-button-secondary p-button-square" icon="pi pi-pencil" 
 													(click)="editImage(image)"></button>
 								</div>
-								<ng-template #review_content>
-									<p></p>
-								</ng-template>
 
 						</td>
 						<td style="text-align: center">
-
-							<div *ngIf = "(image.state == 'reviewed') && (image.state != 'approved') else approve_content;" style="text-align: center;">
+							<div *ngIf = "(image.state == 'reviewed') && (image.state != 'approved');" style="text-align: center;">
 								<button pButton type="button" class="p-button-success p-button-square" icon="pi pi-thumbs-up" 
 												(click)="editImage(image)"></button>
 							</div>
-							<ng-template #approve_content>
-								<p></p>
-							</ng-template>
-							<div *ngIf = "(image.state == 'approved'); " style="text-align: center;">
-								<span class="p-column-title">Approved</span>
-							</div>
-
 						</td>
 						<td style="text-align: center">
-							<div *ngIf = "(image.state == 'approved') && (!image.revoke) else revoke_content;" style="text-align: center;">
+							<div *ngIf = "(image.state == 'approved') && (!image.revoke);" style="text-align: center;">
 								<span class="p-column-title"></span>
 							<button pButton type="button" class="p-button-danger p-button-square" icon="pi pi-thumbs-down"
 									(click)="editImage(image)"></button>
-
 							</div>
-							<ng-template #revoke_content>
-								<p></p>
-							</ng-template>
 						</td>
-
 						<td style="text-align: center">				
 							<span class="p-column-title"></span>
 							<button pButton pRipple type="button" label=" " class="p-button-secondary p-button-outlined">Class</button>
-
 						</td>
 						<td style="text-align: center">
-						
-							<div *ngIf = "(image.state == 'approved') && (!image.revoke) else rekey_content;" style="text-align: center;">
+							<div *ngIf = "(image.state == 'approved') && (!image.revoke);" style="text-align: center;">
 								<span class="p-column-title"></span>
-
 							<button pButton type="button" class="p-button-square p-button-secondary" icon="pi pi-key"></button>
 							</div>
-							<ng-template #rekey_content>
-								<p></p>
-							</ng-template>
 						</td>
 						<td style="text-align: center">	
-						
-								<span class="p-column-title"></span>
-								<p-radioButton #myRadioButton name="groupname" styleClass="radio-style" class="p-button-secondary" value="val1" [(ngModel)]="image.buttonModel"></p-radioButton>
-
+							<span class="p-column-title"></span>
+							<p-radioButton #myRadioButton name="groupname" styleClass="radio-style" class="p-button-secondary" value="val1" [(ngModel)]="image.buttonModel"></p-radioButton>
 						</td>
-						<td style="text-align: center">	
-						
-							<div *ngIf = "(image.state == 'approved') && (!image.revoke) else distribute_content;" style="text-align: center;">
+						<td style="text-align: center">							
+							<div *ngIf = "(image.state == 'approved') && (!image.revoke);" style="text-align: center;">
 								<span class="p-column-title"></span>
-
-							<button pButton type="button" class="p-button-square p-button-secondary" icon="pi pi-share-alt"></button>
-
+								<button pButton type="button" class="p-button-square p-button-secondary" icon="pi pi-share-alt"></button>
 							</div>
-							<ng-template #distribute_content>
-								<p></p>
-							</ng-template>
-
 						</td>
-
 						<td style="text-align: center">	
-
 							<button pButton pRipple type="button" label=" " class="p-button-outlined">{{image.sconum}}</button>
 						</td>
 						<td style="text-align: center">
@@ -271,62 +204,41 @@
 		</div>
 	</div>
 
-	<div class="p-col-12">
-        <div class="card">
-            <p-galleria [value]="images" [responsiveOptions]="galleriaResponsiveOptions" thumbnailsPosition="top"				
-                        [containerStyle]="{'max-width': '650px', 'margin':'auto'}" 
-						[numVisible]="5" [circular]="true">
-                <ng-template pTemplate="item" let-item>
-                    <img [src]="item.itemImageSrc" style="width: 100%; display: block;"/>
-                </ng-template>
-                <ng-template pTemplate="thumbnail" let-item>
-                    <div class="p-grid p-nogutter p-justify-center">
-                        <img [src]="item.thumbnailImageSrc" />&nbsp;&nbsp;&nbsp;&nbsp;
-                    </div>
-                </ng-template>
-            </p-galleria>
-        </div>
-    </div>
-
+	<div class="p-col-12 p-md-4">
+		<div class="img-container">
+			<img src="../../assets/img/boat/ship(10x).jpg" alt="" height="300" width="410" class="img-container">
+		</div>
+	</div>
 </div>
 
 	<p-dialog 	[(visible)]="imageDialog" [style]="{width: '450px'}" 
 				header="Review Form" [modal]="true" styleClass="p-fluid">
 		<ng-template pTemplate="content">
-
 			<img src="assets\img\carousel\{{image.image}}" [alt]="image" class="product-image">
 			<br>
 			<div class="p-fluid">
 				<div class="p-field">
-					<!-- <h6>Classification Label</h6> -->
 					<div class="p-field">
-						<!-- <label for="p-field"></label> -->
 						<h6>Classification Label</h6>
 						<p-dropdown #classLabel filter="true" styleClass="pMultiSelect" [(ngModel)]="securityLabel" placeholder={{image.classification}} [options]="security_labels" [showClear]="true"></p-dropdown>
 					</div>
 				</div>
 				<div class="p-field">
-					<!-- <h6>Aspect</h6> -->
 					<div class="p-field">
-						<!-- <label for="aspect"></label> -->
 						<h6>Aspect</h6>
 						<p-dropdown #aspectLabel filter="true" styleClass="pMultiSelect" [options]="aspects" [(ngModel)]="aspect" placeholder={{image.aspect}} [showClear]="true"></p-dropdown>
 					</div>
 				</div>
 				<div class="p-field">
-					<!-- <h6>Image Source</h6> -->
 					<div class="p-field">
-						<!-- <label for="iSource"></label> -->
 						<h6>Image Source</h6>
 						<p-dropdown #imgSource filter="true" styleClass="pMultiSelect" [options]="image_sources" [(ngModel)]="imageSource" placeholder={{image.source}} optionLabel="label" [showClear]="true"></p-dropdown>
 					</div>
 				</div>
 		</div>
 		</ng-template>
-
 		<ng-template pTemplate="footer">
 			<button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
 			<button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveImage()"></button>
 		</ng-template>
-
 	</p-dialog>
