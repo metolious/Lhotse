@@ -34,14 +34,14 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Pages', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages'],
                 items: [
-                    {label: 'Angular CLI', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/documentation']},
+                    {label: 'Angular CLI', icon: 'pi pi-fw pi-calendar-plus', routerLink: ['/angular']},
                 ]
             },
             {
                 label: 'Start', icon: 'pi pi-fw pi-download',
                 items: [
                     {
-                        label: 'Version', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
+                        label: 'Version', icon: 'pi pi-fw pi-info-circle', routerLink: ['/version']
                     },
                     {
                     }

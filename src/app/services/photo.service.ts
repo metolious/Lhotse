@@ -9,7 +9,6 @@ export class PhotoService {
 
     getImageData() {
         return this.http.get<any>('/assets/config/image-data.json')
-        // return this.http.get<any>('/photoApp/assets/config/image-data.json')
             .toPromise()
             .then(res => res.data as IImage[])
             .then(data => data);
@@ -17,7 +16,6 @@ export class PhotoService {
     
     getShipImages() {
         return this.http.get<any>('/assets/config/ship-images.json')
-        // return this.http.get<any>('/photoApp/assets/config/ship-images.json')
             .toPromise()
             .then(res => res.data as IImage[])
             .then(data => data);
@@ -25,7 +23,6 @@ export class PhotoService {
 
     getImageList() {
         return this.http.get<any>('/assets/config/image-list.json')
-        // return this.http.get<any>('/photoApp/assets/config/image-list.json')
         .toPromise()
         .then(res => res.data as IImage[])
         .then(data => data);

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import { AppBreadcrumbService } from '../app.breadcrumb.service';
 
 @Component({
-    templateUrl: './documentation.component.html',
+    templateUrl: './version.component.html',
     styles: [`
         .docs h1 {
             margin-top: 30px;
@@ -27,12 +27,12 @@ import { AppBreadcrumbService } from '../app.breadcrumb.service';
         }`
     ]
 })
-export class DocumentationComponent {
+export class VersionComponent {
 
     constructor(private breadcrumbService: AppBreadcrumbService) {
         this.breadcrumbService.setItems([
-            { label: 'Start' },
-            { label: 'Documentation', routerLink: ['/documentation'] }
+            { label: 'Pages' },
+            { label: 'Version', routerLink: ['/version'] }
         ]);
     }
 }

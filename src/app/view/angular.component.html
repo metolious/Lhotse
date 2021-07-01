@@ -2,17 +2,6 @@
     <div class="p-col-12">
         <div class="card docs">
 
-            <h4>Current Version</h4>
-            <p>Angular 11 and PrimeNG 11</p>
-
-<p>Cd to the directory where the Angular project is installed, then execute "ng serve" to run the application in your local environment at http://localhost:8080/. Then cd into nodejs directory and start up node server running on port 3000 using "nodemon"</p>
-<app-code ngPreserveWhitespaces ngNonBindable lang="markup">
-npm install
-ng serve --host 127.0.0.1 --port 8080 --disableHostCheck=true
-cd nodejs
-nodemon index.js
-</app-code>
-
             <h4>Important CLI Commands</h4>
             <p>Following commands are derived from CLI.</p>
 <app-code ngPreserveWhitespaces ngNonBindable lang="markup">
@@ -204,7 +193,7 @@ export class AppMenuComponent implements OnInit &#123;
                         label: 'Buy Now', icon: 'pi pi-fw pi-shopping-cart', url: ['https://www.primefaces.org/store']
                     &#125;,
                     &#123;
-                        label: 'Documentation', icon: 'pi pi-fw pi-info-circle', routerLink: ['/documentation']
+                        label: 'Angular CLI', icon: 'pi pi-fw pi-info-circle', routerLink: ['/angular']
                     &#125;
                 ]
             &#125;

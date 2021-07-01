@@ -8,39 +8,28 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {AccordionModule} from 'primeng/accordion';
 import {AutoCompleteModule} from 'primeng/autocomplete';
-// import {AvatarModule} from 'primeng/avatar';
-// import {AvatarGroupModule} from 'primeng/avatargroup';
-// import {BadgeModule} from 'primeng/badge';
 import {BreadcrumbModule} from 'primeng/breadcrumb';
 import {ButtonModule} from 'primeng/button';
 import {CalendarModule} from 'primeng/calendar';
 import {CardModule} from 'primeng/card';
 import {CarouselModule} from 'primeng/carousel';
-// import {CascadeSelectModule} from 'primeng/cascadeselect';
-// import {ChartModule} from 'primeng/chart';
 import {CheckboxModule} from 'primeng/checkbox';
-// import {ChipModule} from 'primeng/chip';
 import {ChipsModule} from 'primeng/chips';
 import {CodeHighlighterModule} from 'primeng/codehighlighter';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-// import {ConfirmPopupModule} from 'primeng/confirmpopup';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import {ContextMenuModule} from 'primeng/contextmenu';
 import {DataViewModule} from 'primeng/dataview';
 import {DialogModule} from 'primeng/dialog';
-// import {DividerModule} from 'primeng/divider';
 import {DropdownModule} from 'primeng/dropdown';
 import {FieldsetModule} from 'primeng/fieldset';
 import {FileUploadModule} from 'primeng/fileupload';
-// import {FullCalendarModule} from 'primeng/fullcalendar';
 import {GalleriaModule} from 'primeng/galleria';
 import {InplaceModule} from 'primeng/inplace';
-// import {InputNumberModule} from 'primeng/inputnumber';
 import {InputMaskModule} from 'primeng/inputmask';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {InputTextModule} from 'primeng/inputtext';
 import {InputTextareaModule} from 'primeng/inputtextarea';
-// import {KnobModule} from 'primeng/knob';
 import {LightboxModule} from 'primeng/lightbox';
 import {ListboxModule} from 'primeng/listbox';
 import {MegaMenuModule} from 'primeng/megamenu';
@@ -60,24 +49,18 @@ import {PickListModule} from 'primeng/picklist';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {RatingModule} from 'primeng/rating';
-// import {RippleModule} from 'primeng/ripple';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
-// import {ScrollTopModule} from 'primeng/scrolltop';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {SidebarModule} from 'primeng/sidebar';
-// import {SkeletonModule} from 'primeng/skeleton';
 import {SlideMenuModule} from 'primeng/slidemenu';
 import {SliderModule} from 'primeng/slider';
 import {SplitButtonModule} from 'primeng/splitbutton';
-// import {SplitterModule} from 'primeng/splitter';
 import {StepsModule} from 'primeng/steps';
 import {TabMenuModule} from 'primeng/tabmenu';
 import {TableModule} from 'primeng/table';
 import {TabViewModule} from 'primeng/tabview';
-// import {TagModule} from 'primeng/tag';
 import {TerminalModule} from 'primeng/terminal';
 import {TieredMenuModule} from 'primeng/tieredmenu';
-// import {TimelineModule} from 'primeng/timeline';
 import {ToastModule} from 'primeng/toast';
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {ToolbarModule} from 'primeng/toolbar';
@@ -85,7 +68,6 @@ import {TooltipModule} from 'primeng/tooltip';
 import {TreeModule} from 'primeng/tree';
 import {TreeTableModule} from 'primeng/treetable';
 import {VirtualScrollerModule} from 'primeng/virtualscroller';
-
 import {AppCodeModule} from './app.code.component';
 import {AppComponent} from './app.component';
 import {AppMainComponent} from './app.main.component';
@@ -95,34 +77,17 @@ import {AppMenuitemComponent} from './app.menuitem.component';
 import {AppBreadcrumbComponent} from './app.breadcrumb.component';
 import {AppTopBarComponent} from './app.topbar.component';
 import {AppFooterComponent} from './app.footer.component';
-
 import {MenuService} from './app.menu.service';
 import {AppBreadcrumbService} from './app.breadcrumb.service';
-
-// import { MatButtonModule } from '@angular/material/button';
-// import { MatCheckboxModule } from '@angular/material/checkbox';
-// import { MatDatepickerModule } from '@angular/material/datepicker';
-// import { MatMomentDateModule, MomentDateAdapter } from "@angular/material-moment-adapter";
-// import { MatNativeDateModule } from '@angular/material/core';
-// import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatInputModule } from '@angular/material/input'
-// import { MatGridListModule } from '@angular/material/grid-list';
-// import { MatMenuModule } from '@angular/material/menu';
-// import { MatIconModule } from '@angular/material/icon';
-// import { MatCardModule } from '@angular/material/card';
-// import { MatSelectModule } from '@angular/material/select';
 import { MultiSelect_Service } from './startup/multiSelect.service';
 import { Paging_Service } from './classes/paging.class';
-import { ConfirmationService, MessageService } from 'primeng/api';
-// import { HttpRedirect_Service } from './demo/SHARED_FORMS/httpRedirect.service';
+import { ConfirmationService, MessageService } from 'primeng/api';;
 import { Chips_Service } from './misc/chips.service';
 import { State_Service } from './misc/state.service';
-import {DynamicDialogModule} from 'primeng/dynamicdialog';
-import { DocumentationComponent } from './view/documentation.component';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { ImageSearchComponent } from './view/image-search.component';
 import { UploadImageComponent } from './view/upload-image.component';
 import { SearchResultsComponent } from './view/search-results.component';
-// import { AppCalendarComponent } from './view/app.calendar.component';
 import { LoginUser_Service } from './services/loginUser.service';
 import { EventService } from './services/event.service';
 import { IconService } from './services/icon.service';
@@ -131,6 +96,8 @@ import { HttpRedirect_Service } from './forms/httpRedirect.service';
 import { IconsComponent } from './utilities/icons.component';
 import { RouteService } from './services/route.service';
 import { PhotoService } from './services/photo.service';
+import { AngularComponent } from './view/angular.component';
+import { VersionComponent } from './view/version.component';
 
 @NgModule({
     imports: [
@@ -143,39 +110,28 @@ import { PhotoService } from './services/photo.service';
         BrowserAnimationsModule,
         AccordionModule,
         AutoCompleteModule,
-        // AvatarGroupModule,
-        // AvatarModule,
-        // BadgeModule,
         BreadcrumbModule,
         ButtonModule,
         CalendarModule,
         CardModule,
         CarouselModule,
-        // CascadeSelectModule,
-        // ChartModule,
         CheckboxModule,
-        // ChipModule,
         ChipsModule,
         CodeHighlighterModule,
         ConfirmDialogModule,
-        // ConfirmPopupModule,
         ColorPickerModule,
         ContextMenuModule,
         DataViewModule,
         DialogModule,
-        // DividerModule,
         DropdownModule,
         FieldsetModule,
         FileUploadModule,
-        // FullCalendarModule,
         GalleriaModule,
         InplaceModule,
-        // InputNumberModule,
         InputMaskModule,
         InputSwitchModule,
         InputTextModule,
         InputTextareaModule,
-        // KnobModule,
         LightboxModule,
         ListboxModule,
         MegaMenuModule,
@@ -195,24 +151,18 @@ import { PhotoService } from './services/photo.service';
         ProgressBarModule,
         RadioButtonModule,
         RatingModule,
-        // RippleModule,
         ScrollPanelModule,
-        // ScrollTopModule,
         SelectButtonModule,
         SidebarModule,
-        // SkeletonModule,
         SlideMenuModule,
         SliderModule,
         SplitButtonModule,
-        // SplitterModule,
         StepsModule,
         TableModule,
         TabMenuModule,
         TabViewModule,
-        // TagModule,
         TerminalModule,
         TieredMenuModule,
-        // TimelineModule,
         ToastModule,
         ToggleButtonModule,
         ToolbarModule,
@@ -221,17 +171,6 @@ import { PhotoService } from './services/photo.service';
         TreeTableModule,
         VirtualScrollerModule,
         AppCodeModule,
-        // MatGridListModule,
-        // MatMenuModule,
-        // MatIconModule,
-        // MatCardModule,
-        // MatSelectModule,
-        // MatButtonModule,
-        // MatCheckboxModule,
-        // MatDatepickerModule,
-        // MatNativeDateModule,
-        // MatFormFieldModule,
-        // MatInputModule,
         DynamicDialogModule
     ],
     declarations: [
@@ -247,8 +186,8 @@ import { PhotoService } from './services/photo.service';
         SearchResultsComponent,
         ImageSearchComponent,
         IconsComponent,
-        DocumentationComponent,
-        // AppCalendarComponent,
+        AngularComponent,
+        VersionComponent
     ],
     providers: [
         { provide: LocationStrategy, 

@@ -90,7 +90,7 @@ import {AppMainComponent} from './app.main.component';
                                 </li>
                                 <li role="menuitem">
                                     <a href="#" (click)="appMain.onTopbarSubItemClick($event)">
-                                        <img src="assets/img/peter-gibbons.jpg" alt="demo">
+                                        <img src="/assets/img/peter-gibbons.jpg" alt="demo">
                                         <div class="messages-item">
                                             <h6>Hey! I set up a node server running on localhost</h6>
                                             <span>Gilfoyle</span>
@@ -99,7 +99,7 @@ import {AppMainComponent} from './app.main.component';
                                 </li>
                                 <li role="menuitem">
                                     <a href="#" class="topbar-message" (click)="appMain.onTopbarSubItemClick($event)">
-                                        <img src="assets/img/peter-gibbons.jpg" alt="demo">
+                                        <img src="/assets/img/peter-gibbons.jpg" alt="demo">
                                         <div class="messages-item">
                                             <h6>Ok. Let's meet after scrum. I will send you a meeting invite</h6>
                                             <span>Gilfoyle</span>
@@ -108,7 +108,7 @@ import {AppMainComponent} from './app.main.component';
                                 </li>
                                 <li role="menuitem">
                                     <a href="#" class="topbar-message" (click)="appMain.onTopbarSubItemClick($event)">
-                                        <img src="assets/img/peter-gibbons.jpg" alt="demo">
+                                        <img src="/assets/img/peter-gibbons.jpg" alt="demo">
                                         <div class="messages-item">
                                             <h6>Don't forget to upgrade to newest version of Angular</h6>
                                             <span>Gilfoyle</span>
@@ -173,7 +173,7 @@ import {AppMainComponent} from './app.main.component';
 
                             <ul class="fadeInDown">
                                 <li class="layout-submenu-header">
-                                    <img class="profile-image" src="assets/img/loyd.gif" alt="A">
+                                    <img class="profile-image" src="/assets/img/loyd.gif" alt="A">
                                     <div class="profile-info">
                                         <h6>Jim Moriarty</h6>
                                         <span>Analyst</span>

@@ -11,7 +11,6 @@ export class RouteService {
 
   getRoutes() {
   return this.http.get<any>('/assets/config/routes.json')
-  // return this.http.get<any>('/photoApp/assets/config/routes.json')
     .toPromise()
     .then(res => res.data as IRoute[])
     .then(data => data);

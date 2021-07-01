@@ -5,8 +5,8 @@ import {IconsComponent} from './utilities/icons.component';
 import { UploadImageComponent } from './view/upload-image.component';
 import { SearchResultsComponent } from './view/search-results.component';
 import { ImageSearchComponent } from './view/image-search.component';
-import { DocumentationComponent } from './view/documentation.component';
-// import { AppCalendarComponent } from './view/app.calendar.component';
+import { AngularComponent } from './view/angular.component';
+import { VersionComponent } from './view/version.component';
 
 @NgModule({
     imports: [
@@ -20,8 +20,8 @@ import { DocumentationComponent } from './view/documentation.component';
                     {path: 'uikit/tree', component: UploadImageComponent},
                     {path: 'uikit/panel', component: ImageSearchComponent},
                     {path: 'utilities/icons', component: IconsComponent},
-                    // {path: 'pages/calendar', component: AppCalendarComponent},
-                    {path: 'documentation', component: DocumentationComponent}
+                    {path: 'angular', component: AngularComponent},
+                    {path: 'version', component: VersionComponent}
                 ]
             },
             {path: '**', redirectTo: '/notfound'},

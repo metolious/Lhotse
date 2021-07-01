@@ -42,46 +42,24 @@ module.exports = function (grunt) {
                 to: '<%= config.NODE_ENV %>'
             }]
         },
-        fontAwesome: {
+        configFiles: {
             overwrite: true,
-            src:  ['<%= config.dist %>/styles.js'],
+            src:  ['<%= config.dist %>/*.js'],
             replacements: [{
-                from: /fontawesome-webfont/g,
-                to: '/photoApp/fontawesome-webfont'
+                from: /assets/g,
+                to: 'photoApp/assets'
             }]
         },
-        primeNg: {
+        styleSheets: {
             overwrite: true,
             src:  ['<%= config.dist %>/index.html'],
             replacements: [{
                 from: /node_modules/g,
                 to: '/photoApp/node_modules'
-            }]
-        },
-     //   ImageUrl: "assets/testImages/image4.jpg", 
-        testThumbnails: {
-            overwrite: true,
-            src:  ['<%= config.dist %>/testData/search.data.ts'],
-            replacements: [{
-                from: /"assets/g,
-                to: '"/photoApp/assets'
-            }]
-        },
-       
-        images: {
-            overwrite: true,
-            src:  ['<%= config.dist %>/main.bundle.js'],
-            replacements: [{
-                from: /..\/..\/assets\/img/g,
-                to: '/photoApp/assets/img'
-            }]
-        },
-        configFiles: {
-            overwrite: true,
-            src:  ['<%= config.dist %>/main.bundle.js'],
-            replacements: [{
-                from: /..\/..\/assets\/config/g,
-                to: '/photoApp/assets/config'
+            },
+            {
+                from: /assets/g,
+                to: '/photoApp/assets'
             }]
         },
         scriptDomainHtml: {
@@ -92,14 +70,7 @@ module.exports = function (grunt) {
                 to: 'src="/photoApp/'
             }]
         },
-        scriptDomainCss: {
-            overwrite: true,
-            src:  ['<%= config.dist %>/*.css'],
-            replacements: [{
-                from: /src="/g,
-                to: 'src="/photoApp/'
-            }]
-        },
+
         scriptDomainJs: {
             overwrite: true,
             src:  ['<%= config.dist %>/*.js'],
@@ -108,9 +79,40 @@ module.exports = function (grunt) {
                 to: 'src=\\"photoApp/'
             }]
         },
+        images: {
+            overwrite: true,
+            src:  ['<%= config.dist %>/main.bundle.js'],
+            replacements: [{
+                from: /..\/..\/assets\/img/g,
+                to: '/photoApp/assets/img'
+            }]
+        },
+        fontAwesome: {
+            overwrite: true,
+            src:  ['<%= config.dist %>/styles.js'],
+            replacements: [{
+                from: /fontawesome-webfont/g,
+                to: '/photoApp/fontawesome-webfont'
+            }]
+        },
+        //   ImageUrl: "assets/testImages/image4.jpg", 
+        scriptDomainCss: {
+            overwrite: true,
+            src:  ['<%= config.dist %>/*.css'],
+            replacements: [{
+                from: /src="/g,
+                to: 'src="/photoApp/'
+            }]
+        },
+        testThumbnails: {
+            overwrite: true,
+            src:  ['<%= config.dist %>/testData/search.data.ts'],
+            replacements: [{
+                from: /"assets/g,
+                to: '"/photoApp/assets'
+            }]
+        },      
     },
- 
-      
         copy: {
             web: {
                 files: [{
@@ -137,9 +139,9 @@ module.exports = function (grunt) {
                         '<%= config.root %>/node_modules/primeicons/fonts/primeicons.woff',
                         '<%= config.root %>/node_modules/primeng/resources/primeng.min.css',
                         '<%= config.root %>/node_modules/primeflex/primeflex.scss',
-                        '<%= config.root %>/node_modules/@fullcalendar/core/main.min.css',
-                        '<%= config.root %>/node_modules/@fullcalendar/daygrid/main.min.css',
-                        '<%= config.root %>/node_modules/@fullcalendar/timegrid/main.min.css',
+                        // '<%= config.root %>/node_modules/@fullcalendar/core/main.min.css',
+                        // '<%= config.root %>/node_modules/@fullcalendar/daygrid/main.min.css',
+                        // '<%= config.root %>/node_modules/@fullcalendar/timegrid/main.min.css',
                     ],
                     dest: '<%= config.dist %>'      
                 }]
@@ -186,15 +188,15 @@ module.exports = function (grunt) {
         
         grunt.task.run([
             'exec:ngBuild',
-            'replace:basePath',
-            'replace:scriptDomainHtml',
-            'replace:scriptDomainCss',
-            'replace:scriptDomainJs',
-            'replace:primeNg',
-            'replace:images',
+            'replace:basePath',  
             'replace:configFiles',
-            'replace:testThumbnails',
-            'replace:fontAwesome',           
+            'replace:styleSheets', 
+            'replace:scriptDomainHtml',
+            // 'replace:scriptDomainJs',       
+            // 'replace:images'
+            // 'replace:fontAwesome', 
+            // 'replace:scriptDomainCss',,
+            // 'replace:testThumbnails',
             'copy:web',
             'copy:primeNg',
             'war'
