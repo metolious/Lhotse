@@ -17,7 +17,7 @@ import {CalendarModule} from 'primeng/calendar';
 import {CardModule} from 'primeng/card';
 import {CarouselModule} from 'primeng/carousel';
 // import {CascadeSelectModule} from 'primeng/cascadeselect';
-import {ChartModule} from 'primeng/chart';
+// import {ChartModule} from 'primeng/chart';
 import {CheckboxModule} from 'primeng/checkbox';
 // import {ChipModule} from 'primeng/chip';
 import {ChipsModule} from 'primeng/chips';
@@ -32,7 +32,7 @@ import {DialogModule} from 'primeng/dialog';
 import {DropdownModule} from 'primeng/dropdown';
 import {FieldsetModule} from 'primeng/fieldset';
 import {FileUploadModule} from 'primeng/fileupload';
-import {FullCalendarModule} from 'primeng/fullcalendar';
+// import {FullCalendarModule} from 'primeng/fullcalendar';
 import {GalleriaModule} from 'primeng/galleria';
 import {InplaceModule} from 'primeng/inplace';
 // import {InputNumberModule} from 'primeng/inputnumber';
@@ -122,7 +122,7 @@ import { DocumentationComponent } from './view/documentation.component';
 import { ImageSearchComponent } from './view/image-search.component';
 import { UploadImageComponent } from './view/upload-image.component';
 import { SearchResultsComponent } from './view/search-results.component';
-import { AppCalendarComponent } from './view/app.calendar.component';
+// import { AppCalendarComponent } from './view/app.calendar.component';
 import { LoginUser_Service } from './services/loginUser.service';
 import { EventService } from './services/event.service';
 import { IconService } from './services/icon.service';
@@ -152,7 +152,7 @@ import { PhotoService } from './services/photo.service';
         CardModule,
         CarouselModule,
         // CascadeSelectModule,
-        ChartModule,
+        // ChartModule,
         CheckboxModule,
         // ChipModule,
         ChipsModule,
@@ -167,7 +167,7 @@ import { PhotoService } from './services/photo.service';
         DropdownModule,
         FieldsetModule,
         FileUploadModule,
-        FullCalendarModule,
+        // FullCalendarModule,
         GalleriaModule,
         InplaceModule,
         // InputNumberModule,
@@ -248,7 +248,7 @@ import { PhotoService } from './services/photo.service';
         ImageSearchComponent,
         IconsComponent,
         DocumentationComponent,
-        AppCalendarComponent,
+        // AppCalendarComponent,
     ],
     providers: [
         { provide: LocationStrategy, 

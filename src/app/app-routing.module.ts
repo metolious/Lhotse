@@ -6,7 +6,7 @@ import { UploadImageComponent } from './view/upload-image.component';
 import { SearchResultsComponent } from './view/search-results.component';
 import { ImageSearchComponent } from './view/image-search.component';
 import { DocumentationComponent } from './view/documentation.component';
-import { AppCalendarComponent } from './view/app.calendar.component';
+// import { AppCalendarComponent } from './view/app.calendar.component';
 
 @NgModule({
     imports: [
@@ -20,7 +20,7 @@ import { AppCalendarComponent } from './view/app.calendar.component';
                     {path: 'uikit/tree', component: UploadImageComponent},
                     {path: 'uikit/panel', component: ImageSearchComponent},
                     {path: 'utilities/icons', component: IconsComponent},
-                    {path: 'pages/calendar', component: AppCalendarComponent},
+                    // {path: 'pages/calendar', component: AppCalendarComponent},
                     {path: 'documentation', component: DocumentationComponent}
                 ]
             },
