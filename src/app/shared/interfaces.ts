@@ -13,6 +13,8 @@ export interface IRoute {
   id?: string,
   name?: string,
   url?: string,
+  colon?: string,
+  port?: string,
   description?: string,
   data?: string
   isActive?: boolean,
@@ -73,4 +75,11 @@ export interface IImageData {
 export interface ISecurityLabel {
   label: string,
   value: string
+}
+
+export const request = {
+	GET:    "get",
+	PUT:    "put",
+	POST:   "post",
+	DELETE: "delete",
 }

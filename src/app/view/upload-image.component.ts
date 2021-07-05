@@ -1,25 +1,45 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { AppBreadcrumbService } from 'src/app/app.breadcrumb.service';
-import { IAspect, IImageSource, ISecurityLabel, IFormLabel, IImageData, IRoute } from 'src/app/shared/interfaces';
+import { IAspect, IImageSource, ISecurityLabel, IFormLabel, IImageData, IRoute, request } from 'src/app/shared/interfaces';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { HttpBase } from 'src/app/forms/http.component';
 import { FileService } from '../services/file.service';
 import { HttpRedirect_Service } from '../forms/httpRedirect.service';
 import { RouteService } from '../services/route.service';
 
 export class UploadForm {
-  constructor(
-    public securityLabel: string,
-    public aspect: string,
-    public imageSource: string,
-    public sconums: string[],
-    public iirNumbers: string[],
-    public otherSources: string[],
-    public imageDate: string,
-    public labels: IFormLabel[],
-  ) {  }
+
+  formLabels: IFormLabel[] = [];
+  sconums: string[] = [];
+  iirNumbers: string[] = [];
+  otherSources: string[] = [];
+  labels: IFormLabel[] = [];
+  securityLabel: string = '';
+  aspect: string = '';
+  imageSource: string = ''
+  imageDate: string = '';
+
+  constructor() 
+  {  
+    this.formLabels = [
+      {label: 'securityLabel'},
+      {label: 'aspect'},
+      {label: 'imageSource'},
+      {label: 'sconums'},
+      {label: 'iirNumbers'},
+      {label: 'otherSources'},
+      {label: 'imageDate'}
+    ]; 
+    this.securityLabel = '';
+    this.aspect = '';
+    this.imageSource = ''
+    this.sconums = [];
+    this.iirNumbers = [];
+    this.otherSources = [];
+    this.imageDate = '';
+    this.labels = this.formLabels;
+  }
 }
 
 @Component({
@@ -37,27 +57,26 @@ export class UploadImageComponent implements OnInit {
     formLabels: IFormLabel[] = [];
     aspects: IAspect[];
     image_sources: IImageSource[];
-    redirectDialog: boolean;
-    uploadSuccess: Boolean;
+    redirectDialog: Boolean = false;
     httpPostData: FormData;
   
     model: UploadForm;
     submitted = false;
     routes: IRoute[];
-    route: IRoute;
-    awsElasticBeanRoute: IRoute = {};
-    amsVesselServiceRoute: IRoute = {};
-    localhostRoute: IRoute = {};
+    activeRoute: IRoute = {};
 
     constructor(http:                  HttpClient,
                 httpService:           HttpRedirect_Service,
-                private breadcrumbService: AppBreadcrumbService,
-                private primengMessageService: MessageService,
-                private confirmationService: ConfirmationService,
-                private fileService: FileService,
-                private router: Router,
-                private routeService: RouteService
+                private breadcrumbService:      AppBreadcrumbService,
+                private primengMessageService:  MessageService,
+                private confirmationService:    ConfirmationService,
+                private fileService:    FileService,
+                private router:         Router,
+                private routeService:   RouteService
                 ) {
+
+        this.model = new UploadForm();
+        // console.log (`upload-image onOnInit() this.model.labels.length = ${this.model.labels.length}`);
 
         this.routeService.getRoutes().then(routes => {
           this.routes = routes
@@ -70,12 +89,8 @@ export class UploadImageComponent implements OnInit {
 
     }
 
-    onSubmit() {
-      this.submitted = true;
-    }
-
     clearForm() {
-        this.model = new UploadForm('','','',[],[],[],'',this.formLabels);
+        this.model = new UploadForm();
         this.uploadFiles = [];
         this.imageData = [];
         this.fileUpload.clear();
@@ -126,24 +141,36 @@ export class UploadImageComponent implements OnInit {
       return ( formData );
     }
 
-    setRoutes() {
+    setActiveRoute() {
       
       for (let i = 0; i < this.routes.length; i++) {
-        if (this.routes[i].name == "AWS_Post_Image_Data") {
-          this.awsElasticBeanRoute.url = this.routes[i].url;
-          this.awsElasticBeanRoute.endpoint = this.routes[i].endpoint;
-          // console.log (`file.service setRoutes() awsElasticBeanRoute.url = ${this.awsElasticBeanRoute.url}`);
-        }
-        else if (this.routes[i].name == "AMS_Get_Vessel_Service") {
-          this.amsVesselServiceRoute.url = this.routes[i].url;
-          this.amsVesselServiceRoute.endpoint = this.routes[i].endpoint;
-        }
-        else if (this.routes[i].name == "localhost") {
-          this.localhostRoute.url = this.routes[i].url;
-          this.localhostRoute.endpoint = this.routes[i].endpoint;
+        if (this.routes[i].isActive == true) {
+          this.activeRoute.name = this.routes[i].name;
+          this.activeRoute.url = this.routes[i].url;
+          this.activeRoute.endpoint = this.routes[i].endpoint;
+          this.activeRoute.colon = this.routes[i].colon;
+          this.activeRoute.port = this.routes[i].port;
+          this.activeRoute.method = this.routes[i].method;
+          this.activeRoute.name = this.routes[i].name;
         }
       } 
     } 
+
+    onSubmit() {
+      this.submitted = true;
+    }
+
+    showDialog() {
+      this.redirectDialog = true;
+    }
+
+    hideDialog() {
+      this.redirectDialog = false;
+    }
+    
+    redirectSearchResults() {
+      this.router.navigate(['/uikit/table']);
+    }
 
       customUploader(event)  {
 
@@ -167,36 +194,49 @@ export class UploadImageComponent implements OnInit {
         this.searchInProgress.emit(true);
   
         this.httpPostData  = this.createPostData();
-        this.setRoutes();
+        this.setActiveRoute();
 
-        this.fileService.saveImageData(this.awsElasticBeanRoute, this.httpPostData, this.imageData).subscribe( 
-          data => {console.log('upload-image.component.customUploader: saveFilePost() Successful!! ' + JSON.stringify(data))}, 
-          error => {console.log('upload-image.component.customUploader: saveFilePost() Failed!! ' + error.message)}
-        );
+        // console.log (`upload-image.component customUploader this.activeRoute.method = ${this.activeRoute.method}`);
 
+        if (this.activeRoute.method == request.GET) {
+          this.fileService.getImageData(this.activeRoute).subscribe(
+            data => { console.log('upload-image.customUploader: getImageData() Successful!! ' + data)
+                      this.showDialog();
+                    }, 
+            error => { console.log('upload-image.customUploader: getImageData() Failed!! ' + error.message) }
+          )
         // this.fileService.getVesselData(this.amsVesselServiceRoute).subscribe( 
-        //   data => {console.log('upload-image.component.customUploader: getVesselData() Successful!! ' + JSON.stringify(data))}, 
-        //   error => {console.log('upload-image.component.customUploader: getVesselData() Failed!! ' + error.message)}
+        //   data => {  console.log('upload-image.component.customUploader: getVesselData() Successful!! ' + JSON.stringify(data));
+        //              this.redirectDialog = true; 
+        //           },
+        //              
+        //   error => { console.log('upload-image.component.customUploader: getVesselData() Failed!! ' + error.message) }
         // );
+        }
+
+        if (this.activeRoute.method == request.PUT) {
+          this.fileService.saveImageDataPut(this.activeRoute, this.httpPostData, this.imageData).subscribe( 
+            data => { console.log('upload-image.customUploader: saveImagePut() Successful!! ' + JSON.stringify(data));
+                      this.showDialog();
+                    }, 
+            error => { console.log('upload-image.customUploader: saveImagePut() Failed!! ' + error.message) }
+          );
+        }
+
+        if (this.activeRoute.method == request.POST) {
+          this.fileService.saveImageDataPost(this.activeRoute, this.httpPostData, this.imageData).subscribe( 
+            data => { console.log('upload-image.customUploader: saveImagePost() Successful!! ' + JSON.stringify(data));
+                      this.showDialog();
+                    }, 
+            error => { console.log('upload-image.customUploader: saveImagePost() Failed!! ' + error.message) }
+          );
+        }
 
         this.clearForm();
         this.initDialog();
       }
 
     ngOnInit() {
-
-        this.uploadSuccess = false;
-
-        this.formLabels = [
-          {label: 'securityLabel'},
-          {label: 'aspect'},
-          {label: 'imageSource'},
-          {label: 'sconums'},
-          {label: 'iirNumbers'},
-          {label: 'otherSources'},
-          {label: 'imageDate'}
-        ]; 
-        this.model = new UploadForm('','','',[],[],[],'',this.formLabels);
 
         this.security_labels = [
             {value: 'CONFIDENTIAL_REL_TO_USA_FVEY', label: 'CONFIDENTIAL//REL TO USA, FVEY'},

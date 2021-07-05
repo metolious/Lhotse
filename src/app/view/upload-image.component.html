@@ -94,8 +94,15 @@
 	</div>
 </div>
 </form>
-			<p-confirmDialog [(visible)]="redirectDialog" header="Confirmation" key="confirm1" icon="pi pi-exclamation-triangle" 
-				[style]="{width:'425px'}" acceptButtonStyleClass="p-mr-2" rejectButtonStyleClass="p-button-text"> </p-confirmDialog>
 
-            <!-- <button type="text" (click)="uploadForm.reset()" pButton icon="pi pi-trash" 
-                    label="Delete" class="p-button-danger" style="width: auto" ></button> -->
+<p-dialog [(visible)]="redirectDialog" 
+	header="File Upload Successful" 
+	[style]="{width:'375px'}" acceptButtonStyleClass="p-mr-2" rejectButtonStyleClass="p-button-text"> 
+	<ng-template pTemplate="header">      
+    </ng-template>
+		Go to Search Results page to view results?
+	<p-footer>		
+		<button type="button" (click)="redirectSearchResults()" pButton autofocus label="Yes"></button>&nbsp;
+		<button type="button" (click)="hideDialog()" pButton autofocus label="No"></button>
+	</p-footer>
+</p-dialog>
