@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
@@ -98,13 +97,14 @@ import { RouteService } from './services/route.service';
 import { PhotoService } from './services/photo.service';
 import { AngularComponent } from './view/angular.component';
 import { VersionComponent } from './view/version.component';
+import { VesselUpdateComponent } from './view/vessel-update.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        FormsModule,
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
@@ -187,7 +187,8 @@ import { VersionComponent } from './view/version.component';
         ImageSearchComponent,
         IconsComponent,
         AngularComponent,
-        VersionComponent
+        VersionComponent,
+        VesselUpdateComponent
     ],
     providers: [
         { provide: LocationStrategy, 

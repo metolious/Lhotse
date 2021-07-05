@@ -7,6 +7,7 @@ import { SearchResultsComponent } from './view/search-results.component';
 import { ImageSearchComponent } from './view/image-search.component';
 import { AngularComponent } from './view/angular.component';
 import { VersionComponent } from './view/version.component';
+import { VesselUpdateComponent } from './view/vessel-update.component';
 
 @NgModule({
     imports: [
@@ -15,9 +16,10 @@ import { VersionComponent } from './view/version.component';
                 path: '', component: AppMainComponent,
                 children: [
                     // {path: '', component: DashboardComponent},
-                    {path: '', component: UploadImageComponent},
+                    {path: '', component: VesselUpdateComponent},
                     {path: 'uikit/table', component: SearchResultsComponent},
                     {path: 'uikit/tree', component: UploadImageComponent},
+                    {path: 'uikit/vessel', component: VesselUpdateComponent},
                     {path: 'uikit/panel', component: ImageSearchComponent},
                     {path: 'utilities/icons', component: IconsComponent},
                     {path: 'angular', component: AngularComponent},

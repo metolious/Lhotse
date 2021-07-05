@@ -20,6 +20,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Viper MSC', icon: 'pi pi-fw pi-star', routerLink: ['/uikit'],
                 items: [
+                    {label: 'Vessel Update', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/vessel']},
                     {label: 'Upload Image', icon: 'pi pi-fw pi-upload', routerLink: ['/uikit/tree']},
                     {label: 'Image Search', icon: 'pi pi-fw pi-search', routerLink: ['/uikit/panel']},
                     {label: 'Search Results', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']},

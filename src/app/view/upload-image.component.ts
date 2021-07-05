@@ -62,12 +62,10 @@ export class UploadImageComponent implements OnInit {
   
     model: UploadForm;
     submitted = false;
-    routes: IRoute[];
+    routes: IRoute[] = [];
     activeRoute: IRoute = {};
 
-    constructor(http:                  HttpClient,
-                httpService:           HttpRedirect_Service,
-                private breadcrumbService:      AppBreadcrumbService,
+    constructor(private breadcrumbService:      AppBreadcrumbService,
                 private primengMessageService:  MessageService,
                 private confirmationService:    ConfirmationService,
                 private fileService:    FileService,
@@ -195,8 +193,6 @@ export class UploadImageComponent implements OnInit {
   
         this.httpPostData  = this.createPostData();
         this.setActiveRoute();
-
-        // console.log (`upload-image.component customUploader this.activeRoute.method = ${this.activeRoute.method}`);
 
         if (this.activeRoute.method == request.GET) {
           this.fileService.getImageData(this.activeRoute).subscribe(
