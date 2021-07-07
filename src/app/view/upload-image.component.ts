@@ -10,15 +10,15 @@ import { RouteService } from '../services/route.service';
 
 export class UploadForm {
 
-  formLabels: IFormLabel[] = [];
-  sconums: string[] = [];
-  iirNumbers: string[] = [];
-  otherSources: string[] = [];
-  labels: IFormLabel[] = [];
-  securityLabel: string = '';
-  aspect: string = '';
-  imageSource: string = ''
-  imageDate: string = '';
+  formLabels: IFormLabel[];
+  sconums: string[];
+  iirNumbers: string[];
+  otherSources: string[];
+  labels: IFormLabel[];
+  securityLabel: string;
+  aspect: string;
+  imageSource: string;
+  imageDate: string;
 
   constructor() 
   {  
@@ -74,17 +74,15 @@ export class UploadImageComponent implements OnInit {
                 ) {
 
         this.model = new UploadForm();
-        // console.log (`upload-image onOnInit() this.model.labels.length = ${this.model.labels.length}`);
 
         this.routeService.getRoutes().then(routes => {
           this.routes = routes
         });
-        
+
         this.breadcrumbService.setItems([
             { label: 'Viper MSC' },
             { label: 'Upload Image', routerLink: ['/uikit/tree'] }
         ]);
-
     }
 
     clearForm() {
@@ -140,7 +138,7 @@ export class UploadImageComponent implements OnInit {
     }
 
     setActiveRoute() {
-      
+
       for (let i = 0; i < this.routes.length; i++) {
         if (this.routes[i].isActive == true) {
           this.activeRoute.name = this.routes[i].name;
@@ -170,67 +168,66 @@ export class UploadImageComponent implements OnInit {
       this.router.navigate(['/uikit/table']);
     }
 
-      customUploader(event)  {
+    customUploader(event)  {
 
-        for (let file of event.files) {
-          if (file.size != 0)
-            this.uploadFiles.push(file);
-        }      
+      for (let file of event.files) {
+        if (file.size != 0)
+          this.uploadFiles.push(file);
+      }      
 
-        for (var i = 0; i < this.model.labels.length; i++) {
-          this.imageData.push({label:this.model.labels[i].label, value:this.model[this.model.labels[i].label]});
-        }
-
-        // this.confirmForSubmit=false;
-        // if ( this.uploadImageForm.numInvalidImages > 0 )
-        // {
-        //   this.messageService.add ( 'error',8, "Some files are INVALID !!!",
-        //             "Number of invalid files [" + this.uploadImageForm.numInvalidImages + "]" );
-        //   return;
-        // }
-  
-        this.searchInProgress.emit(true);
-  
-        this.httpPostData  = this.createPostData();
-        this.setActiveRoute();
-
-        if (this.activeRoute.method == request.GET) {
-          this.fileService.getImageData(this.activeRoute).subscribe(
-            data => { console.log('upload-image.customUploader: getImageData() Successful!! ' + data)
-                      this.showDialog();
-                    }, 
-            error => { console.log('upload-image.customUploader: getImageData() Failed!! ' + error.message) }
-          )
-        // this.fileService.getVesselData(this.amsVesselServiceRoute).subscribe( 
-        //   data => {  console.log('upload-image.component.customUploader: getVesselData() Successful!! ' + JSON.stringify(data));
-        //              this.redirectDialog = true; 
-        //           },
-        //              
-        //   error => { console.log('upload-image.component.customUploader: getVesselData() Failed!! ' + error.message) }
-        // );
-        }
-
-        if (this.activeRoute.method == request.PUT) {
-          this.fileService.saveImageDataPut(this.activeRoute, this.httpPostData, this.imageData).subscribe( 
-            data => { console.log('upload-image.customUploader: saveImagePut() Successful!! ' + JSON.stringify(data));
-                      this.showDialog();
-                    }, 
-            error => { console.log('upload-image.customUploader: saveImagePut() Failed!! ' + error.message) }
-          );
-        }
-
-        if (this.activeRoute.method == request.POST) {
-          this.fileService.saveImageDataPost(this.activeRoute, this.httpPostData, this.imageData).subscribe( 
-            data => { console.log('upload-image.customUploader: saveImagePost() Successful!! ' + JSON.stringify(data));
-                      this.showDialog();
-                    }, 
-            error => { console.log('upload-image.customUploader: saveImagePost() Failed!! ' + error.message) }
-          );
-        }
-
-        this.clearForm();
-        this.initDialog();
+      for (var i = 0; i < this.model.labels.length; i++) {
+        this.imageData.push({label:this.model.labels[i].label, value:this.model[this.model.labels[i].label]});
       }
+
+      this.searchInProgress.emit(true);
+      this.httpPostData  = this.createPostData();
+      this.setActiveRoute();
+
+      // this.confirmForSubmit=false;
+      // if ( this.uploadImageForm.numInvalidImages > 0 )
+      // {
+      //   this.messageService.add ( 'error',8, "Some files are INVALID !!!",
+      //             "Number of invalid files [" + this.uploadImageForm.numInvalidImages + "]" );
+      //   return;
+      // }
+
+      if (this.activeRoute.method == request.GET) {
+        this.fileService.getImageData(this.activeRoute).subscribe(
+          data => { console.log('upload-image.customUploader: getImageData() Successful!! ' + data)
+                    this.showDialog();
+                  }, 
+          error => { console.log('upload-image.customUploader: getImageData() Failed!! ' + error.message) }
+        )
+      // this.fileService.getVesselData(this.amsVesselServiceRoute).subscribe( 
+      //   data => {  console.log('upload-image.component.customUploader: getVesselData() Successful!! ' + JSON.stringify(data));
+      //              this.redirectDialog = true; 
+      //           },
+      //              
+      //   error => { console.log('upload-image.component.customUploader: getVesselData() Failed!! ' + error.message) }
+      // );
+      }
+
+      if (this.activeRoute.method == request.PUT) {
+        this.fileService.saveImageDataPut(this.activeRoute, this.httpPostData, this.imageData).subscribe( 
+          data => { console.log('upload-image.customUploader: saveImagePut() Successful!! ' + JSON.stringify(data));
+                    this.showDialog();
+                  }, 
+          error => { console.log('upload-image.customUploader: saveImagePut() Failed!! ' + error.message) }
+        );
+      }
+
+      if (this.activeRoute.method == request.POST) {
+        this.fileService.saveImageDataPost(this.activeRoute, this.httpPostData, this.imageData).subscribe( 
+          data => { console.log('upload-image.customUploader: saveImagePost() Successful!! ' + JSON.stringify(data));
+                    this.showDialog();
+                  }, 
+          error => { console.log('upload-image.customUploader: saveImagePost() Failed!! ' + error.message) }
+        );
+      }
+
+      this.clearForm();
+      this.initDialog();
+    }
 
     ngOnInit() {
 
