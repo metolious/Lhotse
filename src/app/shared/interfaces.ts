@@ -67,6 +67,11 @@ export interface IFormLabel {
   label: string
 }
 
+export interface IFormData {
+  label: string,
+  value: string
+}
+
 export interface IImageData {
   label: string,
   value: string
@@ -82,4 +87,9 @@ export const request = {
 	PUT:    "put",
 	POST:   "post",
 	DELETE: "delete",
+}
+
+export const init = {
+  STRING: '',
+  NUMBER: null
 }

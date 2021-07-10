@@ -1,87 +1,9 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { AppBreadcrumbService } from '../app.breadcrumb.service';
+import { VesselModel } from '../classes/models/VesselModel';
 import { FileService } from '../services/file.service';
 import { RouteService } from '../services/route.service';
-import { IAspect, IFormLabel, IImageData, IImageSource, IRoute, ISecurityLabel, IUser, request } from '../shared/interfaces';
-
-export class VesselForm {
-
-  formLabels: IFormLabel[];
-  securityLabel: string;
-  aspect: string;
-  imageSource: string;
-  sconums: string[];
-  amidshipsId: string[];
-  iirNumbers: string[];
-  otherSources: string[];
-  labels: IFormLabel[];
-  imageDate: string;
-  primeImage: string;
-  distribution: string;
-  pageSize: string;
-  sortSelect: string;
-  sortOrder: string;
-  sortField: string;
-  valCheck: string;
-  imoNumber: string[];
-  mmsiNumber: string[];
-  callSign: string[];
-  vesselName: string[];
-  modifiedBy: string;
-  approvedBy: string;
-  uploadedBy: string;
-
-  constructor()
-  {
-    this.formLabels = [
-      {label: 'securityLabel'},
-      {label: 'aspect'},
-      {label: 'imageSource'},
-      {label: 'sconums'},
-      {label: 'iirNumbers'},
-      {label: 'otherSources'},
-      {label: 'imageDate'},
-      {label: 'amidshipsId'},
-      {label: 'primeImage'},
-      {label: 'distribution'},
-      {label: 'pageSize'},
-      {label: 'sortSelect'},
-      {label: 'sortOrder'},
-      {label: 'sortField'},
-      {label: 'valCheck'},
-      {label: 'imoNumber'},
-      {label: 'mmsiNumber'},
-      {label: 'callSign'},
-      {label: 'vesselName'},
-      {label: 'modifiedBy'},
-      {label: 'approvedBy'},
-      {label: 'uploadedBy'},
-    ];
-    this.securityLabel = '';
-    this.aspect = '';
-    this.imageSource = ''
-    this.sconums      = [];
-    this.iirNumbers   = [];
-    this.otherSources = [];
-    this.imageDate = '';
-    this.amidshipsId  = [];
-    this.primeImage = '';
-    this.distribution = '';
-    this.pageSize = '';
-    this.sortSelect = '';
-    this.sortOrder = '';
-    this.sortField = '';
-    this.valCheck = '';
-    this.imoNumber    = [];
-    this.mmsiNumber   = [];
-    this.callSign     = [];
-    this.vesselName   = [];
-    this.modifiedBy = '';
-    this.approvedBy = '';
-    this.uploadedBy = '';
-    this.labels = this.formLabels;
-  }
-}
+import { IAspect, IFormData, IFormLabel, IImageData, IImageSource, IRoute, ISecurityLabel, IUser, request } from '../shared/interfaces';
 
 @Component({
   selector: 'app-vessel-update',
@@ -110,8 +32,8 @@ export class VesselUpdateComponent implements OnInit {
 @Output( ) searchInProgress = new EventEmitter<boolean>(true);
 // @ViewChild('vesselUpdate', {static: false}) vesselUpdate: any;
 
+    vesselData: IFormData[] = [];
     security_labels: ISecurityLabel[];
-    formLabels: IFormLabel[] = [];
     aspects: IAspect[];
     image_sources: IImageSource[];
     imageOptions: any[];
@@ -121,17 +43,19 @@ export class VesselUpdateComponent implements OnInit {
     sortFields: any[];
     sortOptions: any[];
     pageOptions: any[];
-    model: VesselForm;
+    model: VesselModel;
     submitted = false;
     routes: IRoute[] = [];
     activeRoute: IRoute = {};
+    awsRoute: IRoute = {};
+    vesselUpdateRoute: IRoute = {};
 
   constructor(  private breadcrumbService: AppBreadcrumbService,
                 private routeService: RouteService,
                 private fileService: FileService,
              )
   {
-    this.model = new VesselForm();
+    this.model = new VesselModel();
 
     this.routeService.getRoutes().then(routes => {
       this.routes = routes
@@ -141,6 +65,34 @@ export class VesselUpdateComponent implements OnInit {
         { label: 'Viper MSC' },
         { label: 'Vessel Update', routerLink: ['/uikit/tree'] }
     ]);
+  }
+
+  getVesselUpdateRoute() {
+
+    for (let i = 0; i < this.routes.length; i++) {
+      if (this.routes[i].name == "MIE_Get_Vessel_Update") {
+        this.vesselUpdateRoute.name = this.routes[i].name;
+        this.vesselUpdateRoute.url = this.routes[i].url;
+        this.vesselUpdateRoute.endpoint = this.routes[i].endpoint;
+        this.vesselUpdateRoute.colon = this.routes[i].colon;
+        this.vesselUpdateRoute.port = this.routes[i].port;
+        this.vesselUpdateRoute.method = this.routes[i].method;
+      }
+    }
+  }
+
+  getAwsRoute() {
+
+    for (let i = 0; i < this.routes.length; i++) {
+      if (this.routes[i].name == "AWS_Get_Data") {
+        this.awsRoute.name = this.routes[i].name;
+        this.awsRoute.url = this.routes[i].url;
+        this.awsRoute.endpoint = this.routes[i].endpoint;
+        this.awsRoute.colon = this.routes[i].colon;
+        this.awsRoute.port = this.routes[i].port;
+        this.awsRoute.method = this.routes[i].method;
+      }
+    }
   }
 
   setActiveRoute() {
@@ -153,7 +105,6 @@ export class VesselUpdateComponent implements OnInit {
         this.activeRoute.colon = this.routes[i].colon;
         this.activeRoute.port = this.routes[i].port;
         this.activeRoute.method = this.routes[i].method;
-        this.activeRoute.name = this.routes[i].name;
       }
     }
   }
@@ -161,58 +112,80 @@ export class VesselUpdateComponent implements OnInit {
   onSubmit(event) {
 
     for (var i = 0; i < this.model.labels.length; i++) {
-      var label = this.model.labels[i].label;
       var value = this.model[this.model.labels[i].label];
-      console.log (`vessel-update.onSubmit() : label => ${label}`);
-      if (typeof value === 'string' || value instanceof String) {
-        console.log (`vessel-update.onSubmit() : value is a string => ${value}`);
+      if ( typeof this.model[this.model.labels[i].label] === 'string' || 
+           this.model[this.model.labels[i].label] instanceof String) 
+      {
+          // add to vesselData
       } else {
-        console.log (`vessel-update.onSubmit() : value is not a string => ${value}`);
+          // if not a string, convert to json, add to vesselData
       }
-      if (value != '')
-        break;
+
+      this.vesselData.push({ label: this.model.labels[i].label, 
+                             value: this.model[this.model.labels[i].label]});
+
+      // if (value != '') // break after first value 
+      //   break;
     }
 
     this.setActiveRoute();
 
     if (this.activeRoute.method == request.GET) {
-      this.fileService.getImageData(this.activeRoute).subscribe(
-        data => { console.log('upload-image.customUploader: getImageData() Successful!! ' + data)
+      this.fileService.getJsonData(this.activeRoute).subscribe(
+        data => { console.log('vessel-update.onSubmit() : getJsonData() Successful!! : ' + data)
                 },
-        error => { console.log('upload-image.customUploader: getImageData() Failed!! ' + error.message) }
+        error => { console.log('vessel-update.onSubmit() : getJsonData() Failed!! : ' + error.message) }
       )
     // this.fileService.getVesselData(this.amsVesselServiceRoute).subscribe(
-    //   data => {  console.log('upload-image.component.customUploader: getVesselData() Successful!! ' + JSON.stringify(data));
+    //   data => {  console.log('vessel-update.component.onSubmit(): getVesselData() Successful!! ' + JSON.stringify(data));
     //              this.redirectDialog = true;
     //           },
     //
-    //   error => { console.log('upload-image.component.customUploader: getVesselData() Failed!! ' + error.message) }
+    //   error => { console.log('vessel-update.component.onSubmit(): getVesselData() Failed!! ' + error.message) }
     // );
     }
 
     if (this.activeRoute.method == request.PUT) {
-      this.fileService.saveImageDataPut(this.activeRoute, this.httpPostData, this.model).subscribe(
-        data => { console.log('upload-image.customUploader: saveImagePut() Successful!! ' + JSON.stringify(data));
+      this.fileService.saveJsonPut(this.activeRoute, this.httpPostData, this.vesselData).subscribe(
+        data => { console.log('vessel-update.onSubmit() : saveJsonPut() Successful!! : ' + JSON.stringify(data));
                 },
-        error => { console.log('upload-image.customUploader: saveImagePut() Failed!! ' + error.message) }
+        error => { console.log('vessel-update.onSubmit() : saveJsonPut() Failed!! ' + error.message) }
       );
     }
 
     if (this.activeRoute.method == request.POST) {
-      this.fileService.saveImageDataPost(this.activeRoute, this.httpPostData, this.model).subscribe(
-        data => { console.log('upload-image.customUploader: saveImagePost() Successful!! ' + JSON.stringify(data));
+      this.fileService.saveJsonPost(this.activeRoute, this.httpPostData, this.vesselData).subscribe(
+        data => { console.log('vessel-update.onSubmit() : saveJsonPost() Successful!! : ' + JSON.stringify(data));
                 },
-        error => { console.log('upload-image.customUploader: saveImagePost() Failed!! ' + error.message) }
+        error => { console.log('vessel-update.onSubmit() : saveJsonPost() Failed!! : ' + error.message) }
       );
     }
     this.clearForm();
   }
 
   clearForm() {
-    this.model = new VesselForm();
+    this.model = new VesselModel();
+    this.vesselData = [];
+    // this.activeRoute = {};
   }
-  
+
   onReset() {
+
+    this.getVesselUpdateRoute();
+
+    this.fileService.getJsonData(this.vesselUpdateRoute).subscribe(
+      data => { console.log('vessel-update.onReset() : getJsonData() Successful!! : ' + data)
+              },
+      error => { console.log('vessel-update.onReset() : getJsonData() Failed!! : ' + error.message) }
+    )
+    // this.fileService.getVesselData(this.amsVesselServiceRoute).subscribe(
+    //   data => {  console.log('vessel-update.component.onSubmit(): getVesselData() Successful!! ' + JSON.stringify(data));
+    //              this.redirectDialog = true;
+    //           },
+    //
+    //   error => { console.log('vessel-update.component.onSubmit(): getVesselData() Failed!! ' + error.message) }
+    // );
+
     this.clearForm();
   }
 
