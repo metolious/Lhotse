@@ -14,7 +14,6 @@ export class VesselModel {
   EngineName: string;
   EngineModel: string;
   EngineSerialNumber: string;
-  FuelCapacity: number;
   FuelConsumptionRate: number;
   EngineType: string;
   EngineTypeCode: string;
@@ -48,41 +47,98 @@ export class VesselModel {
   VesselTypeDesignatorCode: string;
   VesselClass: string;
 
+  //header="Dates"
+  YearMonthBuilt: Date;
+  KeelLaidDate: Date;
+  LaunchDate: Date;
+  InserviceDate: Date;
+  LaidUpDate: Date;
+  InactiveDate: Date;
+  UpdateTimestamp: Date;
+  AnalystLockTimestamp: Date;
+  SailedAsDate: Date;
+  CreatedDateTime: Date;
+  ModifiedDateTime: Date;
+
+  //header="Vessel Capacities"
+  CapacityPlan: number;
+  FuelCapacity: number;
+  RefrigeratedCapacity: number;
+  CumulativeLiquidCapacity: number;
+  MaximumLiftCapacity: number;
+  GrainCapacity: number;
+  BaleCapacity: number;
+  DieselFuelCapacity: number;
+  OilCapacity: number;
+  RampCapacity: number;
+  GasCapacity: number;
+  CargoCapacityDwt: number;
+  ContainerCapacityTeu: number;
+  NumberOfContainers: number;
+  NumberOfHolds: number;
+  NumberOfCargoTanks: number;
+  NumberOfRamps: number;
+  NumberOfPumps: number;
+  NumberOfLifts: number;
+  NumberOfHatches: number;
+  NumberOfHatchesAbreast: number;
+
+  //header="Dimensional Parameters"
+  MaximumLaneLength: number;
+  OverallLengthMeters: number;
+  LengthBetweenPerpendiculars: string;
+  LengthOfLargestHatch: number;
+  WidthOfLargestHatch: number;
+  RampLength: number;
+  MaxBeamMeters: number;
+  MaxDraftMeters: number;
+  GrossTons: number;
+  DeadWeightTons: number;
+
+  //header="Phone Information"
+  PhoneNumber: string;
+  ImsiNumber: string;
+  ImeiNumber: string;
+  PhoneBrand: string;
+  PhoneModel: string;
+  PhoneType: string;
+  SimSerialNumber: string;
+  SimManufacturer: string;
+  LocationFound: string;
+  
+  //header="Primary Image"
+  PrimaryImageAspect: string;
+  PrimaryImageGuid: string;
+  PrimaryImageUrl: string;
+  PrimaryImageClassification: string;
+
+  //header="Hull Features"
+  DoubleHull: string;
+  HullType: string;
+  HullNumber: string;
+  HullColor: string;
+
+  Sconum: string;
+
   TypeGroup: string;
   Iir: string;
   source: string;
   updateId: string;
-  UpdateTimstamp: Date;
   ProcessState: string;
   AnalystLock: string;
-  AnalystLockTimestamp: Date;
   Disposition: string;
   DispositionSconum: string;
   RejectionReason: string;
-  Sconum: string;
   ActiveIndicator: string;
   ActiveIndicatorCode: string;
   HomePort: string;
   
   OpsDesignation: string;
-  HullNumber: string;
   EquipmentCode: string;
   NavalPennant : string;
-  PrimaryImageAspect: string;
-  PrimaryImageGuid: string;
-  PrimaryImageUrl: string;
-  PrimaryImageClassification: string;
-  GrossTons: number;
-  DeadWeightTons: number;
-  OverallLengthMeters: number;
-  MaxBeamMeters: number;
-  MaxDraftMeters: number;
-  HullType: string;
   UprightSequence: string;
   SuperStructureLocation: string;
   Identifier: string;
-  CreatedDateTime: Date;
-  ModifiedDateTime: Date;
   CreatedBy: string;
   ModifiedBy: string;
   SecurityLabel: string;
@@ -99,11 +155,56 @@ export class VesselModel {
   TrawlerType: string;
   TrawlerTypeCode: string;
   MerchantPendant: string;
-  HullColor: string;
   FunnelColor: string;
   SuperStructureColor: string;
   SuperstructureLocationCode: string;
   NumberSuperstructures: string;
+
+  SuperStructureOffCenter: string;
+  SatelliteAntenna: string;
+  BridgeWings: string;
+  DroppedPoop: string;
+  RaisedForecastle: string;
+  FunnelLocation: string;
+  FunnelLocationCode: string;
+  FunnelOffCenter: string;
+  TwinAbreastFunnels: string;
+  SternType: string;
+  SternTypeCode: string;
+  SternAFrame: string;
+  DoubleSides: string;
+  DoubleBottom: string;
+  CountryBuilt: string;
+  BuilderShipyard: string;
+
+  RampLocation: string;
+  RampLocationCode: string;
+
+  DisplacementFull: number;
+  DisplacementLight: number;
+  TpcmImmersion: number;
+  WaterWashDownFittings: string;
+  SelfSustaining: string;
+  AircraftFacilitiesType: string;
+  AircraftFacilitiesTypeCode: string;
+  DaysToProvision: number;
+  HatchesSameSize: string;
+  NaturalGasTanks: number;
+  GeneralArrangementPlan: string;
+  NaturalGasDomes: number;
+  DeadweightScale: string;
+
+  UnfueledRange: number;
+  CrewSize: number;
+  PassengerBerths: number;
+  PumpRate: number;
+  NumberOfAutos: number;
+  DeckSpace: number;
+
+  SailedAsType: string;
+  SailedAsValue: string;
+  Text: string;
+  TextSequence: string;
 
   labels: IFormLabel[];
   formLabels: IFormLabel[];
@@ -157,7 +258,7 @@ export class VesselModel {
       {label: 'Iir'},
       {label: 'source'},
       {label: 'updateId'},
-      {label: 'UpdateTimstamp'},
+      {label: 'UpdateTimestamp'},
       {label: 'ProcessState'},
       {label: 'AnalystLock'},
       {label: 'AnalystLockTimestamp'},
@@ -169,7 +270,7 @@ export class VesselModel {
       {label: 'Sconum'},
       {label: 'ActiveIndicator'},
       {label: 'ActiveIndicatorCode'},
-      {label: 'HomePort'},,
+      {label: 'HomePort'},
       {label: 'OpsDesignation'},
       {label: 'HullNumber'},
       {label: 'EquipmentCode'},
@@ -208,7 +309,97 @@ export class VesselModel {
       {label: 'FunnelColor'},
       {label: 'SuperStructureColor'},
       {label: 'SuperstructureLocationCode'},
-      {label: 'NumberSuperstructures'}
+
+      {label: 'NumberSuperstructures'},
+
+      {label: 'SuperStructureOffCenter'},
+      {label: 'SatelliteAntenna'},
+      {label: 'BridgeWings'},
+      {label: 'DroppedPoop'},
+      {label: 'RaisedForecastle'},
+      {label: 'FunnelLocation'},
+      {label: 'FunnelLocationCode'},
+      {label: 'FunnelOffCenter'},
+      {label: 'TwinAbreastFunnels'},
+      {label: 'SternType'},
+      {label: 'SternTypeCode'},
+      {label: 'SternAFrame'},
+      {label: 'LengthBetweenPerpendiculars'},
+      {label: 'DoubleSides'},
+      {label: 'DoubleBottom'},
+      {label: 'DoubleHull'},
+    
+      {label: 'YearMonthBuilt'},
+      {label: 'CountryBuilt'},
+      {label: 'BuilderShipyard'},
+      {label: 'KeelLaidDate'},
+      {label: 'LaunchDate'},
+      {label: 'InserviceDate'},
+      {label: 'LaidUpDate'},
+      {label: 'InactiveDate'},
+    
+      {label: 'DisplacementFull'},
+      {label: 'DisplacementLight'},
+      {label: 'TpcmImmersion'},
+      {label: 'NumberOfHolds'},
+      {label: 'NumberOfCargoTanks'},
+      {label: 'NumberOfRamps'},
+      {label: 'RampLocation'},
+      {label: 'RampLocationCode'},
+      {label: 'MaximumLaneLength'},
+      {label: 'NumberOfPumps'},
+      {label: 'NumberOfLifts'},
+      {label: 'NumberOfHatches'},
+      {label: 'NumberOfHatchesAbreast'},
+      {label: 'LengthOfLargestHatch'},
+      {label: 'WidthOfLargestHatch'},
+      {label: 'WaterWashDownFittings'},
+      {label: 'SelfSustaining'},
+      {label: 'AircraftFacilitiesType'},
+      {label: 'AircraftFacilitiesTypeCode'},
+      {label: 'DaysToProvision'},
+      {label: 'HatchesSameSize'},
+      {label: 'CapacityPlan'},
+      {label: 'NaturalGasTanks'},
+      {label: 'GeneralArrangementPlan'},
+      {label: 'NaturalGasDomes'},
+      {label: 'DeadweightScale'},
+      {label: 'RampLength'},
+    
+      {label: 'MaximumLiftCapacity'},
+      {label: 'CargoCapacityDwt'},
+      {label: 'UnfueledRange'},
+      {label: 'CrewSize'},
+      {label: 'PassengerBerths'},
+      {label: 'GrainCapacity'},
+      {label: 'BaleCapacity'},
+      {label: 'ContainerCapacityTeu'},
+      {label: 'NumberOfContainers'},
+      {label: 'RampCapacity'},
+      {label: 'CumulativeLiquidCapacity'},
+      {label: 'GasCapacity'},
+      {label: 'RefrigeratedCapacity'},
+      {label: 'PumpRate'},
+      {label: 'NumberOfAutos'},
+      {label: 'DeckSpace'},
+      {label: 'DieselFuelCapacity'},
+      {label: 'OilCapacity'},
+    
+      {label: 'SailedAsType'},
+      {label: 'SailedAsValue'},
+      {label: 'SailedAsDate'},
+      {label: 'Text'},
+      {label: 'TextSequence'},
+    
+      {label: 'PhoneNumber'},
+      {label: 'ImsiNumber'},
+      {label: 'ImeiNumber'},
+      {label: 'PhoneBrand'},
+      {label: 'PhoneModel'},
+      {label: 'PhoneType'},
+      {label: 'SimSerialNumber'},
+      {label: 'SimManufacturer'},
+      {label: 'LocationFound'},
     ];
     this.Imo = init.STRING;
     this.Mmsi = init.STRING;
@@ -254,7 +445,7 @@ export class VesselModel {
     this.Iir = init.STRING;
     this.source = init.STRING;
     this.updateId = init.STRING;
-    this.UpdateTimstamp = init.NUMBER;
+    this.UpdateTimestamp = init.NUMBER;
     this.ProcessState = init.STRING;
     this.AnalystLock = init.STRING;
     this.AnalystLockTimestamp = init.NUMBER;
@@ -310,6 +501,95 @@ export class VesselModel {
     this.SuperstructureLocationCode = init.STRING;
     this.NumberSuperstructures = init.STRING;
 
+    this.SuperStructureOffCenter = init.STRING;
+    this.SatelliteAntenna = init.STRING;
+    this.BridgeWings = init.STRING;
+    this.DroppedPoop = init.STRING;
+    this.RaisedForecastle = init.STRING;
+    this.FunnelLocation = init.STRING;
+    this.FunnelLocationCode = init.STRING;
+    this.FunnelOffCenter = init.STRING;
+    this.TwinAbreastFunnels = init.STRING;
+    this.SternType = init.STRING;
+    this.SternTypeCode = init.STRING;
+    this.SternAFrame = init.STRING;
+    this.LengthBetweenPerpendiculars = init.STRING;
+    this.DoubleSides = init.STRING;
+    this.DoubleBottom = init.STRING;
+    this.DoubleHull = init.STRING;
+  
+    this.YearMonthBuilt = init.NUMBER;
+    this.CountryBuilt = init.STRING;
+    this.BuilderShipyard = init.STRING;
+    this.KeelLaidDate = init.DATE;
+    this.LaunchDate = init.DATE;
+    this.InserviceDate = init.DATE;
+    this.LaidUpDate = init.DATE;
+    this.InactiveDate = init.DATE;
+  
+    this.DisplacementFull = init.NUMBER;
+    this.DisplacementLight = init.NUMBER;
+    this.TpcmImmersion = init.NUMBER;
+    this.NumberOfHolds = init.NUMBER;
+    this.NumberOfCargoTanks = init.NUMBER;
+    this.NumberOfRamps = init.NUMBER;
+    this.RampLocation = init.STRING;
+    this.RampLocationCode = init.STRING;
+    this.MaximumLaneLength = init.NUMBER;
+    this.NumberOfPumps = init.NUMBER;
+    this.NumberOfLifts = init.NUMBER;
+    this.NumberOfHatches = init.NUMBER;
+    this.NumberOfHatchesAbreast = init.NUMBER;
+    this.LengthOfLargestHatch = init.NUMBER;
+    this.WidthOfLargestHatch = init.NUMBER;
+    this.WaterWashDownFittings = init.STRING;
+    this.SelfSustaining = init.STRING;
+    this.AircraftFacilitiesType = init.STRING;
+    this.AircraftFacilitiesTypeCode = init.STRING;
+    this.DaysToProvision = init.NUMBER;
+    this.HatchesSameSize = init.STRING;
+    this.CapacityPlan = init.NUMBER;
+    this.NaturalGasTanks = init.NUMBER;
+    this.GeneralArrangementPlan = init.STRING;
+    this.NaturalGasDomes = init.NUMBER;
+    this.DeadweightScale = init.STRING;
+    this.RampLength = init.NUMBER;
+  
+    this.MaximumLiftCapacity = init.NUMBER;
+    this.CargoCapacityDwt = init.NUMBER;
+    this.UnfueledRange = init.NUMBER;
+    this.CrewSize = init.NUMBER;
+    this.PassengerBerths = init.NUMBER;
+    this.GrainCapacity = init.NUMBER;
+    this.BaleCapacity = init.NUMBER;
+    this.ContainerCapacityTeu = init.NUMBER;
+    this.NumberOfContainers = init.NUMBER;
+    this.RampCapacity = init.NUMBER;
+    this.CumulativeLiquidCapacity = init.NUMBER;
+    this.GasCapacity = init.NUMBER;
+    this.RefrigeratedCapacity = init.NUMBER;
+    this.NumberOfAutos = init.NUMBER;
+    this.DieselFuelCapacity = init.NUMBER;
+    this.OilCapacity = init.NUMBER;
+  
+    this.DeckSpace = init.NUMBER;
+    this.PumpRate = init.NUMBER;
+    this.SailedAsType = init.STRING;
+    this.SailedAsValue = init.STRING;
+    this.SailedAsDate = init.DATE;
+    this.Text = init.STRING;
+    this.TextSequence = init.STRING;
+  
+    this.PhoneNumber = init.STRING;
+    this.ImsiNumber = init.STRING;
+    this.ImeiNumber = init.STRING;
+    this.PhoneBrand = init.STRING;
+    this.PhoneModel = init.STRING;
+    this.PhoneType = init.STRING;
+    this.SimSerialNumber = init.STRING;
+    this.SimManufacturer = init.STRING;
+    this.LocationFound = init.STRING;
+
     this.labels = this.formLabels;
   }
 }
@@ -342,7 +622,7 @@ export class VesselModel {
   
 //     constructor()
 //     {
-//       this.formLabels = [
+//      {label: ' this.formLabels = [
 //         {label: 'securityLabel'},
 //         {label: 'aspect'},
 //         {label: 'imageSource'},

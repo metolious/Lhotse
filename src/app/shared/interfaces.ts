@@ -91,5 +91,6 @@ export const request = {
 
 export const init = {
   STRING: '',
-  NUMBER: null
+  NUMBER: null,
+  DATE: null,
 }

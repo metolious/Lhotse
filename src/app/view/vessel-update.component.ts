@@ -112,7 +112,6 @@ export class VesselUpdateComponent implements OnInit {
   onSubmit(event) {
 
     for (var i = 0; i < this.model.labels.length; i++) {
-      var value = this.model[this.model.labels[i].label];
       if ( typeof this.model[this.model.labels[i].label] === 'string' || 
            this.model[this.model.labels[i].label] instanceof String) 
       {
