@@ -72,6 +72,83 @@
             </p-accordion>
 
             <p-accordion>
+                <p-accordionTab header="Vessel Identifiers">
+                    <div class="p-fluid">
+                        <div class="p-field">
+                            <label for="p-field">Sconum</label>
+                            <input [(ngModel)]="model.Sconum" id="Sconum" type="text" class="form-control" 
+                             #Sconum="ngModel" name="Sconum" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Disposition Sconum</label>
+                            <input [(ngModel)]="model.DispositionSconum" id="DispositionSconum" type="text" class="form-control" 
+                             #DispositionSconum="ngModel" name="DispositionSconum" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Update Id</label>
+                            <input [(ngModel)]="model.updateId" id="updateId" type="text" class="form-control" 
+                             #updateId="ngModel" name="updateId" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">ProcessState</label>
+                            <input [(ngModel)]="model.ProcessState" id="ProcessState" type="text" class="form-control" 
+                             #ProcessState="ngModel" name="ProcessState" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Identifier</label>
+                            <input [(ngModel)]="model.Identifier" id="Identifier" type="text" class="form-control" 
+                             #Identifier="ngModel" name="Identifier" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">IIR Number</label>
+                            <input [(ngModel)]="model.Iir" id="Iir" type="text" class="form-control" 
+                             #Iir="ngModel" name="Iir" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">TypeGroup</label>
+                            <input [(ngModel)]="model.TypeGroup" id="TypeGroup" type="text" class="form-control" 
+                             #TypeGroup="ngModel" name="TypeGroup" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Declassification</label>
+                            <input [(ngModel)]="model.Declassification" id="Declassification" type="text" class="form-control" 
+                             #Declassification="ngModel" name="Declassification" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">OpsDesignation</label>
+                            <input [(ngModel)]="model.OpsDesignation" id="OpsDesignation" type="text" class="form-control" 
+                             #OpsDesignation="ngModel" name="OpsDesignation" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Security Label</label>
+                            <input [(ngModel)]="model.SecurityLabel" id="SecurityLabel" type="text" class="form-control" 
+                             #SecurityLabel="ngModel" name="SecurityLabel" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Official Registry Number</label>
+                            <input [(ngModel)]="model.OfficialRegistryNumber" id="OfficialRegistryNumber" type="text" class="form-control" 
+                             #OfficialRegistryNumber="ngModel" name="OfficialRegistryNumber" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Zed Registry Number</label>
+                            <input [(ngModel)]="model.ZedRegistryNumber" id="ZedRegistryNumber" type="text" class="form-control" 
+                             #ZedRegistryNumber="ngModel" name="ZedRegistryNumber" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Active Indicator</label>
+                            <input [(ngModel)]="model.ActiveIndicator" id="ActiveIndicator" type="text" class="form-control" 
+                             #ActiveIndicator="ngModel" name="ActiveIndicator" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Active Indicator Code</label>
+                            <input [(ngModel)]="model.ActiveIndicatorCode" id="ActiveIndicatorCode" type="text" class="form-control" 
+                             #ActiveIndicatorCode="ngModel" name="ActiveIndicatorCode" pInputText> 
+                        </div>
+                    </div>
+                </p-accordionTab><br>
+            </p-accordion>
+
+            <p-accordion>
                 <p-accordionTab header="Vessel Description">
                     <div class="p-fluid">
                         <div class="p-field">
@@ -201,174 +278,376 @@
             </p-accordion>
 
             <p-accordion>
-            <p-accordionTab header="Image Identifiers">
-                <div class="p-fluid">
-
-                    <div class="p-field">
-                        <label for="p-field">Sconum</label>
-                    <p-chips class="form-control" styleClass="pChipsStyleClass" [(ngModel)]="model.sconums" #sconums="ngModel" 
-                            name="sconums" placeholder="&nbsp;"></p-chips>
-                    </div>
-                    <div class="p-field">
-                        <label for="aspect">Amidships Id</label>
-                    <p-chips class="form-control" styleClass="pChipsStyleClass" [(ngModel)]="model.amidshipsId" #amidshipsId="ngModel" 
-                            name="amidshipsId" placeholder="&nbsp;"></p-chips>
-                    </div>                        
-                    <div class="p-field">
-                        <label for="aspect">IIR Number</label>
-                    <p-chips class="form-control" styleClass="pChipsStyleClass" [(ngModel)]="model.iirNumbers" #iirNumbers="ngModel" 
-                            name="iirNumbers" placeholder="&nbsp;"></p-chips>
-                    </div>
-                    <div class="p-field">
-                        <label for="iSource">Other Source</label>
-                    <p-chips class="form-control" styleClass="pChipsStyleClass" [(ngModel)]="model.otherSources" #otherSources="ngModel" 
-                            name="otherSources" placeholder="&nbsp;"></p-chips>
-                    </div><br>
-                    <!-- <div class="p-fluid">
-                        <div class="p-field p-grid">
-                            <label for="firstname4" class="p-col-12 p-mb-2 p-md-10 p-mb-md-0">Images To Approve</label>
-                            <div class="p-col-12 p-md-2">
-                                <p-checkbox class="form-control" name="valCheck" [(ngModel)]="model.valCheck" #valCheck="ngModel"></p-checkbox>
-                            </div>
+                <p-accordionTab header="Funnel Parameters">
+                    <div class="p-fluid">
+                        <div class="p-field">
+                            <label for="p-field">Funnel Color</label>
+                            <input [(ngModel)]="model.FunnelColor" id="FunnelColor" type="text" class="form-control" 
+                             #FunnelColor="ngModel" name="FunnelColor" pInputText> 
                         </div>
-                    </div> -->
+                        <div class="p-field">
+                            <label for="p-field">Funnel Location</label>
+                            <input [(ngModel)]="model.FunnelLocation" id="FunnelLocation" type="text" class="form-control" 
+                             #FunnelLocation="ngModel" name="FunnelLocation" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Funnel OffCenter</label>
+                            <input [(ngModel)]="model.FunnelOffCenter" id="FunnelOffCenter" type="text" class="form-control" 
+                             #FunnelOffCenter="ngModel" name="FunnelOffCenter" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Twin Abreast Funnels</label>
+                            <input [(ngModel)]="model.TwinAbreastFunnels" id="TwinAbreastFunnels" type="text" class="form-control" 
+                             #TwinAbreastFunnels="ngModel" name="TwinAbreastFunnels" pInputText> 
+                        </div>
+                    </div>
+                </p-accordionTab><br>
+            </p-accordion>
+
+        <p-accordion>
+            <p-accordionTab header="Ship Features">
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="p-field">Satellite Antenna</label>
+                        <input [(ngModel)]="model.SatelliteAntenna" id="SatelliteAntenna" type="text" class="form-control" 
+                         #SatelliteAntenna="ngModel" name="SatelliteAntenna" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Bridge Wings</label>
+                        <input [(ngModel)]="model.BridgeWings" id="BridgeWings" type="text" class="form-control" 
+                         #BridgeWings="ngModel" name="BridgeWings" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Dropped Poop</label>
+                        <input [(ngModel)]="model.DroppedPoop" id="DroppedPoop" type="text" class="form-control" 
+                         #DroppedPoop="ngModel" name="DroppedPoop" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Raised Forecastle</label>
+                        <input [(ngModel)]="model.RaisedForecastle" id="RaisedForecastle" type="text" class="form-control" 
+                         #RaisedForecastle="ngModel" name="RaisedForecastle" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Tpcm Immersion</label>
+                        <input [(ngModel)]="model.TpcmImmersion" id="TpcmImmersion" type="text" class="form-control" 
+                         #TpcmImmersion="ngModel" name="TpcmImmersion" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Water Wash Down Fittings</label>
+                        <input [(ngModel)]="model.WaterWashDownFittings" id="WaterWashDownFittings" type="text" class="form-control" 
+                         #WaterWashDownFittings="ngModel" name="WaterWashDownFittings" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Self Sustaining</label>
+                        <input [(ngModel)]="model.SelfSustaining" id="SelfSustaining" type="text" class="form-control" 
+                         #SelfSustaining="ngModel" name="SelfSustaining" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Aircraft Facilities Type</label>
+                        <input [(ngModel)]="model.AircraftFacilitiesType" id="AircraftFacilitiesType" type="text" class="form-control" 
+                         #AircraftFacilitiesType="ngModel" name="AircraftFacilitiesType" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Aircraft Facilities Type Code</label>
+                        <input [(ngModel)]="model.AircraftFacilitiesTypeCode" id="AircraftFacilitiesTypeCode" type="text" class="form-control" 
+                         #AircraftFacilitiesTypeCode="ngModel" name="AircraftFacilitiesTypeCode" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Disposition</label>
+                        <input [(ngModel)]="model.Disposition" id="Disposition" type="text" class="form-control" 
+                         #Disposition="ngModel" name="Disposition" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Analyst Lock</label>
+                        <input [(ngModel)]="model.AnalystLock" id="AnalystLock" type="text" class="form-control" 
+                         #AnalystLock="ngModel" name="AnalystLock" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Rejection Reason</label>
+                        <input [(ngModel)]="model.RejectionReason" id="RejectionReason" type="text" class="form-control" 
+                         #RejectionReason="ngModel" name="RejectionReason" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Naval Pennant</label>
+                        <input [(ngModel)]="model.NavalPennant" id="NavalPennant" type="text" class="form-control" 
+                         #NavalPennant="ngModel" name="NavalPennant" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Control Set</label>
+                        <input [(ngModel)]="model.ControlSet" id="ControlSet" type="text" class="form-control" 
+                         #ControlSet="ngModel" name="ControlSet" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Trawler Type</label>
+                        <input [(ngModel)]="model.TrawlerTypeCode" id="TrawlerTypeCode" type="text" class="form-control" 
+                         #TrawlerTypeCode="ngModel" name="TrawlerTypeCode" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Merchant Pendant</label>
+                        <input [(ngModel)]="model.MerchantPendant" id="MerchantPendant" type="text" class="form-control" 
+                         #MerchantPendant="ngModel" name="MerchantPendant" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">General Arrangement Plan</label>
+                        <input [(ngModel)]="model.GeneralArrangementPlan" id="GeneralArrangementPlan" type="text" class="form-control" 
+                         #GeneralArrangementPlan="ngModel" name="GeneralArrangementPlan" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Crew Size</label>
+                        <input [(ngModel)]="model.CrewSize" id="CrewSize" type="text" class="form-control" 
+                         #CrewSize="ngModel" name="CrewSize" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Passenger Berths</label>
+                        <input [(ngModel)]="model.PassengerBerths" id="PassengerBerths" type="text" class="form-control" 
+                         #PassengerBerths="ngModel" name="PassengerBerths" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Sailed As Type</label>
+                        <input [(ngModel)]="model.SailedAsType" id="SailedAsType" type="text" class="form-control" 
+                         #SailedAsType="ngModel" name="SailedAsType" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Sailed As Value</label>
+                        <input [(ngModel)]="model.SailedAsValue" id="SailedAsValue" type="text" class="form-control" 
+                         #SailedAsValue="ngModel" name="SailedAsValue" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Text</label>
+                        <input [(ngModel)]="model.Text" id="Text" type="text" class="form-control" 
+                         #Text="ngModel" name="Text" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Text Sequence</label>
+                        <input [(ngModel)]="model.TextSequence" id="TextSequence" type="TextSequence" class="form-control" 
+                         #TextSequence="ngModel" name="TextSequence" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Hatches Same Size</label>
+                        <input [(ngModel)]="model.HatchesSameSize" id="HatchesSameSize" type="HatchesSameSize" class="form-control" 
+                         #HatchesSameSize="ngModel" name="HatchesSameSize" pInputText> 
+                    </div>
                 </div>
             </p-accordionTab><br>
         </p-accordion>
-        <p-accordion>
-            <p-accordionTab header="Primary Image Distribution">
-                <div class="p-fluid">
-                    <div class="p-field p-grid">
-                        <label for="firstname4" class="p-col-12 p-mb-2 p-md-4 p-mb-md-0">Primary Image:</label>
-                        <div class="p-col-12 p-md-8">
-                                <p-selectButton class="form-control" [options]="imageOptions" [(ngModel)]="model.primeImage" 
-                                #primeImage="ngModel" name="primeImage" optionLabel="name"></p-selectButton>
-                        </div>
-                    </div>
-                </div>
 
+        <p-accordion>
+            <p-accordionTab header="Super Structure">
                 <div class="p-fluid">
-                    <div class="p-field p-grid">
-                        <label for="firstname4" class="p-col-12 p-mb-2 p-md-4 p-mb-md-0">Distribution:</label>
-                        <div class="p-col-12 p-md-8">
-                                <p-selectButton class="form-control" [options]="imageOptions" [(ngModel)]="model.distribution" 
-                                #distribution="ngModel" name="distribution" optionLabel="name"></p-selectButton>
-                        </div>
+                    <div class="p-field">
+                        <label for="p-field">Super Structure Color</label>
+                        <input [(ngModel)]="model.SuperStructureColor" id="SuperStructureColor" type="text" class="form-control" 
+                         #SuperStructureColor="ngModel" name="SuperStructureColor" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Superstructure Location Code</label>
+                        <input [(ngModel)]="model.SuperstructureLocationCode" id="SuperstructureLocationCode" type="text" class="form-control" 
+                         #SuperstructureLocationCode="ngModel" name="SuperstructureLocationCode" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">SuperStructure Off Center</label>
+                        <input [(ngModel)]="model.SuperStructureOffCenter" id="SuperStructureOffCenter" type="text" class="form-control" 
+                         #SuperStructureOffCenter="ngModel" name="SuperStructureOffCenter" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">SuperStructure Location</label>
+                        <input [(ngModel)]="model.SuperStructureLocation" id="SuperStructureLocation" type="text" class="form-control" 
+                         #SuperStructureLocation="ngModel" name="SuperStructureLocation" pInputText> 
                     </div>
                 </div>
             </p-accordionTab><br>
-            </p-accordion>
+        </p-accordion>
+
         </div>
     </div>
+
+<!-- <p>============================================ Right Grid Column ===========================================</p> -->
+<!-- <p>============================================ Right Grid Column ===========================================</p> -->
+
     <div class="p-col-12 p-md-6">
         <div class="card">
+
             <p-accordion>
-                <p-accordionTab header="Vessel Engine Parameters" [selected]="true">
+                <p-accordionTab header="Stern Features" [selected]="true">
                     <div class="p-fluid">
                         <div class="p-field">
-                            <label for="p-field">Speed</label>
-                            <input [(ngModel)]="model.Speed" id="Speed" type="text" class="form-control" 
-                             #Speed="ngModel" name="Speed" pInputText> 
+                            <label for="p-field">Stern Type</label>
+                            <input [(ngModel)]="model.SternType" id="SternType" type="text" class="form-control" 
+                             #SternType="ngModel" name="SternType" pInputText> 
                         </div>
                         <div class="p-field">
-                            <label for="p-field">Engine Name</label>
-                            <input [(ngModel)]="model.EngineName" id="EngineName" type="text" class="form-control" 
-                             #EngineName="ngModel" name="EngineName" pInputText> 
+                            <label for="p-field">Stern Type Code</label>
+                            <input [(ngModel)]="model.SternTypeCode" id="SternTypeCode" type="text" class="form-control" 
+                             #SternTypeCode="ngModel" name="SternTypeCode" pInputText> 
                         </div>
                         <div class="p-field">
-                            <label for="p-field">Engine Model</label>
-                            <input [(ngModel)]="model.EngineModel" id="EngineModel" type="text" class="form-control" 
-                             #EngineModel="ngModel" name="EngineModel" pInputText> 
+                            <label for="p-field">Stern AFrame</label>
+                            <input [(ngModel)]="model.SternAFrame" id="SternAFrame" type="text" class="form-control" 
+                             #SternAFrame="ngModel" name="SternAFrame" pInputText> 
                         </div>
                         <div class="p-field">
-                            <label for="p-field">Engine Serial Number</label>
-                            <input [(ngModel)]="model.EngineSerialNumber" id="EngineSerialNumber" type="text" class="form-control" 
-                             #EngineSerialNumber="ngModel" name="EngineSerialNumber" pInputText> 
+                            <label for="p-field">Double Sides</label>
+                            <input [(ngModel)]="model.DoubleSides" id="DoubleSides" type="text" class="form-control" 
+                             #DoubleSides="ngModel" name="DoubleSides" pInputText> 
                         </div>
                         <div class="p-field">
-                            <label for="p-field">Fuel Consumption Rate</label>
-                            <input [(ngModel)]="model.FuelConsumptionRate" id="FuelConsumptionRate" type="text" class="form-control" 
-                             #FuelConsumptionRate="ngModel" name="FuelConsumptionRate" pInputText> 
+                            <label for="p-field">Double Bottom</label>
+                            <input [(ngModel)]="model.DoubleBottom" id="DoubleBottom" type="text" class="form-control" 
+                             #DoubleBottom="ngModel" name="DoubleBottom" pInputText> 
+                        </div>
+                    </div>
+                </p-accordionTab><br>
+        </p-accordion>
+
+        <p-accordion>
+            <p-accordionTab header="Vessel Engine Parameters">
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="p-field">Speed</label>
+                        <input [(ngModel)]="model.Speed" id="Speed" type="text" class="form-control" 
+                         #Speed="ngModel" name="Speed" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Engine Name</label>
+                        <input [(ngModel)]="model.EngineName" id="EngineName" type="text" class="form-control" 
+                         #EngineName="ngModel" name="EngineName" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Engine Model</label>
+                        <input [(ngModel)]="model.EngineModel" id="EngineModel" type="text" class="form-control" 
+                         #EngineModel="ngModel" name="EngineModel" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Engine Serial Number</label>
+                        <input [(ngModel)]="model.EngineSerialNumber" id="EngineSerialNumber" type="text" class="form-control" 
+                         #EngineSerialNumber="ngModel" name="EngineSerialNumber" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Fuel Consumption Rate</label>
+                        <input [(ngModel)]="model.FuelConsumptionRate" id="FuelConsumptionRate" type="text" class="form-control" 
+                         #FuelConsumptionRate="ngModel" name="FuelConsumptionRate" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Engine Type</label>
+                        <input [(ngModel)]="model.EngineType" id="EngineType" type="text" class="form-control" 
+                         #EngineType="ngModel" name="EngineType" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Engine Type Code</label>
+                        <input [(ngModel)]="model.EngineTypeCode" id="EngineTypeCode" type="text" class="form-control" 
+                         #EngineTypeCode="ngModel" name="EngineTypeCode" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Engine Cylinders</label>
+                        <input [(ngModel)]="model.EngineCylinders" id="EngineCylinders" type="text" class="form-control" 
+                         #EngineCylinders="ngModel" name="EngineCylinders" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Number Of Engines</label>
+                        <input [(ngModel)]="model.NumberOfEngines" id="NumberOfEngines" type="text" class="form-control" 
+                         #NumberOfEngines="ngModel" name="NumberOfEngines" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Propellor Horsepower</label>
+                        <input [(ngModel)]="model.PropellorHorsePower" id="PropellorHorsePower" type="text" class="form-control" 
+                         #PropellorHorsePower="ngModel" name="PropellorHorsePower" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Shaft Rpm</label>
+                        <input [(ngModel)]="model.ShaftRpm" id="ShaftRpm" type="text" class="form-control" 
+                         #ShaftRpm="ngModel" name="ShaftRpm" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Screws Type</label>
+                        <input [(ngModel)]="model.ScrewsType" id="ScrewsType" type="text" class="form-control" 
+                         #ScrewsType="ngModel" name="ScrewsType" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Screws Type Code</label>
+                        <input [(ngModel)]="model.ScrewsTypeCode" id="ScrewsTypeCode" type="text" class="form-control" 
+                         #ScrewsTypeCode="ngModel" name="ScrewsTypeCode" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Number Of Screws</label>
+                        <input [(ngModel)]="model.NumberOfScrews" id="NumberOfScrews" type="text" class="form-control" 
+                         #NumberOfScrews="ngModel" name="NumberOfScrews" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Blades Per Screw</label>
+                        <input [(ngModel)]="model.BladesPerScrew" id="BladesPerScrew" type="text" class="form-control" 
+                         #BladesPerScrew="ngModel" name="BladesPerScrew" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Number Of Thrusters</label>
+                        <input [(ngModel)]="model.NumberOfThrusters" id="NumberOfThrusters" type="text" class="form-control" 
+                         #NumberOfThrusters="ngModel" name="NumberOfThrusters" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Generator Kilowatts</label>
+                        <input [(ngModel)]="model.GeneratorKilowatts" id="GeneratorKilowatts" type="text" class="form-control" 
+                         #GeneratorKilowatts="ngModel" name="GeneratorKilowatts" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Electrical Frequency</label>
+                        <input [(ngModel)]="model.ElectricalFrequency" id="ElectricalFrequency" type="text" class="form-control" 
+                         #ElectricalFrequency="ngModel" name="ElectricalFrequency" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Electrical Voltage</label>
+                        <input [(ngModel)]="model.ElectricalVoltage" id="ElectricalVoltage" type="text" class="form-control" 
+                         #ElectricalVoltage="ngModel" name="ElectricalVoltage" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Electrical Current Type</label>
+                        <input [(ngModel)]="model.ElectricalCurrentType" id="ElectricalCurrentType" type="text" class="form-control" 
+                         #ElectricalCurrentType="ngModel" name="ElectricalCurrentType" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Number Of Generators</label>
+                        <input [(ngModel)]="model.NumberOfGenerators" id="NumberOfGenerators" type="text" class="form-control" 
+                         #NumberOfGenerators="ngModel" name="NumberOfGenerators" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Equipment Code</label>
+                        <input [(ngModel)]="model.EquipmentCode" id="EquipmentCode" type="text" class="form-control" 
+                         #EquipmentCode="ngModel" name="EquipmentCode" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Natural Gas Domes</label>
+                        <input [(ngModel)]="model.NaturalGasDomes" id="NaturalGasDomes" type="text" class="form-control" 
+                         #NaturalGasDomes="ngModel" name="NaturalGasDomes" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Natural Gas Tanks</label>
+                        <input [(ngModel)]="model.NaturalGasTanks" id="NaturalGasTanks" type="text" class="form-control" 
+                         #NaturalGasTanks="ngModel" name="NaturalGasTanks" pInputText> 
+                    </div>
+                </div>
+            </p-accordionTab><br>
+        </p-accordion>
+
+            <p-accordion>
+                <p-accordionTab header="Primary Image">
+                    <div class="p-fluid">
+                        <div class="p-field">
+                            <label for="p-field">Primary Image Aspect</label>
+                            <input [(ngModel)]="model.PrimaryImageAspect" id="PrimaryImageAspect" type="text" class="form-control" 
+                             #PrimaryImageAspect="ngModel" name="PrimaryImageAspect" pInputText> 
                         </div>
                         <div class="p-field">
-                            <label for="p-field">Engine Type</label>
-                            <input [(ngModel)]="model.EngineType" id="EngineType" type="text" class="form-control" 
-                             #EngineType="ngModel" name="EngineType" pInputText> 
+                            <label for="p-field">Primary Image Guid</label>
+                            <input [(ngModel)]="model.PrimaryImageGuid" id="PrimaryImageGuid" type="text" class="form-control" 
+                             #PrimaryImageGuid="ngModel" name="PrimaryImageGuid" pInputText> 
                         </div>
                         <div class="p-field">
-                            <label for="p-field">Engine Type Code</label>
-                            <input [(ngModel)]="model.EngineTypeCode" id="EngineTypeCode" type="text" class="form-control" 
-                             #EngineTypeCode="ngModel" name="EngineTypeCode" pInputText> 
+                            <label for="p-field">Primary Image Url</label>
+                            <input [(ngModel)]="model.PrimaryImageUrl" id="PrimaryImageUrl" type="text" class="form-control" 
+                             #PrimaryImageUrl="ngModel" name="PrimaryImageUrl" pInputText> 
                         </div>
                         <div class="p-field">
-                            <label for="p-field">Engine Cylinders</label>
-                            <input [(ngModel)]="model.EngineCylinders" id="EngineCylinders" type="text" class="form-control" 
-                             #EngineCylinders="ngModel" name="EngineCylinders" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Number Of Engines</label>
-                            <input [(ngModel)]="model.NumberOfEngines" id="NumberOfEngines" type="text" class="form-control" 
-                             #NumberOfEngines="ngModel" name="NumberOfEngines" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Propellor Horsepower</label>
-                            <input [(ngModel)]="model.PropellorHorsePower" id="PropellorHorsePower" type="text" class="form-control" 
-                             #PropellorHorsePower="ngModel" name="PropellorHorsePower" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Shaft Rpm</label>
-                            <input [(ngModel)]="model.ShaftRpm" id="ShaftRpm" type="text" class="form-control" 
-                             #ShaftRpm="ngModel" name="ShaftRpm" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Screws Type</label>
-                            <input [(ngModel)]="model.ScrewsType" id="ScrewsType" type="text" class="form-control" 
-                             #ScrewsType="ngModel" name="ScrewsType" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Screws Type Code</label>
-                            <input [(ngModel)]="model.ScrewsTypeCode" id="ScrewsTypeCode" type="text" class="form-control" 
-                             #ScrewsTypeCode="ngModel" name="ScrewsTypeCode" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Number Of Screws</label>
-                            <input [(ngModel)]="model.NumberOfScrews" id="NumberOfScrews" type="text" class="form-control" 
-                             #NumberOfScrews="ngModel" name="NumberOfScrews" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Blades Per Screw</label>
-                            <input [(ngModel)]="model.BladesPerScrew" id="BladesPerScrew" type="text" class="form-control" 
-                             #BladesPerScrew="ngModel" name="BladesPerScrew" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Number Of Thrusters</label>
-                            <input [(ngModel)]="model.NumberOfThrusters" id="NumberOfThrusters" type="text" class="form-control" 
-                             #NumberOfThrusters="ngModel" name="NumberOfThrusters" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Generator Kilowatts</label>
-                            <input [(ngModel)]="model.GeneratorKilowatts" id="GeneratorKilowatts" type="text" class="form-control" 
-                             #GeneratorKilowatts="ngModel" name="GeneratorKilowatts" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Electrical Frequency</label>
-                            <input [(ngModel)]="model.ElectricalFrequency" id="ElectricalFrequency" type="text" class="form-control" 
-                             #ElectricalFrequency="ngModel" name="ElectricalFrequency" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Electrical Voltage</label>
-                            <input [(ngModel)]="model.ElectricalVoltage" id="ElectricalVoltage" type="text" class="form-control" 
-                             #ElectricalVoltage="ngModel" name="ElectricalVoltage" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Electrical Current Type</label>
-                            <input [(ngModel)]="model.ElectricalCurrentType" id="ElectricalCurrentType" type="text" class="form-control" 
-                             #ElectricalCurrentType="ngModel" name="ElectricalCurrentType" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Number Of Generators</label>
-                            <input [(ngModel)]="model.NumberOfGenerators" id="NumberOfGenerators" type="text" class="form-control" 
-                             #NumberOfGenerators="ngModel" name="NumberOfGenerators" pInputText> 
+                            <label for="p-field">Primary Image Classification</label>
+                            <input [(ngModel)]="model.PrimaryImageClassification" id="PrimaryImageClassification" type="text" class="form-control" 
+                             #PrimaryImageClassification="ngModel" name="PrimaryImageClassification" pInputText> 
                         </div>
                     </div>
                 </p-accordionTab><br>
@@ -472,6 +751,26 @@
                             <input [(ngModel)]="model.NumberOfHatchesAbreast" id="NumberOfHatchesAbreast" type="text" class="form-control" 
                                 #NumberOfHatchesAbreast="ngModel" name="NumberOfHatchesAbreast" pInputText> 
                         </div>
+                        <div class="p-field">
+                            <label for="p-field">Number Of Autos</label>
+                            <input [(ngModel)]="model.NumberOfAutos" id="NumberOfAutos" type="text" class="form-control" 
+                                #NumberOfAutos="ngModel" name="NumberOfAutos" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Pump Rate</label>
+                            <input [(ngModel)]="model.PumpRate" id="PumpRate" type="text" class="form-control" 
+                                #PumpRate="ngModel" name="PumpRate" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Unfueled Range</label>
+                            <input [(ngModel)]="model.UnfueledRange" id="UnfueledRange" type="text" class="form-control" 
+                                #UnfueledRange="ngModel" name="UnfueledRange" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Days To Provision</label>
+                            <input [(ngModel)]="model.DaysToProvision" id="DaysToProvision" type="text" class="form-control" 
+                                #DaysToProvision="ngModel" name="DaysToProvision" pInputText> 
+                        </div>
                     </div>
                 </p-accordionTab><br>
             </p-accordion>
@@ -528,6 +827,36 @@
                             <label for="p-field">Dead Weight Tons</label>
                             <input [(ngModel)]="model.DeadWeightTons" id="DeadWeightTons" type="text" class="form-control" 
                              #DeadWeightTons="ngModel" name="DeadWeightTons" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Displacement Full</label>
+                            <input [(ngModel)]="model.DisplacementFull" id="DisplacementFull" type="text" class="form-control" 
+                             #DisplacementFull="ngModel" name="DisplacementFull" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Displacement Light</label>
+                            <input [(ngModel)]="model.DisplacementLight" id="DisplacementLight" type="text" class="form-control" 
+                             #DisplacementLight="ngModel" name="DisplacementLight" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Deadweight Scale</label>
+                            <input [(ngModel)]="model.DeadweightScale" id="DeadweightScale" type="text" class="form-control" 
+                             #DeadweightScale="ngModel" name="DeadweightScale" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Ramp Location</label>
+                            <input [(ngModel)]="model.RampLocation" id="RampLocation" type="text" class="form-control" 
+                             #RampLocation="ngModel" name="RampLocation" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">DeckSpace</label>
+                            <input [(ngModel)]="model.DeckSpace" id="DeckSpace" type="text" class="form-control" 
+                             #DeckSpace="ngModel" name="DeckSpace" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Upright Sequence</label>
+                            <input [(ngModel)]="model.UprightSequence" id="UprightSequence" type="text" class="form-control" 
+                             #UprightSequence="ngModel" name="UprightSequence" pInputText> 
                         </div>
                     </div>
                 </p-accordionTab><br>
@@ -586,27 +915,62 @@
             </p-accordion>
 
             <p-accordion>
-                <p-accordionTab header="Primary Image">
+                <p-accordionTab header="Origin Location Information">
                     <div class="p-fluid">
                         <div class="p-field">
-                            <label for="p-field">Primary Image Aspect</label>
-                            <input [(ngModel)]="model.PrimaryImageAspect" id="PrimaryImageAspect" type="text" class="form-control" 
-                             #PrimaryImageAspect="ngModel" name="PrimaryImageAspect" pInputText> 
+                            <label for="p-field">Ship Manager Country</label>
+                            <input [(ngModel)]="model.ShipManagerCountry" id="ShipManagerCountry" type="text" class="form-control" 
+                             #ShipManagerCountry="ngModel" name="ShipManagerCountry" pInputText> 
                         </div>
                         <div class="p-field">
-                            <label for="p-field">Primary Image Guid</label>
-                            <input [(ngModel)]="model.PrimaryImageGuid" id="PrimaryImageGuid" type="text" class="form-control" 
-                             #PrimaryImageGuid="ngModel" name="PrimaryImageGuid" pInputText> 
+                            <label for="p-field">Ship Manager</label>
+                            <input [(ngModel)]="model.ShipManager" id="ShipManager" type="text" class="form-control" 
+                             #ShipManager="ngModel" name="ShipManager" pInputText> 
                         </div>
                         <div class="p-field">
-                            <label for="p-field">Primary Image Url</label>
-                            <input [(ngModel)]="model.PrimaryImageUrl" id="PrimaryImageUrl" type="text" class="form-control" 
-                             #PrimaryImageUrl="ngModel" name="PrimaryImageUrl" pInputText> 
+                            <label for="p-field">Registered Owner</label>
+                            <input [(ngModel)]="model.RegisteredOwner" id="RegisteredOwner" type="text" class="form-control" 
+                             #RegisteredOwner="ngModel" name="RegisteredOwner" pInputText> 
                         </div>
                         <div class="p-field">
-                            <label for="p-field">Primary Image Classification</label>
-                            <input [(ngModel)]="model.PrimaryImageClassification" id="PrimaryImageClassification" type="text" class="form-control" 
-                             #PrimaryImageClassification="ngModel" name="PrimaryImageClassification" pInputText> 
+                            <label for="p-field">Beneficial Owner</label>
+                            <input [(ngModel)]="model.BeneficialOwner" id="BeneficialOwner" type="text" class="form-control" 
+                             #BeneficialOwner="ngModel" name="BeneficialOwner" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Home Port</label>
+                            <input [(ngModel)]="model.HomePort" id="HomePort" type="text" class="form-control" 
+                             #HomePort="ngModel" name="HomePort" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Site Id</label>
+                            <input [(ngModel)]="model.CountryBuilt" id="CountryBuilt" type="text" class="form-control" 
+                             #CountryBuilt="ngModel" name="CountryBuilt" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Country Built</label>
+                            <input [(ngModel)]="model.CountryBuilt" id="CountryBuilt" type="text" class="form-control" 
+                             #CountryBuilt="ngModel" name="CountryBuilt" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Builder Shipyard</label>
+                            <input [(ngModel)]="model.BuilderShipyard" id="BuilderShipyard" type="text" class="form-control" 
+                             #BuilderShipyard="ngModel" name="BuilderShipyard" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Created By</label>
+                            <input [(ngModel)]="model.CreatedBy" id="CreatedBy" type="text" class="form-control" 
+                             #CreatedBy="ngModel" name="CreatedBy" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Modified By</label>
+                            <input [(ngModel)]="model.ModifiedBy" id="ModifiedBy" type="text" class="form-control" 
+                             #ModifiedBy="ngModel" name="ModifiedBy" pInputText> 
+                        </div>
+                        <div class="p-field">
+                            <label for="p-field">Source</label>
+                            <input [(ngModel)]="model.ModifiedBy" id="ModifiedBy" type="text" class="form-control" 
+                             #ModifiedBy="ngModel" name="ModifiedBy" pInputText> 
                         </div>
                     </div>
                 </p-accordionTab><br>
@@ -639,88 +1003,8 @@
                 </p-accordionTab><br>
             </p-accordion>
 
-            <p-accordion>
-                <p-accordionTab header="Lookup Sconums" >
-                    <div class="p-fluid">
-                        <div class="p-field">
-                            <label for="p-field">IMO</label>
-                        <p-chips class="form-control" styleClass="pChipsStyleClass" [(ngModel)]="model.imoNumber" #imoNumber="ngModel" 
-                        name="imoNumber" placeholder="&nbsp;"></p-chips>
-                        </div>
-                        <div class="p-field">
-                            <label for="aspect">MMSI</label>
-                        <p-chips class="form-control" styleClass="pChipsStyleClass" [(ngModel)]="model.mmsiNumber" #mmsiNumber="ngModel" 
-                        name="mmsiNumber" placeholder="&nbsp;"></p-chips>
-                        </div>
-                        <div class="p-field">
-                            <label for="iSource">Call Sign</label>
-                        <p-chips class="form-control" styleClass="pChipsStyleClass" [(ngModel)]="model.callSign" #callSign="ngModel" 
-                        name="callSign" placeholder="&nbsp;"></p-chips>
-                        </div>
-                        <div class="p-field">
-                            <label for="iSource">Vessel Name</label>
-                        <p-chips class="form-control" styleClass="pChipsStyleClass" [(ngModel)]="model.vesselName" #vesselName="ngModel" 
-                        name="vesselName" placeholder="&nbsp;"></p-chips>
-                        </div>
-                    </div>
-                </p-accordionTab><br>
-            </p-accordion>
-            <p-accordion>
-                <p-accordionTab header="Select Identifiers" >
-                    <div class="p-fluid">
-                        <div class="p-field">
-                            <label for="p-field">Last Modified By</label>
-                            <p-dropdown class="form-control" filter="true" styleClass="pMultiSelect" [(ngModel)]="model.modifiedBy" 
-                            #modifiedBy="ngModel" name="modifiedBy" placeholder="&nbsp;" [options]="users" [showClear]="true"></p-dropdown>
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Approved By</label>
-                            <p-dropdown class="form-control" filter="true" styleClass="pMultiSelect" [options]="users" [(ngModel)]="model.approvedBy" 
-                            #approvedBy="ngModel" name="approvedBy" placeholder="&nbsp;" [showClear]="true"></p-dropdown>
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Uploaded By</label>
-                            <p-dropdown class="form-control" filter="true" styleClass="pMultiSelect" [options]="users" [(ngModel)]="model.uploadedBy" 
-                            #uploadedBy="ngModel" name="uploadedBy" placeholder="&nbsp;" [showClear]="true"></p-dropdown>
-                        </div>
-                    </div>
-                </p-accordionTab><br>
-            </p-accordion>     
-            <p-accordion>
-                <p-accordionTab header="Date Ranges">
-                    <div class="p-fluid">
-                        <div class="p-field">
-                            <label for="p-field">Select Upload Date</label>
-                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Select Enclosure Date</label>
-                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Last Modified Date</label>
-                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Approver Date</label>
-                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Review Date</label>
-                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Image Date</label>
-                            <p-calendar [showIcon]="true" inputId="icon" placeholder="&nbsp;"></p-calendar>                         
-                        </div>
-                    </div>
-                </p-accordionTab><br>
-            </p-accordion>
-
         </div>
-
     </div>
-
 </div>
 
 <p-toolbar>

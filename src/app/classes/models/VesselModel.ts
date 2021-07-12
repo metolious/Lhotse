@@ -8,7 +8,6 @@ export class VesselModel {
   CallSign: string;
   Name: string;
   Flag: string;
-
   //header="Vessel Engine Parameters"
   Speed: number;
   EngineName: string;
@@ -31,7 +30,9 @@ export class VesselModel {
   ElectricalVoltage: number;
   ElectricalCurrentType: string;
   NumberOfGenerators: number;
-
+  EquipmentCode: string;
+  NaturalGasDomes: number;
+  NaturalGasTanks: number;
   //header="Vessel Description"
   UpdateVesselStatus: string;
   VesselFunctionType: string;
@@ -46,7 +47,6 @@ export class VesselModel {
   VesselTypeDesignator: string;
   VesselTypeDesignatorCode: string;
   VesselClass: string;
-
   //header="Dates"
   YearMonthBuilt: Date;
   KeelLaidDate: Date;
@@ -59,7 +59,6 @@ export class VesselModel {
   SailedAsDate: Date;
   CreatedDateTime: Date;
   ModifiedDateTime: Date;
-
   //header="Vessel Capacities"
   CapacityPlan: number;
   FuelCapacity: number;
@@ -82,7 +81,10 @@ export class VesselModel {
   NumberOfLifts: number;
   NumberOfHatches: number;
   NumberOfHatchesAbreast: number;
-
+  NumberOfAutos: number;
+  PumpRate: number;
+  UnfueledRange: number;
+  DaysToProvision: number;
   //header="Dimensional Parameters"
   MaximumLaneLength: number;
   OverallLengthMeters: number;
@@ -94,7 +96,13 @@ export class VesselModel {
   MaxDraftMeters: number;
   GrossTons: number;
   DeadWeightTons: number;
-
+  DisplacementFull: number;
+  DisplacementLight: number;
+  DeadweightScale: string;
+  RampLocation: string;
+  RampLocationCode: string;
+  DeckSpace: number;
+  UprightSequence: string;
   //header="Phone Information"
   PhoneNumber: string;
   ImsiNumber: string;
@@ -105,106 +113,87 @@ export class VesselModel {
   SimSerialNumber: string;
   SimManufacturer: string;
   LocationFound: string;
-  
   //header="Primary Image"
   PrimaryImageAspect: string;
   PrimaryImageGuid: string;
   PrimaryImageUrl: string;
   PrimaryImageClassification: string;
-
   //header="Hull Features"
   DoubleHull: string;
   HullType: string;
   HullNumber: string;
   HullColor: string;
-
-  Sconum: string;
-
-  TypeGroup: string;
-  Iir: string;
-  source: string;
-  updateId: string;
-  ProcessState: string;
-  AnalystLock: string;
-  Disposition: string;
-  DispositionSconum: string;
-  RejectionReason: string;
-  ActiveIndicator: string;
-  ActiveIndicatorCode: string;
-  HomePort: string;
-  
-  OpsDesignation: string;
-  EquipmentCode: string;
-  NavalPennant : string;
-  UprightSequence: string;
-  SuperStructureLocation: string;
-  Identifier: string;
-  CreatedBy: string;
-  ModifiedBy: string;
-  SecurityLabel: string;
-  ControlSet: string;
-  Declassification: string;
-  Site_ID: string;
-  ShipManager: string;
-  ShipManagerCountry: string;
-  RegisteredOwner: string;
-  BeneficialOwner: string;
-  
-  OfficialRegistryNumber: string;
-  ZedRegistryNumber: number;
-  TrawlerType: string;
-  TrawlerTypeCode: string;
-  MerchantPendant: string;
-  FunnelColor: string;
+  //header="Super Structure" 
   SuperStructureColor: string;
   SuperstructureLocationCode: string;
   NumberSuperstructures: string;
-
   SuperStructureOffCenter: string;
-  SatelliteAntenna: string;
-  BridgeWings: string;
-  DroppedPoop: string;
-  RaisedForecastle: string;
+  SuperStructureLocation: string;
+  //header="Funnel Parameters"
+  FunnelColor: string;
   FunnelLocation: string;
   FunnelLocationCode: string;
   FunnelOffCenter: string;
   TwinAbreastFunnels: string;
+  //header="Stern Features"
   SternType: string;
   SternTypeCode: string;
   SternAFrame: string;
   DoubleSides: string;
   DoubleBottom: string;
-  CountryBuilt: string;
-  BuilderShipyard: string;
-
-  RampLocation: string;
-  RampLocationCode: string;
-
-  DisplacementFull: number;
-  DisplacementLight: number;
+  //header="Vessel Identifiers"
+  Sconum: string;
+  DispositionSconum: string;
+  updateId: string;
+  ProcessState: string;
+  Identifier: string;
+  Iir: string;
+  TypeGroup: string;
+  Declassification: string;
+  OpsDesignation: string;
+  SecurityLabel: string;
+  OfficialRegistryNumber: string;
+  ZedRegistryNumber: number;
+  ActiveIndicator: string;
+  ActiveIndicatorCode: string;
+  //header="Ship Features"
+  SatelliteAntenna: string;
+  BridgeWings: string;
+  DroppedPoop: string;
+  RaisedForecastle: string;
   TpcmImmersion: number;
   WaterWashDownFittings: string;
   SelfSustaining: string;
   AircraftFacilitiesType: string;
   AircraftFacilitiesTypeCode: string;
-  DaysToProvision: number;
-  HatchesSameSize: string;
-  NaturalGasTanks: number;
+  Disposition: string;
+  AnalystLock: string;
+  RejectionReason: string;
+  NavalPennant : string;
+  ControlSet: string;
+  TrawlerType: string;
+  TrawlerTypeCode: string;
+  MerchantPendant: string;
   GeneralArrangementPlan: string;
-  NaturalGasDomes: number;
-  DeadweightScale: string;
-
-  UnfueledRange: number;
   CrewSize: number;
   PassengerBerths: number;
-  PumpRate: number;
-  NumberOfAutos: number;
-  DeckSpace: number;
-
   SailedAsType: string;
   SailedAsValue: string;
   Text: string;
   TextSequence: string;
+  HatchesSameSize: string;
+  //header="Origin Location Information" (new)
+  ShipManagerCountry: string;
+  ShipManager: string;
+  RegisteredOwner: string;
+  BeneficialOwner: string;
+  HomePort: string;
+  SiteId: string;
+  CountryBuilt: string;
+  BuilderShipyard: string;
+  CreatedBy: string;
+  ModifiedBy: string;
+  source: string;
 
   labels: IFormLabel[];
   formLabels: IFormLabel[];
@@ -295,7 +284,7 @@ export class VesselModel {
       {label: 'SecurityLabel'},
       {label: 'ControlSet'},
       {label: 'Declassification'},
-      {label: 'Site_ID'},
+      {label: 'SiteId'},
       {label: 'ShipManager'},
       {label: 'ShipManagerCountry'},
       {label: 'RegisteredOwner'},
@@ -484,7 +473,7 @@ export class VesselModel {
     this.SecurityLabel = init.STRING;
     this.ControlSet = init.STRING;
     this.Declassification = init.STRING;
-    this.Site_ID = init.STRING;
+    this.SiteId = init.STRING;
     this.ShipManager = init.STRING;
     this.ShipManagerCountry = init.STRING;
     this.RegisteredOwner = init.STRING;
