@@ -5,7 +5,7 @@
     </div>
 
     <div class="p-toolbar-group-right">
-        <button pButton type="button" label="Cancel" (click)="onCancel()" icon="pi pi-times"></button>
+        <!-- <button pButton type="button" label="Cancel" (click)="onCancel()" icon="pi pi-times"></button> -->
         <button pButton type="button" class="p-button-secondary" (click) = "onReset()" label="Reset&nbsp;&nbsp;" icon="pi pi-times-circle"></button>
         <button pButton type="button" class="p-button-success" (click)="onSubmit($event)" label="Submit" icon="pi pi-check"></button>
     </div>
@@ -17,13 +17,32 @@
     <div class="p-col-12 p-md-6">
         <div class="card">
             <p-accordion>
-                <p-accordionTab header="Candidate Matching Parameters" [selected]="true">
+                <p-accordionTab header="Key Parameters" [selected]="true">
                     <div class="p-fluid">
-                        <div class="p-field p-grid">
-                            <label for="firstname4" class="p-col-12 p-mb-2 p-md-10 p-mb-md-0">Search For Candidates</label>
-                            <div class="p-col-12 p-md-2">
-                                <p-checkbox class="form-control" name="valCheck" [(ngModel)]="model.valCheck" #valCheck="ngModel"></p-checkbox>
+
+                        <p-toolbar>
+                            <div class="p-toolbar-group-left">
+                                <span style="font-size: 100%;"><i>Search Records By Sconum</i></span>
+                            </div>  
+                        
+                            <div class="p-toolbar-group-right">
+                                <button pButton type="button" class="p-button-primary" (click)="onSearch()" label="Search" icon="pi pi-search"></button>
                             </div>
+                        </p-toolbar><br>
+
+                        <!-- <div class="p-grid">
+                            <div class="p-col-12 p-md-9">
+                                <label style="text-align: right;" for="firstname4" class="p-col-10 p-mb-2 p-md-10 p-mb-md-0"><b>Search For Record</b></label>
+                            </div>
+                            <div class="p-col-12 p-md-3">
+                                <button pButton type="button" class="p-button-primary" (click)="onSearch($event, model.Sconum)" label="Search" icon="pi pi-search"></button>
+                            </div>
+                        </div> -->
+                        
+                        <div class="p-field">
+                            <label for="p-field">Sconum</label>
+                            <input [(ngModel)]="model.sconum" id="sconum" type="text" class="form-control" 
+                             #sconum="ngModel" name="sconum" pInputText> 
                         </div>
                         <div class="p-field">
                             <label for="p-field">IMO</label>
@@ -72,13 +91,8 @@
             </p-accordion>
 
             <p-accordion>
-                <p-accordionTab header="Vessel Identifiers">
+                <p-accordionTab header="Vessel Identifiers" [selected]="true">
                     <div class="p-fluid">
-                        <div class="p-field">
-                            <label for="p-field">Sconum</label>
-                            <input [(ngModel)]="model.Sconum" id="Sconum" type="text" class="form-control" 
-                             #Sconum="ngModel" name="Sconum" pInputText> 
-                        </div>
                         <div class="p-field">
                             <label for="p-field">Disposition Sconum</label>
                             <input [(ngModel)]="model.DispositionSconum" id="DispositionSconum" type="text" class="form-control" 
@@ -149,7 +163,7 @@
             </p-accordion>
 
             <p-accordion>
-                <p-accordionTab header="Vessel Description">
+                <p-accordionTab header="Vessel Description" [selected]="true">
                     <div class="p-fluid">
                         <div class="p-field">
                             <label for="p-field">Update Vessel Status</label>
@@ -221,7 +235,7 @@
             </p-accordion>
 
             <p-accordion>
-                <p-accordionTab header="Key Date Fields">
+                <p-accordionTab header="Key Date Fields" [selected]="true">
                     <div class="p-fluid">
                         <div class="p-field">
                             <label for="p-field">Year Month Built</label>
@@ -255,8 +269,8 @@
                         </div>
                         <div class="p-field">
                             <label for="p-field">Update Timstamp</label>
-                            <p-calendar [(ngModel)]="model.UpdateTimstamp" [showIcon]="true" inputId="icon" id="UpdateTimstamp" 
-                            #UpdateTimstamp="ngModel" name="UpdateTimstamp" placeholder="&nbsp;"></p-calendar>                         
+                            <p-calendar [(ngModel)]="model.UpdateTimestamp" [showIcon]="true" inputId="icon" id="UpdateTimestamp" 
+                            #UpdateTimestamp="ngModel" name="UpdateTimestamp" placeholder="&nbsp;"></p-calendar>                         
                         </div>
                         <div class="p-field">
                             <label for="p-field">Analyst Lock Timestamp</label>
@@ -278,7 +292,7 @@
             </p-accordion>
 
             <p-accordion>
-                <p-accordionTab header="Funnel Parameters">
+                <p-accordionTab header="Funnel Parameters" [selected]="true">
                     <div class="p-fluid">
                         <div class="p-field">
                             <label for="p-field">Funnel Color</label>
@@ -305,7 +319,7 @@
             </p-accordion>
 
         <p-accordion>
-            <p-accordionTab header="Ship Features">
+            <p-accordionTab header="Ship Features" [selected]="true">
                 <div class="p-fluid">
                     <div class="p-field">
                         <label for="p-field">Satellite Antenna</label>
@@ -432,7 +446,7 @@
         </p-accordion>
 
         <p-accordion>
-            <p-accordionTab header="Super Structure">
+            <p-accordionTab header="Super Structure" [selected]="true">
                 <div class="p-fluid">
                     <div class="p-field">
                         <label for="p-field">Super Structure Color</label>
@@ -453,6 +467,60 @@
                         <label for="p-field">SuperStructure Location</label>
                         <input [(ngModel)]="model.SuperStructureLocation" id="SuperStructureLocation" type="text" class="form-control" 
                          #SuperStructureLocation="ngModel" name="SuperStructureLocation" pInputText> 
+                    </div>
+                </div>
+            </p-accordionTab><br>
+        </p-accordion>
+
+        <p-accordion>
+            <p-accordionTab header="Hull Features" [selected]="true">
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="p-field">Double Hull</label>
+                        <input [(ngModel)]="model.DoubleHull" id="DoubleHull" type="text" class="form-control" 
+                         #DoubleHull="ngModel" name="DoubleHull" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Hull Type</label>
+                        <input [(ngModel)]="model.HullType" id="HullType" type="text" class="form-control" 
+                         #HullType="ngModel" name="HullType" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Hull Number</label>
+                        <input [(ngModel)]="model.HullNumber" id="HullNumber" type="text" class="form-control" 
+                         #HullNumber="ngModel" name="HullNumber" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Hull Color</label>
+                        <input [(ngModel)]="model.HullColor" id="HullColor" type="text" class="form-control" 
+                         #HullColor="ngModel" name="HullColor" pInputText> 
+                    </div>
+                </div>
+            </p-accordionTab><br>
+        </p-accordion>
+
+        <p-accordion>
+            <p-accordionTab header="Primary Image" [selected]="true">
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="p-field">Primary Image Aspect</label>
+                        <input [(ngModel)]="model.PrimaryImageAspect" id="PrimaryImageAspect" type="text" class="form-control" 
+                         #PrimaryImageAspect="ngModel" name="PrimaryImageAspect" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Primary Image Guid</label>
+                        <input [(ngModel)]="model.PrimaryImageGuid" id="PrimaryImageGuid" type="text" class="form-control" 
+                         #PrimaryImageGuid="ngModel" name="PrimaryImageGuid" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Primary Image Url</label>
+                        <input [(ngModel)]="model.PrimaryImageUrl" id="PrimaryImageUrl" type="text" class="form-control" 
+                         #PrimaryImageUrl="ngModel" name="PrimaryImageUrl" pInputText> 
+                    </div>
+                    <div class="p-field">
+                        <label for="p-field">Primary Image Classification</label>
+                        <input [(ngModel)]="model.PrimaryImageClassification" id="PrimaryImageClassification" type="text" class="form-control" 
+                         #PrimaryImageClassification="ngModel" name="PrimaryImageClassification" pInputText> 
                     </div>
                 </div>
             </p-accordionTab><br>
@@ -500,7 +568,7 @@
         </p-accordion>
 
         <p-accordion>
-            <p-accordionTab header="Vessel Engine Parameters">
+            <p-accordionTab header="Vessel Engine Parameters" [selected]="true">
                 <div class="p-fluid">
                     <div class="p-field">
                         <label for="p-field">Speed</label>
@@ -627,34 +695,7 @@
         </p-accordion>
 
             <p-accordion>
-                <p-accordionTab header="Primary Image">
-                    <div class="p-fluid">
-                        <div class="p-field">
-                            <label for="p-field">Primary Image Aspect</label>
-                            <input [(ngModel)]="model.PrimaryImageAspect" id="PrimaryImageAspect" type="text" class="form-control" 
-                             #PrimaryImageAspect="ngModel" name="PrimaryImageAspect" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Primary Image Guid</label>
-                            <input [(ngModel)]="model.PrimaryImageGuid" id="PrimaryImageGuid" type="text" class="form-control" 
-                             #PrimaryImageGuid="ngModel" name="PrimaryImageGuid" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Primary Image Url</label>
-                            <input [(ngModel)]="model.PrimaryImageUrl" id="PrimaryImageUrl" type="text" class="form-control" 
-                             #PrimaryImageUrl="ngModel" name="PrimaryImageUrl" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Primary Image Classification</label>
-                            <input [(ngModel)]="model.PrimaryImageClassification" id="PrimaryImageClassification" type="text" class="form-control" 
-                             #PrimaryImageClassification="ngModel" name="PrimaryImageClassification" pInputText> 
-                        </div>
-                    </div>
-                </p-accordionTab><br>
-            </p-accordion>
-
-            <p-accordion>
-                <p-accordionTab header="Vessel Capacities">          
+                <p-accordionTab header="Vessel Capacities" [selected]="true">          
                     <div class="p-fluid">
                         <div class="p-field">
                             <label for="p-field">Number Of Generators</label>
@@ -776,7 +817,7 @@
             </p-accordion>
 
             <p-accordion>
-                <p-accordionTab header="Dimensional Parameters">
+                <p-accordionTab header="Dimensional Parameters" [selected]="true">
                     <div class="p-fluid">
                         <div class="p-field">
                             <label for="p-field">Maximum Lane Length</label>
@@ -863,7 +904,7 @@
             </p-accordion>
 
             <p-accordion>
-                <p-accordionTab header="Phone Information">
+                <p-accordionTab header="Phone Information" [selected]="true">
                     <div class="p-fluid">
                         <div class="p-field">
                             <label for="p-field">Phone Number</label>
@@ -915,7 +956,7 @@
             </p-accordion>
 
             <p-accordion>
-                <p-accordionTab header="Origin Location Information">
+                <p-accordionTab header="Origin Location Information" [selected]="true">
                     <div class="p-fluid">
                         <div class="p-field">
                             <label for="p-field">Ship Manager Country</label>
@@ -976,33 +1017,6 @@
                 </p-accordionTab><br>
             </p-accordion>
 
-            <p-accordion>
-                <p-accordionTab header="Hull Features">
-                    <div class="p-fluid">
-                        <div class="p-field">
-                            <label for="p-field">Double Hull</label>
-                            <input [(ngModel)]="model.DoubleHull" id="DoubleHull" type="text" class="form-control" 
-                             #DoubleHull="ngModel" name="DoubleHull" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Hull Type</label>
-                            <input [(ngModel)]="model.HullType" id="HullType" type="text" class="form-control" 
-                             #HullType="ngModel" name="HullType" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Hull Number</label>
-                            <input [(ngModel)]="model.HullNumber" id="HullNumber" type="text" class="form-control" 
-                             #HullNumber="ngModel" name="HullNumber" pInputText> 
-                        </div>
-                        <div class="p-field">
-                            <label for="p-field">Hull Color</label>
-                            <input [(ngModel)]="model.HullColor" id="HullColor" type="text" class="form-control" 
-                             #HullColor="ngModel" name="HullColor" pInputText> 
-                        </div>
-                    </div>
-                </p-accordionTab><br>
-            </p-accordion>
-
         </div>
     </div>
 </div>
@@ -1014,7 +1028,7 @@
     </div>
 
     <div class="p-toolbar-group-right">
-        <button pButton type="button" label="Cancel" (click)="onCancel()" icon="pi pi-times"></button>
+        <!-- <button pButton type="button" label="Cancel" (click)="onCancel()" icon="pi pi-times"></button> -->
         <button pButton type="button" class="p-button-secondary" (click) = "onReset()" label="Reset&nbsp;&nbsp;" icon="pi pi-times-circle"></button>
         <button pButton type="button" class="p-button-success" (click)="onSubmit($event)" label="Submit" icon="pi pi-check"></button>
     </div>

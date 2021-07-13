@@ -3,7 +3,7 @@ import { AppBreadcrumbService } from '../app.breadcrumb.service';
 import { VesselModel } from '../classes/models/VesselModel';
 import { FileService } from '../services/file.service';
 import { RouteService } from '../services/route.service';
-import { IAspect, IFormData, IFormLabel, IImageData, IImageSource, IRoute, ISecurityLabel, IUser, request } from '../shared/interfaces';
+import { IAspect, IFormData, IFormLabel, IImageData, IImageSource, IParams, IRoute, ISecurityLabel, IUser, request } from '../shared/interfaces';
 
 @Component({
   selector: 'app-vessel-update',
@@ -33,6 +33,7 @@ export class VesselUpdateComponent implements OnInit {
 // @ViewChild('vesselUpdate', {static: false}) vesselUpdate: any;
 
     vesselData: IFormData[] = [];
+    params: IParams[] = [];
     security_labels: ISecurityLabel[];
     aspects: IAspect[];
     image_sources: IImageSource[];
@@ -48,7 +49,8 @@ export class VesselUpdateComponent implements OnInit {
     routes: IRoute[] = [];
     activeRoute: IRoute = {};
     awsRoute: IRoute = {};
-    vesselUpdateRoute: IRoute = {};
+    localSconumRoute: IRoute = {};
+    param: string = "0000000";
 
   constructor(  private breadcrumbService: AppBreadcrumbService,
                 private routeService: RouteService,
@@ -67,35 +69,59 @@ export class VesselUpdateComponent implements OnInit {
     ]);
   }
 
-  getVesselUpdateRoute() {
+  populateComponent(data) {
 
-    for (let i = 0; i < this.routes.length; i++) {
-      if (this.routes[i].name == "MIE_Get_Vessel_Update") {
-        this.vesselUpdateRoute.name = this.routes[i].name;
-        this.vesselUpdateRoute.url = this.routes[i].url;
-        this.vesselUpdateRoute.endpoint = this.routes[i].endpoint;
-        this.vesselUpdateRoute.colon = this.routes[i].colon;
-        this.vesselUpdateRoute.port = this.routes[i].port;
-        this.vesselUpdateRoute.method = this.routes[i].method;
+    this.model = new VesselModel();
+
+    // console.log('vessel-update.populateComponent() : data = ' + data)
+
+    var dataObject = JSON.parse(data);
+
+    for (var i = 0; i < this.model.labels.length; i++) {
+      
+      var label = this.model.labels[i].label;
+
+      for (var prop in dataObject) {
+        // console.log("label = " + label);
+        // console.log("prop = " + prop);
+
+        if (label == prop) {
+          // console.log("Value = " + dataObject[prop]);
+
+          this.model[this.model.labels[i].label] = dataObject[prop];
+
+        }
       }
     }
-  }
 
-  getAwsRoute() {
+    for (var i = 0; i < this.model.labels.length; i++) {
+
+      // console.log('vessel-update.populateComponent() : label = ' + this.model.labels[i].label)
+      // console.log('vessel-update.populateComponent() : value = ' + this.model[this.model.labels[i].label])
+    }
+
+    }
+
+  getSconumRoute() {
+
+    this.params = [{sconum: this.model.sconum, Imo: "", Mmsi: "",CallSign: "", Name: "", Flag: ""}];
 
     for (let i = 0; i < this.routes.length; i++) {
-      if (this.routes[i].name == "AWS_Get_Data") {
-        this.awsRoute.name = this.routes[i].name;
-        this.awsRoute.url = this.routes[i].url;
-        this.awsRoute.endpoint = this.routes[i].endpoint;
-        this.awsRoute.colon = this.routes[i].colon;
-        this.awsRoute.port = this.routes[i].port;
-        this.awsRoute.method = this.routes[i].method;
+      if (this.routes[i].name == "Localhost_Get_Vessel_Update") {
+        this.localSconumRoute.name = this.routes[i].name;
+        this.localSconumRoute.url = this.routes[i].url;
+        this.localSconumRoute.endpoint = this.routes[i].endpoint;
+        this.localSconumRoute.colon = this.routes[i].colon;
+        this.localSconumRoute.port = this.routes[i].port;
+        this.localSconumRoute.method = this.routes[i].method;
+        this.localSconumRoute.params = this.params;
       }
     }
   }
 
   setActiveRoute() {
+
+    this.params = [{sconum: this.model.sconum, Imo: "", Mmsi: "",CallSign: "", Name: "", Flag: ""}];
 
     for (let i = 0; i < this.routes.length; i++) {
       if (this.routes[i].isActive == true) {
@@ -105,12 +131,32 @@ export class VesselUpdateComponent implements OnInit {
         this.activeRoute.colon = this.routes[i].colon;
         this.activeRoute.port = this.routes[i].port;
         this.activeRoute.method = this.routes[i].method;
+        this.activeRoute.params = this.params;
+
       }
     }
   }
 
-  onSubmit(event) {
+  onSearch() {
 
+    this.createVesselData();
+
+    this.getSconumRoute();
+
+    if (this.localSconumRoute.method == request.GET) {
+      this.fileService.getJsonData(this.localSconumRoute).subscribe(
+        data => { 
+                  // console.log('vessel-update.onSearch() : getJsonData() Successful!! : ' + data)
+                  this.populateComponent(data);
+                },
+        error => { console.log('vessel-update.onSearch() : getJsonData() Failed!! : ' + error.message) }
+      )
+    }
+
+    this.clearForm();
+  }
+
+  createVesselData() {
     for (var i = 0; i < this.model.labels.length; i++) {
       if ( typeof this.model[this.model.labels[i].label] === 'string' || 
            this.model[this.model.labels[i].label] instanceof String) 
@@ -119,6 +165,9 @@ export class VesselUpdateComponent implements OnInit {
       } else {
           // if not a string, convert to json, add to vesselData
       }
+      
+      // console.log('vessel-update.createVesselData() : label = ' + this.model.labels[i].label)
+      // console.log('vessel-update.createVesselData() : value = ' + this.model[this.model.labels[i].label])
 
       this.vesselData.push({ label: this.model.labels[i].label, 
                              value: this.model[this.model.labels[i].label]});
@@ -126,6 +175,11 @@ export class VesselUpdateComponent implements OnInit {
       // if (value != '') // break after first value 
       //   break;
     }
+  }
+
+  onSubmit(event) {
+
+    this.createVesselData();
 
     this.setActiveRoute();
 
@@ -165,26 +219,9 @@ export class VesselUpdateComponent implements OnInit {
   clearForm() {
     this.model = new VesselModel();
     this.vesselData = [];
-    // this.activeRoute = {};
   }
 
   onReset() {
-
-    this.getVesselUpdateRoute();
-
-    this.fileService.getJsonData(this.vesselUpdateRoute).subscribe(
-      data => { console.log('vessel-update.onReset() : getJsonData() Successful!! : ' + data)
-              },
-      error => { console.log('vessel-update.onReset() : getJsonData() Failed!! : ' + error.message) }
-    )
-    // this.fileService.getVesselData(this.amsVesselServiceRoute).subscribe(
-    //   data => {  console.log('vessel-update.component.onSubmit(): getVesselData() Successful!! ' + JSON.stringify(data));
-    //              this.redirectDialog = true;
-    //           },
-    //
-    //   error => { console.log('vessel-update.component.onSubmit(): getVesselData() Failed!! ' + error.message) }
-    // );
-
     this.clearForm();
   }
 

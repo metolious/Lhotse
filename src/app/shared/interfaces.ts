@@ -20,6 +20,16 @@ export interface IRoute {
   isActive?: boolean,
   endpoint?: string,
   method?: string,
+  params?: IParams[]
+}
+
+export interface IParams {
+  sconum: string;
+  Imo: string;
+  Mmsi: string;
+  CallSign: string;
+  Name: string;
+  Flag: string;
 }
 
 export interface IBoolean {

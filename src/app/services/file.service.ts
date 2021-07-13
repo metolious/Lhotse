@@ -44,7 +44,7 @@ export class FileService {
   //   })
   // } 
 
-  getJsonData(route): Observable<IFile[]> {
+    getJsonData(route): Observable<IFile[]> {
     let newHeaders = new HttpHeaders({
       'Connection': 'keep-alive',
       'Accept-Language': 'en-US,en;q=0.5',
@@ -63,7 +63,9 @@ export class FileService {
       method: 'GET',
       responseType: "text"
     });
-    const httpsRoute = route.url + route.colon + route.port + route.endpoint;
+    var sconum = "M00007"
+    const httpsRoute = route.url + route.colon + route.port + route.endpoint + sconum;
+    // const httpsRoute = route.url + route.colon + route.port + route.endpoint + route.params[0].sconum;
     console.log (`file.service.getJsonData() : httpsRoute = ${httpsRoute}`);
     return this.http.get<IFile[]>( httpsRoute, httpOptions );
   }

@@ -26,6 +26,7 @@ export class UploadImageComponent implements OnInit {
     image_sources: IImageSource[];
     redirectDialog: Boolean = false;
     httpPostData: FormData;
+    param: string;
   
     model: ImageModel;
     submitted = false;

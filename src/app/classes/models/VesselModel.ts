@@ -2,7 +2,8 @@ import { IFormLabel, init } from "src/app/shared/interfaces";
 
 export class VesselModel {
 
-  // header="Candidate Matching Parameters"
+  // header="Key Parameters"
+  sconum: string;
   Imo: string;
   Mmsi: string;
   CallSign: string;
@@ -48,17 +49,17 @@ export class VesselModel {
   VesselTypeDesignatorCode: string;
   VesselClass: string;
   //header="Dates"
-  YearMonthBuilt: Date;
-  KeelLaidDate: Date;
-  LaunchDate: Date;
-  InserviceDate: Date;
-  LaidUpDate: Date;
-  InactiveDate: Date;
-  UpdateTimestamp: Date;
-  AnalystLockTimestamp: Date;
-  SailedAsDate: Date;
-  CreatedDateTime: Date;
-  ModifiedDateTime: Date;
+  YearMonthBuilt: string;
+  KeelLaidDate: string;
+  LaunchDate: string;
+  InserviceDate: string;
+  LaidUpDate: string;
+  InactiveDate: string;
+  UpdateTimestamp: string;
+  AnalystLockTimestamp: string;
+  SailedAsDate: string;
+  CreatedDateTime: string;
+  ModifiedDateTime: string;
   //header="Vessel Capacities"
   CapacityPlan: number;
   FuelCapacity: number;
@@ -142,7 +143,6 @@ export class VesselModel {
   DoubleSides: string;
   DoubleBottom: string;
   //header="Vessel Identifiers"
-  Sconum: string;
   DispositionSconum: string;
   updateId: string;
   ProcessState: string;
@@ -201,18 +201,19 @@ export class VesselModel {
   constructor()
   {
     this.formLabels = [
-    
+ 
+      // header="Key Parameters"
+      {label: 'sconum'},
       {label: 'Imo'},
       {label: 'Mmsi'},
       {label: 'CallSign'},
       {label: 'Name'},
       {label: 'Flag'},
-
+      //header="Vessel Engine Parameters"
       {label: 'Speed'},
       {label: 'EngineName'},
       {label: 'EngineModel'},
       {label: 'EngineSerialNumber'},
-      {label: 'FuelCapacity'},
       {label: 'FuelConsumptionRate'},
       {label: 'EngineType'},
       {label: 'EngineTypeCode'},
@@ -230,10 +231,15 @@ export class VesselModel {
       {label: 'ElectricalVoltage'},
       {label: 'ElectricalCurrentType'},
       {label: 'NumberOfGenerators'},
-
+      {label: 'EquipmentCode'},
+      {label: 'NaturalGasDomes'},
+      {label: 'NaturalGasTanks'},
+      //header="Vessel Description"
       {label: 'UpdateVesselStatus'},
       {label: 'VesselFunctionType'},
       {label: 'VesselFunctionTypeCode'},
+      {label: 'UpdateVesselImo'},
+      {label: 'UpdateVesselType'},
       {label: 'NavalVesselCategory'},
       {label: 'NavalVesselCategoryCode'},
       {label: 'VesselDescription'},
@@ -242,144 +248,63 @@ export class VesselModel {
       {label: 'VesselTypeDesignator'},
       {label: 'VesselTypeDesignatorCode'},
       {label: 'VesselClass'},
-
-      {label: 'TypeGroup'},
-      {label: 'Iir'},
-      {label: 'source'},
-      {label: 'updateId'},
-      {label: 'UpdateTimestamp'},
-      {label: 'ProcessState'},
-      {label: 'AnalystLock'},
-      {label: 'AnalystLockTimestamp'},
-      {label: 'UpdateVesselImo'},
-      {label: 'UpdateVesselType'},
-      {label: 'Disposition'},
-      {label: 'DispositionSconum'},
-      {label: 'RejectionReason'},
-      {label: 'Sconum'},
-      {label: 'ActiveIndicator'},
-      {label: 'ActiveIndicatorCode'},
-      {label: 'HomePort'},
-      {label: 'OpsDesignation'},
-      {label: 'HullNumber'},
-      {label: 'EquipmentCode'},
-      {label: 'NavalPennant '},
-      {label: 'PrimaryImageAspect'},
-      {label: 'PrimaryImageGuid'},
-      {label: 'PrimaryImageUrl'},
-      {label: 'PrimaryImageClassification'},
-      {label: 'GrossTons'},
-      {label: 'DeadWeightTons'},
-      {label: 'OverallLengthMeters'},
-      {label: 'MaxBeamMeters'},
-      {label: 'MaxDraftMeters'},
-      {label: 'HullType'},
-      {label: 'UprightSequence'},
-      {label: 'SuperStructureLocation'},
-      {label: 'Identifier'},
-      {label: 'CreatedDateTime'},
-      {label: 'ModifiedDateTime'},
-      {label: 'CreatedBy'},
-      {label: 'ModifiedBy'},
-      {label: 'SecurityLabel'},
-      {label: 'ControlSet'},
-      {label: 'Declassification'},
-      {label: 'SiteId'},
-      {label: 'ShipManager'},
-      {label: 'ShipManagerCountry'},
-      {label: 'RegisteredOwner'},
-      {label: 'BeneficialOwner'},
-      {label: 'OfficialRegistryNumber'},
-      {label: 'ZedRegistryNumber'},
-      {label: 'TrawlerType'},
-      {label: 'TrawlerTypeCode'},
-      {label: 'MerchantPendant'},
-      {label: 'HullColor'},
-      {label: 'FunnelColor'},
-      {label: 'SuperStructureColor'},
-      {label: 'SuperstructureLocationCode'},
-
-      {label: 'NumberSuperstructures'},
-
-      {label: 'SuperStructureOffCenter'},
-      {label: 'SatelliteAntenna'},
-      {label: 'BridgeWings'},
-      {label: 'DroppedPoop'},
-      {label: 'RaisedForecastle'},
-      {label: 'FunnelLocation'},
-      {label: 'FunnelLocationCode'},
-      {label: 'FunnelOffCenter'},
-      {label: 'TwinAbreastFunnels'},
-      {label: 'SternType'},
-      {label: 'SternTypeCode'},
-      {label: 'SternAFrame'},
-      {label: 'LengthBetweenPerpendiculars'},
-      {label: 'DoubleSides'},
-      {label: 'DoubleBottom'},
-      {label: 'DoubleHull'},
-    
+      //header="Dates"
       {label: 'YearMonthBuilt'},
-      {label: 'CountryBuilt'},
-      {label: 'BuilderShipyard'},
       {label: 'KeelLaidDate'},
       {label: 'LaunchDate'},
       {label: 'InserviceDate'},
       {label: 'LaidUpDate'},
       {label: 'InactiveDate'},
-    
-      {label: 'DisplacementFull'},
-      {label: 'DisplacementLight'},
-      {label: 'TpcmImmersion'},
+      {label: 'UpdateTimestamp'},
+      {label: 'AnalystLockTimestamp'},
+      {label: 'SailedAsDate'},
+      {label: 'CreatedDateTime'},
+      {label: 'ModifiedDateTime'},
+      //header="Vessel Capacities"
+      {label: 'CapacityPlan'},
+      {label: 'FuelCapacity'},
+      {label: 'RefrigeratedCapacity'},
+      {label: 'CumulativeLiquidCapacity'},
+      {label: 'MaximumLiftCapacity'},
+      {label: 'GrainCapacity'},
+      {label: 'BaleCapacity'},
+      {label: 'DieselFuelCapacity'},
+      {label: 'OilCapacity'},
+      {label: 'RampCapacity'},
+      {label: 'GasCapacity'},
+      {label: 'CargoCapacityDwt'},
+      {label: 'ContainerCapacityTeu'},
+      {label: 'NumberOfContainers'},
       {label: 'NumberOfHolds'},
       {label: 'NumberOfCargoTanks'},
       {label: 'NumberOfRamps'},
-      {label: 'RampLocation'},
-      {label: 'RampLocationCode'},
-      {label: 'MaximumLaneLength'},
       {label: 'NumberOfPumps'},
       {label: 'NumberOfLifts'},
       {label: 'NumberOfHatches'},
       {label: 'NumberOfHatchesAbreast'},
+      {label: 'NumberOfAutos'},
+      {label: 'PumpRate'},
+      {label: 'UnfueledRange'},
+      {label: 'DaysToProvision'},
+      //header="Dimensional Parameters"
+      {label: 'MaximumLaneLength'},
+      {label: 'OverallLengthMeters'},
+      {label: 'LengthBetweenPerpendiculars'},
       {label: 'LengthOfLargestHatch'},
       {label: 'WidthOfLargestHatch'},
-      {label: 'WaterWashDownFittings'},
-      {label: 'SelfSustaining'},
-      {label: 'AircraftFacilitiesType'},
-      {label: 'AircraftFacilitiesTypeCode'},
-      {label: 'DaysToProvision'},
-      {label: 'HatchesSameSize'},
-      {label: 'CapacityPlan'},
-      {label: 'NaturalGasTanks'},
-      {label: 'GeneralArrangementPlan'},
-      {label: 'NaturalGasDomes'},
-      {label: 'DeadweightScale'},
       {label: 'RampLength'},
-    
-      {label: 'MaximumLiftCapacity'},
-      {label: 'CargoCapacityDwt'},
-      {label: 'UnfueledRange'},
-      {label: 'CrewSize'},
-      {label: 'PassengerBerths'},
-      {label: 'GrainCapacity'},
-      {label: 'BaleCapacity'},
-      {label: 'ContainerCapacityTeu'},
-      {label: 'NumberOfContainers'},
-      {label: 'RampCapacity'},
-      {label: 'CumulativeLiquidCapacity'},
-      {label: 'GasCapacity'},
-      {label: 'RefrigeratedCapacity'},
-      {label: 'PumpRate'},
-      {label: 'NumberOfAutos'},
+      {label: 'MaxBeamMeters'},
+      {label: 'MaxDraftMeters'},
+      {label: 'GrossTons'},
+      {label: 'DeadWeightTons'},
+      {label: 'DisplacementFull'},
+      {label: 'DisplacementLight'},
+      {label: 'DeadweightScale'},
+      {label: 'RampLocation'},
+      {label: 'RampLocationCode'},
       {label: 'DeckSpace'},
-      {label: 'DieselFuelCapacity'},
-      {label: 'OilCapacity'},
-    
-      {label: 'SailedAsType'},
-      {label: 'SailedAsValue'},
-      {label: 'SailedAsDate'},
-      {label: 'Text'},
-      {label: 'TextSequence'},
-    
+      {label: 'UprightSequence'},
+      //header="Phone Information"
       {label: 'PhoneNumber'},
       {label: 'ImsiNumber'},
       {label: 'ImeiNumber'},
@@ -389,6 +314,86 @@ export class VesselModel {
       {label: 'SimSerialNumber'},
       {label: 'SimManufacturer'},
       {label: 'LocationFound'},
+      //header="Primary Image"
+      {label: 'PrimaryImageAspect'},
+      {label: 'PrimaryImageGuid'},
+      {label: 'PrimaryImageUrl'},
+      {label: 'PrimaryImageClassification'},
+      //header="Hull Features"
+      {label: 'DoubleHull'},
+      {label: 'HullType'},
+      {label: 'HullNumber'},
+      {label: 'HullColor'},
+      //header="Super Structure" 
+      {label: 'SuperStructureColor'},
+      {label: 'SuperstructureLocationCode'},
+      {label: 'NumberSuperstructures'},
+      {label: 'SuperStructureOffCenter'},
+      {label: 'SuperStructureLocation'},
+      //header="Funnel Parameters"
+      {label: 'FunnelColor'},
+      {label: 'FunnelLocation'},
+      {label: 'FunnelLocationCode'},
+      {label: 'FunnelOffCenter'},
+      {label: 'TwinAbreastFunnels'},
+      //header="Stern Features"
+      {label: 'SternType'},
+      {label: 'SternTypeCode'},
+      {label: 'SternAFrame'},
+      {label: 'DoubleSides'},
+      {label: 'DoubleBottom'},
+      //header="Vessel Identifiers"
+      {label: 'DispositionSconum'},
+      {label: 'updateId'},
+      {label: 'ProcessState'},
+      {label: 'Identifier'},
+      {label: 'Iir'},
+      {label: 'TypeGroup'},
+      {label: 'Declassification'},
+      {label: 'OpsDesignation'},
+      {label: 'SecurityLabel'},
+      {label: 'OfficialRegistryNumber'},
+      {label: 'ZedRegistryNumber'},
+      {label: 'ActiveIndicator'},
+      {label: 'ActiveIndicatorCode'},
+      //header="Ship Features"
+      {label: 'SatelliteAntenna'},
+      {label: 'BridgeWings'},
+      {label: 'DroppedPoop'},
+      {label: 'RaisedForecastle'},
+      {label: 'TpcmImmersion'},
+      {label: 'WaterWashDownFittings'},
+      {label: 'SelfSustaining'},
+      {label: 'AircraftFacilitiesType'},
+      {label: 'AircraftFacilitiesTypeCode'},
+      {label: 'Disposition'},
+      {label: 'AnalystLock'},
+      {label: 'RejectionReason'},
+      {label: 'NavalPennant'},
+      {label: 'ControlSet'},
+      {label: 'TrawlerType'},
+      {label: 'TrawlerTypeCode'},
+      {label: 'MerchantPendant'},
+      {label: 'GeneralArrangementPlan'},
+      {label: 'CrewSize'},
+      {label: 'PassengerBerths'},
+      {label: 'SailedAsType'},
+      {label: 'SailedAsValue'},
+      {label: 'Text'},
+      {label: 'TextSequence'},
+      {label: 'HatchesSameSize'},
+      //header="Origin Location Information" (new)
+      {label: 'ShipManagerCountry'},
+      {label: 'ShipManager'},
+      {label: 'RegisteredOwner'},
+      {label: 'BeneficialOwner'},
+      {label: 'HomePort'},
+      {label: 'SiteId'},
+      {label: 'CountryBuilt'},
+      {label: 'BuilderShipyard'},
+      {label: 'CreatedBy'},
+      {label: 'ModifiedBy'},
+      {label: 'source'},
     ];
     this.Imo = init.STRING;
     this.Mmsi = init.STRING;
@@ -434,16 +439,16 @@ export class VesselModel {
     this.Iir = init.STRING;
     this.source = init.STRING;
     this.updateId = init.STRING;
-    this.UpdateTimestamp = init.NUMBER;
+    this.UpdateTimestamp = init.STRING;
     this.ProcessState = init.STRING;
     this.AnalystLock = init.STRING;
-    this.AnalystLockTimestamp = init.NUMBER;
+    this.AnalystLockTimestamp = init.STRING;
     this.UpdateVesselImo = init.STRING;
     this.UpdateVesselType = init.STRING;
     this.Disposition = init.STRING;
     this.DispositionSconum = init.STRING;
     this.RejectionReason = init.STRING;
-    this.Sconum = init.STRING;
+    this.sconum = init.STRING;
     this.ActiveIndicator = init.STRING;
     this.ActiveIndicatorCode = init.STRING;
     this.HomePort = init.STRING;
@@ -466,8 +471,8 @@ export class VesselModel {
     this.UprightSequence = init.STRING;
     this.SuperStructureLocation = init.STRING;
     this.Identifier = init.STRING;
-    this.CreatedDateTime = init.NUMBER;
-    this.ModifiedDateTime = init.NUMBER;
+    this.CreatedDateTime = init.STRING;
+    this.ModifiedDateTime = init.STRING;
     this.CreatedBy = init.STRING;
     this.ModifiedBy = init.STRING;
     this.SecurityLabel = init.STRING;
@@ -507,14 +512,14 @@ export class VesselModel {
     this.DoubleBottom = init.STRING;
     this.DoubleHull = init.STRING;
   
-    this.YearMonthBuilt = init.NUMBER;
+    this.YearMonthBuilt = init.STRING;
     this.CountryBuilt = init.STRING;
     this.BuilderShipyard = init.STRING;
-    this.KeelLaidDate = init.DATE;
-    this.LaunchDate = init.DATE;
-    this.InserviceDate = init.DATE;
-    this.LaidUpDate = init.DATE;
-    this.InactiveDate = init.DATE;
+    this.KeelLaidDate = init.STRING;
+    this.LaunchDate = init.STRING;
+    this.InserviceDate = init.STRING;
+    this.LaidUpDate = init.STRING;
+    this.InactiveDate = init.STRING;
   
     this.DisplacementFull = init.NUMBER;
     this.DisplacementLight = init.NUMBER;
@@ -565,7 +570,7 @@ export class VesselModel {
     this.PumpRate = init.NUMBER;
     this.SailedAsType = init.STRING;
     this.SailedAsValue = init.STRING;
-    this.SailedAsDate = init.DATE;
+    this.SailedAsDate = init.STRING;
     this.Text = init.STRING;
     this.TextSequence = init.STRING;
   
@@ -582,6 +587,8 @@ export class VesselModel {
     this.labels = this.formLabels;
   }
 }
+
+
 // export class VesselModel {
 
 //     formLabels: IFormLabel[];
@@ -611,52 +618,52 @@ export class VesselModel {
   
 //     constructor()
 //     {
-//      {label: ' this.formLabels = [
-//         {label: 'securityLabel'},
-//         {label: 'aspect'},
-//         {label: 'imageSource'},
-//         {label: 'sconums'},
-//         {label: 'iirNumbers'},
-//         {label: 'otherSources'},
-//         {label: 'imageDate'},
-//         {label: 'amidshipsId'},
-//         {label: 'primeImage'},
-//         {label: 'distribution'},
-//         {label: 'pageSize'},
-//         {label: 'sortSelect'},
-//         {label: 'sortOrder'},
-//         {label: 'sortField'},
-//         {label: 'valCheck'},
-//         {label: 'imoNumber'},
-//         {label: 'mmsiNumber'},
-//         {label: 'callSign'},
-//         {label: 'vesselName'},
-//         {label: 'modifiedBy'},
-//         {label: 'approvedBy'},
-//         {label: 'uploadedBy'},
-//       ];
-//       this.securityLabel = init.STRING;
-//       this.aspect = init.STRING;
-//       this.imageSource = init.STRING
-//       this.sconums      = [];
-//       this.iirNumbers   = [];
-//       this.otherSources = [];
-//       this.imageDate = init.STRING;
-//       this.amidshipsId  = [];
-//       this.primeImage = init.STRING;
-//       this.distribution = init.STRING;
-//       this.pageSize = init.STRING;
-//       this.sortSelect = init.STRING;
-//       this.sortOrder = init.STRING;
-//       this.sortField = init.STRING;
-//       this.valCheck = init.STRING;
-//       this.imoNumber    = [];
-//       this.mmsiNumber   = [];
-//       this.callSign     = [];
-//       this.vesselName   = [];
-//       this.modifiedBy = init.STRING;
-//       this.approvedBy = init.STRING;
-//       this.uploadedBy = init.STRING;
-//       this.labels = this.formLabels;
+//      {label: 'this.formLabels = [
+//      {label: 'securityLabel'},
+//      {label: 'aspect'},
+//      {label: 'imageSource'},
+//      {label: 'sconums'},
+//      {label: 'iirNumbers'},
+//      {label: 'otherSources'},
+//      {label: 'imageDate'},
+//      {label: 'amidshipsId'},
+//      {label: 'primeImage'},
+//      {label: 'distribution'},
+//      {label: 'pageSize'},
+//      {label: 'sortSelect'},
+//      {label: 'sortOrder'},
+//      {label: 'sortField'},
+//      {label: 'valCheck'},
+//      {label: 'imoNumber'},
+//      {label: 'mmsiNumber'},
+//      {label: 'callSign'},
+//      {label: 'vesselName'},
+//      {label: 'modifiedBy'},
+//      {label: 'approvedBy'},
+//      {label: 'uploadedBy'},
+//      ];
+//      this.securityLabel = init.STRING;
+//      this.aspect = init.STRING;
+//      this.imageSource = init.STRING
+//      this.sconums      {label: '= [];
+//      this.iirNumbers   = [];
+//      this.otherSources = [];
+//      this.imageDate = init.STRING;
+//      this.amidshipsId  = [];
+//      this.primeImage = init.STRING;
+//      this.distribution = init.STRING;
+//      this.pageSize = init.STRING;
+//      this.sortSelect = init.STRING;
+//      this.sortOrder = init.STRING;
+//      this.sortField = init.STRING;
+//      this.valCheck = init.STRING;
+//      this.imoNumber    = [];
+//      this.mmsiNumber   = [];
+//      this.callSign     = [];
+//      this.vesselName   = [];
+//      this.modifiedBy = init.STRING;
+//      this.approvedBy = init.STRING;
+//      this.uploadedBy = init.STRING;
+//      this.labels = this.formLabels;
 //     }
 //   }
